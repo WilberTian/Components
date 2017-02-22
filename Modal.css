@@ -1,0 +1,57 @@
+.C_Modal {
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5); /*暗淡的背景*/	
+}
+
+.C_Modal .modal-dialog {
+	margin: 240px auto;
+	background: #fff;
+	border-radius: 5px;
+
+	width: 400px;
+}
+
+.C_Modal .modal-dialog .modal-header {
+	padding: 10px;
+	height: 28px;
+	line-height: 28px;
+	font-size: 24px
+}
+
+.C_Modal .modal-dialog .modal-body {
+	padding: 10px;
+	height: 100%;
+}
+
+.C_Modal .modal-dialog .modal-footer {
+	padding: 10px;
+	height: 28px;
+}
+
+.C_Modal .modal-dialog .modal-footer div {
+	display: inline-block;
+	height: 28px;
+	width: 60px;
+	line-height: 28px;
+	border-radius: 3px;
+    border: 1px solid #999;
+    font-size: 14px;	
+    text-align: center;
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+.C_Modal .modal-dialog .modal-footer .modal-confirm{
+	background: #337ab7;
+	color: #fff;
+}
+
+.C_Modal .modal-dialog .modal-footer .modal-cancel{
+	background: #f55151;
+	color: #fff;
+}

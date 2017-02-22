@@ -1,0 +1,27 @@
+.C_Select {
+	position: relative;
+}
+
+.C_Select .C_Select_selected {
+	display: inline-block;
+	border-radius: 4px;
+	width: 120px;
+	height: 24px;
+	line-height: 24px;
+	padding: 0px 20px 0px 10px;
+	border: 1px solid #999;
+	cursor: pointer;
+}
+
+.C_Select .dropdown-icon {
+	display: inline-block;
+	border-top: 5px solid black;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	margin-left: -20px;
+	vertical-align: 2px;
+}
+
+.C_Select .C_Select_options {
+	display: none;
+}

@@ -1,0 +1,18 @@
+{
+	"code": "200",
+	"msg": {
+		"options": [{
+			"value": 1,
+			"label": "car"
+		}, {
+			"value": 2,
+			"label": "bus"
+		}, {
+			"value": 3,
+			"label": "train"
+		}, {
+			"value": 4,
+			"label": "bike"
+		}]
+	}
+}

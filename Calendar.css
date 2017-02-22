@@ -1,0 +1,28 @@
+.C_Calendar {
+
+}
+
+.C_Calendar .C_Calendar_table {
+	border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+.C_Calendar .C_Calendar_table thead tr th {
+	height: 45px;
+	line-height: 45px;
+	width: 120px;
+	text-align: center;
+	border: 1px solid #d7d7d7;
+    color: #999;
+    background: aliceblue;
+}
+
+.C_Calendar .C_Calendar_table tbody tr td {
+	height: 80px;
+	line-height: 60px;
+	width: 120px;
+	border: 1px solid #d7d7d7;
+}
+
+
+

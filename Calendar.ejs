@@ -1,0 +1,31 @@
+<div class="C_Calendar">
+	<table class="C_Calendar_table">
+		<thead>
+			<tr>
+				<th>周日</th>
+				<th>周一</th>
+				<th>周二</th>
+				<th>周三</th>
+				<th>周四</th>
+				<th>周五</th>
+				<th>周六</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% 
+				var idx = -1;
+				days.forEach(function(day){ 
+					idx += 1;
+					if(idx%7 === 0) {
+			%>
+						<tr>
+					<% } %>
+
+							<td><%= day %></td>
+					<% if(idx&7 === 0) { %>
+						</tr>
+					<% } %>
+			<% }) %>
+		</tbody>
+	</table>
+</div>
