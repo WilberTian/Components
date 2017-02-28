@@ -12,8 +12,9 @@ require([
     'Select',
     'Search',
     'Calendar',
-    'Modal'
-], function (Text, Select, Search, Calendar, Modal) {
+    'Modal',
+    'Hover'
+], function (Text, Select, Search, Calendar, Modal, Hover) {
 
     var text = new Text({
         $el: $('.text'),
@@ -55,14 +56,25 @@ require([
     });
     calendar.render();
 
-    var modal = new Modal({
-        $el: $('.modal')
-    })
-    modal.render();
+    $('.show-modal').on('click', function() {
+        var modal = new Modal({
+            $el: $('.modal')
+        })
+        modal.render();
 
-    modal.subscribe(modal.guid + '-MODAL_CONFIRM', function(data){
-        console.log('modal was confirmed')
-        modal.destory();
-    })
+        modal.subscribe(modal.guid + '-MODAL_CONFIRM', function(data){
+            console.log('modal was confirmed')
+            modal.destory();
+        });
+    });
 
+    var hover = new Hover({
+        $el: $('.hover')
+    })
+    hover.render();
+    $('.hover').on('mouseover', function(){
+        hover.publish(hover.guid + '-SHOW_HOVER');
+    }).on('mouseout', function(){
+        hover.publish(hover.guid + '-HIDE_HOVER');
+    })
 });
