@@ -31,8 +31,8 @@ define([
 
 	Search.prototype.searchClick_event = function(e) {
 
-		if($(e.target).val().trim() !== '') {
-			this.selected.label = $(e.target).val();
+		if($(e.currentTarget).val().trim() !== '') {
+			this.selected.label = $(e.currentTarget).val();
 			this.loadData();
 		}
 		this.find('.C_Search_options').show();
@@ -41,7 +41,7 @@ define([
 	}
 
 	Search.prototype.searchKeyup_event = function(e) {
-		this.selected.label = $(e.target).val();
+		this.selected.label = $(e.currentTarget).val();
 		this.loadData();
 	}
 

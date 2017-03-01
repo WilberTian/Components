@@ -28,13 +28,13 @@ define([
 
 	Options.prototype.chooseOption_event = function(e) {
 		var self = this;
-		var selectedOptionIdx = $(e.target).index()
+		var selectedOptionIdx = $(e.currentTarget).index()
 		self.ref.publish(self.ref.guid + '-' + 'SELECT_OPTION', self.options[selectedOptionIdx]);
 	}
 
 	Options.prototype._hideWhenClickOutside = function($ele) {
 		$(window).click(function (e) {
-		    if (!$ele.is(e.target) && $ele.has(e.target).length === 0) {
+		    if (!$ele.is(e.currentTarget) && $ele.has(e.currentTarget).length === 0) {
 		        $ele.hide();
 		    }
 		});
