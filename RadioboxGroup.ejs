@@ -1,0 +1,12 @@
+<div class="C_RadioboxGroup">
+	<% options.forEach(function (option) { %>
+		<div class="C_radiobox">
+			<div class="C_radiobox_icon">
+				<i></i>
+			</div>
+			<span class="C_Radiobox_label" data-value="<%= option.value %>">
+				<%= option.label %>
+			</span>
+		</div>
+	<% }) %>
+</div>

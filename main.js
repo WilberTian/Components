@@ -14,8 +14,9 @@ require([
     'Calendar',
     'Modal',
     'Hover',
-    'CheckboxGroup'
-], function (Text, Select, Search, Calendar, Modal, Hover, CheckboxGroup) {
+    'CheckboxGroup',
+    'RadioboxGroup'
+], function (Text, Select, Search, Calendar, Modal, Hover, CheckboxGroup, RadioboxGroup) {
 
     var text = new Text({
         $el: $('.text'),
@@ -97,4 +98,21 @@ require([
     });
 
     checkboxGroup.render();
+
+    var radioboxGroup = new RadioboxGroup({
+        $el: $('.radiobox-group'),
+        checked: 2,
+        options: [{
+            label: '初级',
+            value: '1'
+        }, {
+            label: '中级',
+            value: '2'
+        }, {
+            label: '高级',
+            value: '3'
+        }]
+    });
+
+    radioboxGroup.render();
 });
