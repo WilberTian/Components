@@ -29,7 +29,7 @@ define([
 
 	Modal.prototype.modalConfirm_event = function(e) {
 		var self = this;
-		self.ref.publish(self.ref.guid + '-' + 'MODAL_CONFIRM');
+		self.ref.publish(self.ref.toMsgName('MODAL_CONFIRM'));
 	}
 
 	Modal.prototype.modalCancel_event = function(e) {

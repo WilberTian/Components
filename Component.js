@@ -45,11 +45,14 @@ define([
 		for(var message in this.messages) {
 			var methodName = this.messages[message];
 			var method = this.proxy(this[methodName])
-			this.subscribe(this.guid + '-' + message, method);
+			this.subscribe(this.toMsgName(message), method);
 		}
 
 		return this;
 	};
+	Component.prototype.toMsgName = function(message) {
+		return this.guid + '-' + message;
+	}
 
 	Component.prototype.eventSplitter = /^(\S+)\s*(.*)$/;
 

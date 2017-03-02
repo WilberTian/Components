@@ -29,7 +29,7 @@ define([
 	Options.prototype.chooseOption_event = function(e) {
 		var self = this;
 		var selectedOptionIdx = $(e.currentTarget).index()
-		self.ref.publish(self.ref.guid + '-' + 'SELECT_OPTION', self.options[selectedOptionIdx]);
+		self.ref.publish(self.ref.toMsgName('SELECT_OPTION'), self.options[selectedOptionIdx]);
 	}
 
 	Options.prototype._hideWhenClickOutside = function($ele) {
