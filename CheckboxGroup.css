@@ -1,0 +1,25 @@
+.C_CheckboxGroup {
+
+}
+
+.C_CheckboxGroup .C_checkbox {
+	display: inline-block;
+	margin-right: 24px;
+	cursor: pointer;
+}
+
+.C_checkbox .C_checkbox_icon {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border: 2px solid #f63;
+	vertical-align: middle;
+}
+
+.C_checkbox.checked .C_checkbox_icon i {
+	display: block;
+	width: 6px;
+	height: 6px;
+	margin: 3px;
+	background: #f63;
+}

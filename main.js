@@ -13,8 +13,9 @@ require([
     'Search',
     'Calendar',
     'Modal',
-    'Hover'
-], function (Text, Select, Search, Calendar, Modal, Hover) {
+    'Hover',
+    'CheckboxGroup'
+], function (Text, Select, Search, Calendar, Modal, Hover, CheckboxGroup) {
 
     var text = new Text({
         $el: $('.text'),
@@ -68,6 +69,7 @@ require([
         });
     });
 
+
     var hover = new Hover({
         $el: $('.hover')
     })
@@ -77,4 +79,22 @@ require([
     }).on('mouseout', function(){
         hover.publish(hover.guid + '-HIDE_HOVER');
     })
+
+
+    var checkboxGroup = new CheckboxGroup({
+        $el: $('.checkbox-group'),
+        checked: [2, 3],
+        options: [{
+            label: '初级',
+            value: '1'
+        }, {
+            label: '中级',
+            value: '2'
+        }, {
+            label: '高级',
+            value: '3'
+        }]
+    });
+
+    checkboxGroup.render();
 });

@@ -1,0 +1,12 @@
+<div class="C_CheckboxGroup">
+	<% options.forEach(function (option) { %>
+		<div class="C_checkbox">
+			<div class="C_checkbox_icon">
+				<i></i>
+			</div>
+			<span class="C_Checkbox_label" data-value="<%= option.value %>">
+				<%= option.label %>
+			</span>
+		</div>
+	<% }) %>
+</div>
