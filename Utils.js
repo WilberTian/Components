@@ -10,6 +10,27 @@ define([], function(){
 		});
 	}
 
+	// enhance Function object
+	Function.prototype.before = function(fn) {
+		var self = this;
+
+		return function() {
+			fn.apply(this, arguments);
+			return self.apply(this, arguments);
+		}
+	}
+
+	Function.prototype.after = function(fn) {
+		var self = this;
+
+		return function() {
+			var result = self.apply(this, arguments);
+			fn.apply(this, arguments);
+
+			return result;
+		}
+	}
+
 	return {
 		inherit: inherit,
 		guid: guid

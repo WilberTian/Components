@@ -22,7 +22,7 @@ define([
 	Utils.inherit(Options, Component);
 
 	Options.prototype.beforeRender = function() {
-		this._hideWhenClickOutside(this.$el);
+		this._hideWhenClickOutside();
 		return this;
 	};
 
@@ -32,10 +32,14 @@ define([
 		self.ref.publish(self.ref.toMsgName('SELECT_OPTION'), self.options[selectedOptionIdx]);
 	}
 
-	Options.prototype._hideWhenClickOutside = function($ele) {
+	Options.prototype._hideWhenClickOutside = function() {
+		var self = this;
+		var $el = self.$el;
+
 		$(window).click(function (e) {
-		    if (!$ele.is(e.currentTarget) && $ele.has(e.currentTarget).length === 0) {
-		        $ele.hide();
+		    if (!$el.is(e.currentTarget) && $el.has(e.currentTarget).length === 0) {
+		        //$el.hide();
+		        self.ref.publish(self.ref.toMsgName('CLICK_OUTSIDE'));
 		    }
 		});
 

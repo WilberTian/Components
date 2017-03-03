@@ -15,8 +15,9 @@ require([
     'Modal',
     'Hover',
     'CheckboxGroup',
-    'RadioboxGroup'
-], function (Text, Select, Search, Calendar, Modal, Hover, CheckboxGroup, RadioboxGroup) {
+    'RadioboxGroup',
+    'MultiSelect'
+], function (Text, Select, Search, Calendar, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect) {
 
     var text = new Text({
         $el: $('.text'),
@@ -64,7 +65,7 @@ require([
         })
         modal.render();
 
-        modal.subscribe(modal.guid + '-MODAL_CONFIRM', function(data){
+        modal.subscribe(modal.toMsgName('MODAL_CONFIRM'), function(data){
             console.log('modal was confirmed')
             modal.destory();
         });
@@ -76,9 +77,9 @@ require([
     })
     hover.render();
     $('.hover').on('mouseover', function(){
-        hover.publish(hover.guid + '-SHOW_HOVER');
+        hover.publish(hover.toMsgName('SHOW_HOVER'));
     }).on('mouseout', function(){
-        hover.publish(hover.guid + '-HIDE_HOVER');
+        hover.publish(hover.toMsgName('HIDE_HOVER'));
     })
 
 
@@ -115,4 +116,28 @@ require([
     });
 
     radioboxGroup.render();
+
+
+
+    var multiSelect = new MultiSelect({
+        $el: $('.multi-select'),
+        selected: [{
+            label: '中级',
+            value: '2'
+        }, {
+            label: '高级',
+            value: '3'
+        }],
+        options: [{
+            label: '初级',
+            value: '1'
+        }, {
+            label: '中级',
+            value: '2'
+        }, {
+            label: '高级',
+            value: '3'
+        }]
+    });
+    multiSelect.render();
 });

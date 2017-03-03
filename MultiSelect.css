@@ -1,0 +1,41 @@
+.C_MulitSelect {
+
+}
+
+.C_MulitSelect .C_selected_area {
+	width: 400px;
+	height: 120px;
+	border: 1px solid #d7d7d7;
+	overflow-y: auto;
+}
+
+.C_MulitSelect .C_selected_area .C_selected_item {
+	position: relative;
+	display: inline-block;
+	height: 20px;
+	line-height: 20px;
+	margin: 8px;
+	padding: 8px;
+	border: 1px solid #999;
+}
+
+.C_MulitSelect .C_selected_area .C_selected_item i {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	border: 1px solid #f63;
+	background: #fff;
+    top: -6px;
+    right: -6px;
+    cursor: pointer;
+}
+
+.C_MulitSelect .C_selected_area .C_selected_item i::before {
+    content: '-';
+    color: #f63;
+    position: absolute;
+    top: -5px;
+    left: 4px;
+    font-size: 14px;
+}

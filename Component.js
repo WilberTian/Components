@@ -36,6 +36,14 @@ define([
 	    this.delegateEvents();
 	    return this;
 	};
+	Component.prototype._render = function() {
+		var $el = this.$el;
+		var compiledTpl = ejs.compile(this.template);
+	    var html = compiledTpl(this);
+	    $el.html(html);
+
+	    return this;
+	};
 
 	Component.prototype.afterRender = function() {
 		return this;
