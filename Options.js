@@ -15,16 +15,16 @@ define([
 	}
 
 	function Options(options) {
-		Component.apply(this, arguments || {});
 		$.extend(true, this, _data, options);
+		Component.apply(this, arguments || {});
 	}
 
 	Utils.inherit(Options, Component);
 
-	Options.prototype.beforeRender = function() {
-		this._hideWhenClickOutside();
-		return this;
-	};
+	Options.prototype.render = Options.prototype.render.after(function() {
+		var self = this;
+		$(window).off('click').on('click', self.proxy(_windowClickHandler));
+	});
 
 	Options.prototype.chooseOption_event = function(e) {
 		var self = this;
@@ -32,16 +32,26 @@ define([
 		self.ref.publish(self.ref.toMsgName('SELECT_OPTION'), self.options[selectedOptionIdx]);
 	}
 
-	Options.prototype._hideWhenClickOutside = function() {
+	Options.prototype.destory = Options.prototype.destory.after(function(){
+		$(window).off('click');
+	})
+
+	Options.prototype.show = Options.prototype.show.after(function() {
+		var self = this;
+		$(window).off('click').on('click', self.proxy(_windowClickHandler));
+	});
+
+	Options.prototype.hide = Options.prototype.hide.after(function(){
+		$(window).off('click');
+	})
+
+	function _windowClickHandler(e) {
 		var self = this;
 		var $el = self.$el;
 
-		$(window).click(function (e) {
-		    if (!$el.is(e.currentTarget) && $el.has(e.currentTarget).length === 0) {
-		        //$el.hide();
-		        self.ref.publish(self.ref.toMsgName('CLICK_OUTSIDE'));
-		    }
-		});
+		if (!$el.is(e.currentTarget) && $el.has(e.currentTarget).length === 0) {
+	        self.ref.publish(self.ref.toMsgName('CLICK_OUTSIDE'));
+	    }
 
 		return this;
 	}

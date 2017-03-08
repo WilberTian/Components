@@ -16,7 +16,8 @@ define([
 		template: ejsTpl,
 
 		messages: {
-			'SELECT_OPTION': 'selectOption_message'
+			'SELECT_OPTION': 'selectOption_message',
+			'CLICK_OUTSIDE': 'clickOutside_message'
 		},
 
 		events: {
@@ -25,8 +26,8 @@ define([
 	};
 
 	function Select(options) {
-		Component.call(this, options || {});
 		$.extend(true, this, _data, options);
+		Component.call(this, options || {});
 	}
 	Utils.inherit(Select, Component);
 
@@ -38,19 +39,21 @@ define([
 			options: self.options,
 			ref: self
 		})
-
-		self.c_options.render()
 	}
 
 	Select.prototype.onSelectClick_event = function(e) {
-		this.find('.C_Select_options').toggle();
 		e.stopPropagation();
+		this.c_options.show();
+	}
+
+	Select.prototype.clickOutside_message = function() {
+		this.c_options.hide();
 	}
 
 	Select.prototype.selectOption_message = function(selectedItem) {
 		this.selected = selectedItem;
 		this.find('.C_Select_selected').text(this.selected.label);
-		this.find('.C_Select_options').toggle();
+		this.c_options.hide();
 
 	}
 

@@ -24,13 +24,11 @@ define([
 	}
 
 	function MultiSelect(options) {
+		$.extend(true, this, _data, options);		
 		Component.apply(this, arguments || {});
-		$.extend(true, this, _data, options);
-
 	}
 
 	Utils.inherit(MultiSelect, Component);
-
 
 
 	MultiSelect.prototype.removeSelectedItem_event = function(e) {
@@ -46,18 +44,15 @@ define([
 		});
 		this.selected.splice(idx, 1);
 
-		this._render();
-		// also update this.selected
+		this.render();
 	}
 
 	MultiSelect.prototype.selectOption_message = function(selectedItem) {
-		console.log(selectedItem)
 		this.selected.push(selectedItem);
-		this._render();
+		this.render();
 	}
 
 	MultiSelect.prototype.clickOutside_message = function() {
-		// 
 		this.c_options.destory();
 	}
 
@@ -72,7 +67,6 @@ define([
 			ref: self
 		})
 
-		self.c_options.render();
 	}
   
 	return MultiSelect;

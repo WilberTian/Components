@@ -12,15 +12,10 @@ define([
 
 		this._placeholder = options.placeholder || '';
 
-
-		this._init();
 	}
 
 	Utils.inherit(Text, FormElement);
 
-	Text.prototype._init = function() {
-		this.render();
-	}
 
 
 	return Text;

@@ -17,8 +17,8 @@ define([
 	}
 
 	function RadioboxGroup(options) {
-		Component.apply(this, arguments || {});
 		$.extend(true, this, _data, options);
+		Component.apply(this, arguments || {});
 	}
 
 	Utils.inherit(RadioboxGroup, Component);

@@ -7,18 +7,25 @@ define([
 ], function($, moment, Component, Utils, ejsTpl){
 
 	var _data = {
-		days: [],
+		daysInMonth: [],
 		month: '2017-04',
 		template: ejsTpl,
 
+		messages: {
+
+		},
+
 		events: {
-			'click .C_Calendar li': 'chooseOption_event'
+			'click .C_Calendar_picker': 'toggleCalender_event',
+			'click .pre': 'showPreMonth_event',
+			'click .next': 'showNextMonth_event',
+			'click .enabled': 'chooseDate_event'
 		}
 	}
 
 	function Calendar(options) {
-		Component.apply(this, arguments || {});
 		$.extend(true, this, _data, options);
+		Component.apply(this, arguments || {});
 	}
 
 	Utils.inherit(Calendar, Component);
@@ -29,6 +36,22 @@ define([
 		return this;
 	};
 
+	Calendar.prototype.toggleCalender_event = function(e) {
+
+	}
+
+	Calendar.prototype.showPreMonth_event = function(e) {
+
+	}
+
+	Calendar.prototype.showNextMonth_event = function(e) {
+
+	}
+
+	Calendar.prototype.chooseDate_event = function(e) {
+
+	}
+
 	Calendar.prototype.getMonthData = function() {
 		var date = moment(this.month + '-01');
 		var totalDays = date.daysInMonth();
@@ -37,16 +60,16 @@ define([
 		var calendarTotalCells = (firstDay + totalDays) > 35 ? 42 : 35;
 
 		for(var i = 0; i < firstDay; i++) {
-			this.days.push('');
+			this.daysInMonth.push('');
 		}
 
 		for(var i = 0; i < totalDays; i++) {
-			this.days.push(i + 1);
+			this.daysInMonth.push(i + 1);
 		}
 		
 		var leftDays = calendarTotalCells - totalDays - firstDay;
 		for(var i = 0; i < leftDays; i++) {
-			this.days.push('');
+			this.daysInMonth.push('');
 		}
 	}
 

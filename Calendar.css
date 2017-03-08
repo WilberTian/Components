@@ -1,27 +1,71 @@
 .C_Calendar {
-
+	position: relative;
 }
 
-.C_Calendar .C_Calendar_table {
-	border-collapse: collapse;
-    border-spacing: 0px;
+.C_Calendar_picker {
+	position: absolute;
+	width: 212px;
+	height: 36px;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
 }
+
+.C_Calendar_wrapper {
+	position: absolute;
+	top: 40px;
+	padding: 10px;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+}
+
+.C_Calendar_selector {
+	background-color: aliceblue;
+	text-align: center;
+	line-height: 24px;
+}
+
+.C_Calendar_selector div {
+	width: 24px;
+	height: 24px;
+	text-align: center;
+	background-color: skyblue;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.C_Calendar_selector .pre {
+	float: left;
+}
+
+.C_Calendar_selector .next {
+	float: right;
+}
+
 
 .C_Calendar .C_Calendar_table thead tr th {
-	height: 45px;
-	line-height: 45px;
-	width: 120px;
+	height: 21px;
+	line-height: 21px;
+	width: 21px;
 	text-align: center;
-	border: 1px solid #d7d7d7;
-    color: #999;
-    background: aliceblue;
+    color: orange;
 }
 
 .C_Calendar .C_Calendar_table tbody tr td {
-	height: 80px;
-	line-height: 60px;
-	width: 120px;
+	height: 21px;
+	line-height: 21px;
+	width: 21px;
+	text-align: center;
 	border: 1px solid #d7d7d7;
+}
+
+.C_Calendar .C_Calendar_table tbody tr td.disabled {
+	background-color: #f8f8f8;
+}
+
+.C_Calendar .C_Calendar_table tbody tr td.enabled:hover {
+	background-color: orange;
+	color: white;
+	cursor: pointer;
 }
 
 

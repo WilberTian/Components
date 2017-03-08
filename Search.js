@@ -13,7 +13,8 @@ define([
 		template: ejsTpl,
 
 		messages: {
-			'SELECT_OPTION': 'selectOption_message'
+			'SELECT_OPTION': 'selectOption_message',
+			'CLICK_OUTSIDE': 'clickOutside_message'
 		},
 
 		events: {
@@ -23,8 +24,8 @@ define([
 	}
 
 	function Search(options) {
-		Component.apply(this, arguments || {});
 		$.extend(true, this, _data, options);
+		Component.apply(this, arguments || {});
 	}
 	Utils.inherit(Search, Component);
 
@@ -48,7 +49,11 @@ define([
 	Search.prototype.selectOption_message = function(selectedItem){
 		this.selected = selectedItem;
 		this.find('.C_Search_input').val(this.selected.label);
-		this.find('.C_Search_options').hide();
+		this.c_options.hide();
+	}
+
+	Search.prototype.clickOutside_message = function(selectedItem){
+		this.c_options.hide();
 	}
 
 	Search.prototype.loadData = function() {
@@ -66,11 +71,9 @@ define([
 				options: self.options,
 				ref: self
 			})
-			self.c_options.render();
 
 		}, 'json');
 	}
-
 
 	return Search;
 

@@ -18,13 +18,14 @@ require([
     'RadioboxGroup',
     'MultiSelect'
 ], function (Text, Select, Search, Calendar, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect) {
-
+/*
     var text = new Text({
         $el: $('.text'),
         label: 'UserName',
         placeholder: 'input user name',
         required: true
     });
+*/
 
     var select = new Select({
         $el: $('.select'),
@@ -43,21 +44,17 @@ require([
         }]
     });
 
-    select.render();
-
-
-
     var search = new Search({
         $el: $('.search'),
         url: '/mock/search_mock',
         selected: {}
     });
-    search.render();
+
 
     var calendar = new Calendar({
         $el: $('.calendar')
     });
-    calendar.render();
+
 
     $('.show-modal').on('click', function() {
         var modal = new Modal({
@@ -75,7 +72,6 @@ require([
     var hover = new Hover({
         $el: $('.hover')
     })
-    hover.render();
     $('.hover').on('mouseover', function(){
         hover.publish(hover.toMsgName('SHOW_HOVER'));
     }).on('mouseout', function(){
@@ -98,7 +94,6 @@ require([
         }]
     });
 
-    checkboxGroup.render();
 
     var radioboxGroup = new RadioboxGroup({
         $el: $('.radiobox-group'),
@@ -114,9 +109,6 @@ require([
             value: '3'
         }]
     });
-
-    radioboxGroup.render();
-
 
 
     var multiSelect = new MultiSelect({
@@ -139,5 +131,6 @@ require([
             value: '3'
         }]
     });
-    multiSelect.render();
+
+    
 });
