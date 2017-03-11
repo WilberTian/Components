@@ -1,29 +1,39 @@
 define([
-	'FormElement',
+	'jquery',
+	'Component',
+	'MessageTypes',
 	'Utils',
 	'text!Text.ejs'
-], function(FormElement, Utils, TextTemplate){
+], function($, Component, MessageTypes, Utils, ejsTpl){
 
-	function Text(options) {
+	var _data = {
+		text: '',
+		placeholder: '',
 
-		FormElement.apply(this, arguments || {});
+		template: ejsTpl,
 
-		this.template = (options.template || TextTemplate);
-
-		this._placeholder = options.placeholder || '';
-
+		events: {
+			'click .C_Text_wrapper': 'onClick_event',
+			'keyup .C_Text_input': 'onKeyup_evnet'
+		}
 	}
 
-	Utils.inherit(Text, FormElement);
+	function Text(options) {
+		$.extend(true, this, _data, options);
+		Component.apply(this, arguments || {});
+	}
 
+	Utils.inherit(Text, Component);
 
+	Text.prototype.onClick_event = function(e) {
+		this.text = $(e.currentTarget).val();
+		this.msgBus.publish(this.msgBus.toMsgName(MessageTypes.TEXT_CLICK), e, this.text);
+	}
 
+	Text.prototype.onKeyup_evnet = function(e) {
+		this.text = $(e.currentTarget).val();
+		this.msgBus.publish(this.msgBus.toMsgName(MessageTypes.TEXT_KEY_UP), e, this.text);
+	}
+ 
 	return Text;
-
 });
-
-
-
-
-
-

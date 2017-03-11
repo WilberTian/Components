@@ -1,45 +1,42 @@
 <div class="C_Calendar">
-	<div class="C_Calendar_picker"></div>
-	<div class="C_Calendar_wrapper">
-		<div class="C_Calendar_selector">
-			<div class="pre"><</div>
-			<span class><%= month %></span>
-			<div class="next">></div>
-		</div>
-		<table class="C_Calendar_table">
-			<thead>
-				<tr>
-					<th>日</th>
-					<th>一</th>
-					<th>二</th>
-					<th>三</th>
-					<th>四</th>
-					<th>五</th>
-					<th>六</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% 
-					var idx = 0;
-					daysInMonth.forEach(function(day){ 
-						
-						if(idx%7 === 0) {
-				%>
-							<tr>
-						<% } 
-							idx += 1;
-							if(day) {
-						%>
-							<td class="enabled"><%= day %></td>
-						<% } else { %>
-							<td class="disabled"></td>
-						<% } %>
-
-						<% if(idx%7 === 0) { %>
-							</tr>
-						<% } %>
-				<% }) %>
-			</tbody>
-		</table>
+	<div class="C_Calendar_selector">
+		<div class="pre"><</div>
+		<span class="picked-month"><%= month %></span>
+		<div class="next">></div>
 	</div>
+	<table class="C_Calendar_table">
+		<thead>
+			<tr>
+				<th>日</th>
+				<th>一</th>
+				<th>二</th>
+				<th>三</th>
+				<th>四</th>
+				<th>五</th>
+				<th>六</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% 
+				var idx = 0;
+				daysInMonth.forEach(function(item){ 
+					
+					if(idx%7 === 0) {
+			%>
+						<tr>
+					<% } 
+						idx += 1;
+						if(item) {
+					%>
+						<td class="enabled <%= (item==day) ? 'selected' : ''%>"><%= item %></td>
+					<% } else { %>
+						<td class="disabled"></td>
+					<% } %>
+
+					<% if(idx%7 === 0) { %>
+						</tr>
+					<% } %>
+			<% }) %>
+		</tbody>
+	</table>
 </div>

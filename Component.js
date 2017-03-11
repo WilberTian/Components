@@ -13,7 +13,7 @@ define([
 		}
 
 		this.guid = Utils.guid();
-		this.ref = options.ref || this;
+		this.msgBus = options.msgBus || this;
 
 		this.init();
 		return this;
@@ -23,30 +23,36 @@ define([
 
 	Component.prototype.init = function() {
 		this.initSubscriber();
-		this.beforeRender();
+		this.beforeMount();
 
 		this.render();
+		this.mount();
 
-		this.afterRender();
+		this.afterMount();
 		this.undelegateEvents();
 	    this.delegateEvents();
 	    return this;
 	}
 
-	Component.prototype.beforeRender = function() {
+	Component.prototype.beforeMount = function() {
 		return this;
 	}
 
 	Component.prototype.render = function() {
-		var $el = this.$el;
 		var compiledTpl = ejs.compile(this.template);
-	    var html = compiledTpl(this);
-	    $el.html(html);
+	    this.renderedPage = compiledTpl(this);
 
 	    return this;
 	};
 
-	Component.prototype.afterRender = function() {
+	Component.prototype.mount = function() {
+		var $el = this.$el;
+	    $el.html(this.renderedPage);
+
+	    return this;
+	}
+
+	Component.prototype.afterMount = function() {
 		return this;
 	};
 
@@ -108,7 +114,7 @@ define([
 	Component.prototype.destory = function() {
 		this.clearSubscriber();
 		this.$el.children().remove();
-		this.ref = null;
+		this.msgBus = null;
 	}
 
 	Component.prototype.hide = function() {
@@ -117,6 +123,10 @@ define([
 
 	Component.prototype.show = function() {
 		this.$el.show();
+	}
+
+	Component.prototype.toggle = function() {
+		this.$el.toggle();
 	}
 
 	Component.prototype.find = function(identity) {
@@ -132,6 +142,13 @@ define([
 
 	Component.prototype.setStyle = function(selector, styleProp, styleValue) {
 		$(selector).css(styleProp, styleValue);
+	}
+
+	Component.prototype.updateData = function(data) {
+		$.extend(this, data);
+		
+		this.render();
+		this.mount();
 	}
 
 	return Component;

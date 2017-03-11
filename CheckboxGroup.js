@@ -36,7 +36,7 @@ define([
 		}
 	}
 
-	CheckboxGroup.prototype.afterRender = function() {
+	CheckboxGroup.prototype.afterMount = function() {
 		var self = this;
 
 		$('.C_checkbox').each(function(){

@@ -1,12 +1,10 @@
 <div class='C_Text'>
 
-	<div class='C_Text_label'>
-		<% if(_required) { %> 
-			<i>*</i> 
-		<% } %>
-		<span><%= _label %></span>
-	</div> 
-
-	<input class='C_Text_input' typt='text' placeholder='<%= _placeholder %>' value='<%= _value %>' maxLength=''/>
+	<div class="C_Text_wrapper">
+		<input class='C_Text_input' typt='text' placeholder='<%= placeholder %>' value='<%= text %>'></input>
+		<span class="C_Text_icon">
+			<i></i>
+		</span>
+	</div>
 
 </div>

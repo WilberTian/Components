@@ -24,7 +24,7 @@ define([
 
 	Utils.inherit(Hover, Component);
 
-	Hover.prototype.beforeRender = function () {
+	Hover.prototype.beforeMount = function () {
 		this.$el.append('<div class="C_Hover_Wrapper"></div>');
 		this.$el.css('position', 'relative');
 

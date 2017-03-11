@@ -1,5 +1,7 @@
-define([], function(){
-	function Pubsub() {
+define([
+	'Settings'
+], function(Settings){
+	function Pubsub(Settings) {
 	}
 
 	Pubsub.prototype.subscribe = function(ev, callback) {
@@ -40,6 +42,17 @@ define([], function(){
 		}
 		
 		return this;
+	}
+
+	if(Settings.debug) {
+		var publichFn = Pubsub.prototype.publish;
+		Pubsub.prototype.publish = publichFn.before(function(){
+			var args = Array.prototype.slice.call(arguments);
+			var ev = args.shift();
+
+			console.log('MSG: ' + ev + ', ARGS: ' + args);
+		})
+
 	}
 
 	return Pubsub

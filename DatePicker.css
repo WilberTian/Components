@@ -1,0 +1,29 @@
+.C_DatePicker {
+	position: relative;
+}
+
+.C_DatePicker .C_select_date {
+	display: inline-block;
+	width: 120px;
+	height: 24px;
+	line-height: 24px;
+	border: 1px solid #999;
+	border-radius: 4px;
+	padding: 0px 20px 0px 10px;
+	cursor: pointer;
+}
+
+.C_DatePicker .date-icon {
+	display: inline-block;
+	border-top: 5px solid black;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	margin-left: -20px;
+}
+
+.C_DatePicker .C_DatePicker_Calendar {
+
+}
+
+
+

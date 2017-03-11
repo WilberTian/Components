@@ -3,8 +3,9 @@ define([
 	'Component',
 	'Utils',
 	'text!Select.ejs',
+	'Text',
 	'Options'
-], function($, Component, Utils, ejsTpl, Options){
+], function($, Component, Utils, ejsTpl, Text, Options){
 
 	var _data = {
 		options: [],
@@ -16,12 +17,12 @@ define([
 		template: ejsTpl,
 
 		messages: {
+			'TEXT_CLICK': 'clickSelect_message',
 			'SELECT_OPTION': 'selectOption_message',
 			'CLICK_OUTSIDE': 'clickOutside_message'
 		},
 
 		events: {
-			'click .C_Select_selected': 'onSelectClick_event'
 		}
 	};
 
@@ -31,17 +32,23 @@ define([
 	}
 	Utils.inherit(Select, Component);
 
-	Select.prototype.afterRender = function() {
+	Select.prototype.afterMount = function() {
 		var self = this;
+
+		self.c_text = new Text({
+			$el: self.find('.C_Select_Text'),
+			text: self.selected.label,
+			msgBus: self
+		});
 
 		self.c_options = new Options({
 			$el: self.find('.C_Select_options'),
 			options: self.options,
-			ref: self
+			msgBus: self
 		})
 	}
 
-	Select.prototype.onSelectClick_event = function(e) {
+	Select.prototype.clickSelect_message = function(e, text) {
 		e.stopPropagation();
 		this.c_options.show();
 	}
@@ -52,7 +59,10 @@ define([
 
 	Select.prototype.selectOption_message = function(selectedItem) {
 		this.selected = selectedItem;
-		this.find('.C_Select_selected').text(this.selected.label);
+		this.c_text.updateData({
+			text: this.selected.label
+		})
+
 		this.c_options.hide();
 
 	}

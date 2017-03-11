@@ -23,13 +23,13 @@ define([
 
 	Utils.inherit(Modal, Component);
 
-	Modal.prototype.beforeRender = function() {
+	Modal.prototype.beforeMount = function() {
 		return this;
 	};
 
 	Modal.prototype.modalConfirm_event = function(e) {
 		var self = this;
-		self.ref.publish(self.ref.toMsgName('MODAL_CONFIRM'));
+		self.msgBus.publish(self.msgBus.toMsgName('MODAL_CONFIRM'));
 	}
 
 	Modal.prototype.modalCancel_event = function(e) {

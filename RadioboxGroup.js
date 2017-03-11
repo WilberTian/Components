@@ -32,7 +32,7 @@ define([
 
 	}
 
-	RadioboxGroup.prototype.afterRender = function() {
+	RadioboxGroup.prototype.afterMount = function() {
 		var self = this;
 
 		$('.C_radiobox').each(function(){

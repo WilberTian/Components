@@ -3,8 +3,9 @@ define([
 	'Component',
 	'Utils',
 	'text!Search.ejs',
+	'Text',
 	'Options'
-], function($, Component, Utils, ejsTpl, Options) {
+], function($, Component, Utils, ejsTpl, Text, Options) {
 	var _data = {
 		url: null,
 		options: [],
@@ -31,12 +32,15 @@ define([
 
 
 	Search.prototype.searchClick_event = function(e) {
-
-		if($(e.currentTarget).val().trim() !== '') {
+		var searchValue = $(e.currentTarget).val().trim();
+		if(searchValue !== '' && searchValue !== this.selected.label) {
 			this.selected.label = $(e.currentTarget).val();
 			this.loadData();
 		}
-		this.find('.C_Search_options').show();
+
+		if(this.c_options) {
+			this.c_options.show();
+		}
 
 		e.stopPropagation();
 	}
@@ -69,7 +73,7 @@ define([
 			self.c_options = new Options({
 				$el: self.$el.find('.C_Search_options'),
 				options: self.options,
-				ref: self
+				msgBus: self
 			})
 
 		}, 'json');

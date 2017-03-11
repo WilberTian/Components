@@ -11,21 +11,21 @@ require([
     'Text',
     'Select',
     'Search',
-    'Calendar',
+    'DatePicker',
     'Modal',
     'Hover',
     'CheckboxGroup',
     'RadioboxGroup',
-    'MultiSelect'
-], function (Text, Select, Search, Calendar, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect) {
-/*
+    'MultiSelect',
+    'Tab'
+], function (Text, Select, Search, DatePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab) {
+
     var text = new Text({
         $el: $('.text'),
-        label: 'UserName',
-        placeholder: 'input user name',
-        required: true
+        text: '',
+        placeholder: 'input user name'
     });
-*/
+
 
     var select = new Select({
         $el: $('.select'),
@@ -51,8 +51,8 @@ require([
     });
 
 
-    var calendar = new Calendar({
-        $el: $('.calendar')
+    var datePicker = new DatePicker({
+        $el: $('.date-picker')
     });
 
 
@@ -60,7 +60,7 @@ require([
         var modal = new Modal({
             $el: $('.modal')
         })
-        modal.render();
+        modal.mount();
 
         modal.subscribe(modal.toMsgName('MODAL_CONFIRM'), function(data){
             console.log('modal was confirmed')
@@ -132,5 +132,20 @@ require([
         }]
     });
 
+
+    var tab = new Tab({
+        $el: $('.tab'),
+        selected: 1,
+        tabs: [{
+            label: '初级',
+            value: '1'
+        }, {
+            label: '中级',
+            value: '2'
+        }, {
+            label: '高级',
+            value: '3'
+        }]
+    })
     
 });

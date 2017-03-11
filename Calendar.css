@@ -1,21 +1,10 @@
 .C_Calendar {
-	position: relative;
-}
-
-.C_Calendar_picker {
 	position: absolute;
-	width: 212px;
-	height: 36px;
-	border: 1px solid #e1e1e1;
-	border-radius: 5px;
-}
-
-.C_Calendar_wrapper {
-	position: absolute;
-	top: 40px;
 	padding: 10px;
 	border: 1px solid #e1e1e1;
 	border-radius: 5px;
+	z-index: 999;
+	background-color: #fff;
 }
 
 .C_Calendar_selector {
@@ -56,6 +45,11 @@
 	width: 21px;
 	text-align: center;
 	border: 1px solid #d7d7d7;
+}
+
+.C_Calendar .C_Calendar_table tbody tr td.selected {
+	background-color: orange;
+	color: #fff;
 }
 
 .C_Calendar .C_Calendar_table tbody tr td.disabled {

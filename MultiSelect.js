@@ -44,12 +44,13 @@ define([
 		});
 		this.selected.splice(idx, 1);
 
-		this.render();
+		this.mount();
 	}
 
 	MultiSelect.prototype.selectOption_message = function(selectedItem) {
 		this.selected.push(selectedItem);
 		this.render();
+		this.mount();
 	}
 
 	MultiSelect.prototype.clickOutside_message = function() {
@@ -64,7 +65,7 @@ define([
 		self.c_options = new Options({
 			$el: self.find('.C_MultiSelect_options'),
 			options: self.options,
-			ref: self
+			msgBus: self
 		})
 
 	}
