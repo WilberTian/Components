@@ -14,13 +14,14 @@ define([
 		template: ejsTpl,
 
 		messages: {
+			'TEXT_CLICK': 'clickSearch_message',
+			'TEXT_KEY_UP': 'searchKeyup_message',
 			'SELECT_OPTION': 'selectOption_message',
 			'CLICK_OUTSIDE': 'clickOutside_message'
 		},
 
 		events: {
-			'keyup .C_Search_input': 'searchKeyup_event',
-			'click .C_Search_input': 'searchClick_event'
+			
 		}
 	}
 
@@ -30,8 +31,23 @@ define([
 	}
 	Utils.inherit(Search, Component);
 
+	Search.prototype.afterMount = function() {
+		var self = this;
 
-	Search.prototype.searchClick_event = function(e) {
+		self.c_text = new Text({
+			$el: self.find('.C_Search_Text'),
+			text: self.selected.label || '',
+			msgBus: self
+		});
+
+		self.c_options = new Options({
+			$el: self.find('.C_Search_options'),
+			options: self.options,
+			msgBus: self
+		})
+	}
+
+	Search.prototype.clickSearch_message = function(e, text) {
 		var searchValue = $(e.currentTarget).val().trim();
 		if(searchValue !== '' && searchValue !== this.selected.label) {
 			this.selected.label = $(e.currentTarget).val();
@@ -45,14 +61,17 @@ define([
 		e.stopPropagation();
 	}
 
-	Search.prototype.searchKeyup_event = function(e) {
+	Search.prototype.searchKeyup_message = function(e, text) {
 		this.selected.label = $(e.currentTarget).val();
 		this.loadData();
 	}
 
 	Search.prototype.selectOption_message = function(selectedItem){
 		this.selected = selectedItem;
-		this.find('.C_Search_input').val(this.selected.label);
+		this.c_text.updateData({
+			text: this.selected.label
+		});
+
 		this.c_options.hide();
 	}
 
@@ -66,14 +85,8 @@ define([
 		$.get(self.url, {}, function(data) {
 			self.options = data.msg.options;
 			
-			if(self.c_options) {
-				self.c_options.destory();
-			}
-
-			self.c_options = new Options({
-				$el: self.$el.find('.C_Search_options'),
-				options: self.options,
-				msgBus: self
+			self.c_options.updateData({
+				options: self.options
 			})
 
 		}, 'json');
