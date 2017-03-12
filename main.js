@@ -78,6 +78,18 @@ require([
         hover.publish(hover.toMsgName('HIDE_HOVER'));
     })
 
+    var element = $('.ellipsis-hint span')[0];
+    if(element.scrollWidth > element.offsetWidth) {
+        var ellipsisHint = new Hover({
+            $el: $('.ellipsis-hint')
+        })
+        $('.ellipsis-hint').on('mouseover', function(){
+            ellipsisHint.publish(ellipsisHint.toMsgName('SHOW_HOVER'));
+        }).on('mouseout', function(){
+            ellipsisHint.publish(ellipsisHint.toMsgName('HIDE_HOVER'));
+        })
+    }
+    
 
     var checkboxGroup = new CheckboxGroup({
         $el: $('.checkbox-group'),

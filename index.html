@@ -11,6 +11,18 @@
   		.element {
   			margin: 20px;
   		}
+
+      .hover {
+        width: 100px;
+      }
+
+      .ellipsis-hint span {
+        display: block;
+        width: 160px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
   	</style>
 
     <link rel="stylesheet" href="Select.css"/>
@@ -38,6 +50,11 @@
 
     <div class="element hover">Oh hover</div>
 
+    <div class="element ellipsis-hint">
+      <span>this is a long text; this is a long text; this is a long text;
+      </span>
+    </div>
+  
     <div class="element checkbox-group"></div>
 
     <div class="element radiobox-group"></div>
