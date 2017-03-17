@@ -38,6 +38,8 @@ define([
 		self.c_text = new Text({
 			$el: self.find('.C_Select_Text'),
 			text: self.selected.label,
+			enabled: false,
+			iconUrl: 'url(./images/icon-arrow-down.png)',
 			msgBus: self
 		});
 

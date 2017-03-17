@@ -12,8 +12,8 @@ define([
 		template: ejsTpl,
 
 		messages: {
-			'SHOW_HOVER': 'showHover_message',
-			'HIDE_HOVER': 'hideHover_message'
+			'HOVER_SHOW': 'showHover_message',
+			'HOVER_HIDE': 'hideHover_message'
 		},
 	}
 

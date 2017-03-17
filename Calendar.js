@@ -11,6 +11,8 @@ define([
 		month: moment().format('YYYY-MM'),
 		day: moment().format('D'),
 		template: ejsTpl,
+		from: '',
+		to: '',
 
 		messages: {
 
@@ -63,7 +65,7 @@ define([
 	Calendar.prototype.chooseDate_event = function(e) {
 		var self = this;
 		var choosenDate = self.month + '-' + $(e.currentTarget).text();
-		self.msgBus.publish(self.msgBus.toMsgName('CHOOSE_DATE'), choosenDate);
+		self.msgBus.publish(self.msgBus.toMsgName('CALENDAR_SELECT_DATE'), choosenDate);
 	};
 
 	Calendar.prototype.getMonthData = function() {

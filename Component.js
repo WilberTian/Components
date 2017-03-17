@@ -1,9 +1,10 @@
 define([
 	'jquery',
 	'ejs',
+	'MessageTypes',
 	'Pubsub',
 	'Utils'
-], function($, ejs, Pubsub, Utils){
+], function($, ejs, MessageTypes, Pubsub, Utils){
 
 	function Component(options) {
 		if(options.$el.length === 0) {
@@ -23,12 +24,10 @@ define([
 
 	Component.prototype.init = function() {
 		this.initSubscriber();
-		this.beforeMount();
 
 		this.render();
 		this.mount();
 
-		this.afterMount();
 		this.undelegateEvents();
 	    this.delegateEvents();
 	    return this;
@@ -46,8 +45,12 @@ define([
 	};
 
 	Component.prototype.mount = function() {
+		this.beforeMount();
+
 		var $el = this.$el;
 	    $el.html(this.renderedPage);
+
+	    this.afterMount();
 
 	    return this;
 	}
@@ -69,7 +72,10 @@ define([
 
 	};
 	Component.prototype.toMsgName = function(message) {
-		return this.guid + '-' + message;
+		if(!(message in MessageTypes)) {
+			throw new Error(message + ' was not define in the MessageTypes');
+		}
+		return this.guid + '-' + MessageTypes[message];
 	}
 
 	Component.prototype.eventSplitter = /^(\S+)\s*(.*)$/;
@@ -140,8 +146,8 @@ define([
 		});
 	}
 
-	Component.prototype.setStyle = function(selector, styleProp, styleValue) {
-		$(selector).css(styleProp, styleValue);
+	Component.prototype.setStyle = function($el, styleProp, styleValue) {
+		$el.css(styleProp, styleValue);
 	}
 
 	Component.prototype.updateData = function(data) {

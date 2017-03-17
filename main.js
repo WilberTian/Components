@@ -9,6 +9,8 @@ require.config({
 
 require([
     'Text',
+    'TextLength',
+    'Button',
     'Select',
     'Search',
     'DatePicker',
@@ -17,8 +19,10 @@ require([
     'CheckboxGroup',
     'RadioboxGroup',
     'MultiSelect',
-    'Tab'
-], function (Text, Select, Search, DatePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab) {
+    'Tab',
+    'Pagination',
+    'Stepper'
+], function (Text, TextLength, Button, Select, Search, DatePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
 
     var text = new Text({
         $el: $('.text'),
@@ -26,6 +30,15 @@ require([
         placeholder: 'input user name'
     });
 
+    var textLength = new TextLength({
+        $el: $('.text-length'),
+        limitationLength: 20
+    });
+
+    var button = new Button({
+        $el: $('.button'),
+        text: 'submit'
+    })
 
     var select = new Select({
         $el: $('.select'),
@@ -73,9 +86,9 @@ require([
         $el: $('.hover')
     })
     $('.hover').on('mouseover', function(){
-        hover.publish(hover.toMsgName('SHOW_HOVER'));
+        hover.publish(hover.toMsgName('HOVER_SHOW'));
     }).on('mouseout', function(){
-        hover.publish(hover.toMsgName('HIDE_HOVER'));
+        hover.publish(hover.toMsgName('HOVER_HIDE'));
     })
 
     var element = $('.ellipsis-hint span')[0];
@@ -84,9 +97,9 @@ require([
             $el: $('.ellipsis-hint')
         })
         $('.ellipsis-hint').on('mouseover', function(){
-            ellipsisHint.publish(ellipsisHint.toMsgName('SHOW_HOVER'));
+            ellipsisHint.publish(ellipsisHint.toMsgName('HOVER_SHOW'));
         }).on('mouseout', function(){
-            ellipsisHint.publish(ellipsisHint.toMsgName('HIDE_HOVER'));
+            ellipsisHint.publish(ellipsisHint.toMsgName('HOVER_HIDE'));
         })
     }
     
@@ -159,5 +172,16 @@ require([
             value: '3'
         }]
     })
+
+    var pagination = new Pagination({
+        $el: $('.pagination'),
+        currentPage: 1,
+        totalPages: 10
+    });
+
+    var stepper = new Stepper({
+        $el: $('.stepper'),
+        number: 100
+    });
     
 });

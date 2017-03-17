@@ -1,20 +1,22 @@
 define([
 	'jquery',
 	'Component',
-	'MessageTypes',
 	'Utils',
 	'text!Text.ejs'
-], function($, Component, MessageTypes, Utils, ejsTpl){
+], function($, Component, Utils, ejsTpl){
 
 	var _data = {
 		text: '',
 		placeholder: '',
+		enabled: true,
+		iconUrl: '',
 
 		template: ejsTpl,
 
 		events: {
-			'click .C_Text_wrapper': 'onClick_event',
-			'keyup .C_Text_input': 'onKeyup_evnet'
+			// see setup in afterMount
+			'keyup .C_Text_input': 'onKeyup_evnet',
+			'click .C_Text_wrapper': 'onClick_event'
 		}
 	}
 
@@ -25,14 +27,28 @@ define([
 
 	Utils.inherit(Text, Component);
 
+	Text.prototype.afterMount = function() {
+		if(this.iconUrl) this.setStyle(this.find('i'), 'background-image', this.iconUrl);
+
+		if(this.enabled) {
+			this.events = {
+				'keyup .C_Text_input': 'onKeyup_evnet'
+			}
+		} else {
+			this.events = {
+				'click .C_Text_wrapper': 'onClick_event'
+			}
+		}
+	}
+
 	Text.prototype.onClick_event = function(e) {
 		this.text = $(e.currentTarget).val();
-		this.msgBus.publish(this.msgBus.toMsgName(MessageTypes.TEXT_CLICK), e, this.text);
+		this.msgBus.publish(this.msgBus.toMsgName('TEXT_CLICK'), e, this.text);
 	}
 
 	Text.prototype.onKeyup_evnet = function(e) {
 		this.text = $(e.currentTarget).val();
-		this.msgBus.publish(this.msgBus.toMsgName(MessageTypes.TEXT_KEY_UP), e, this.text);
+		this.msgBus.publish(this.msgBus.toMsgName('TEXT_KEY_UP'), e, this.text);
 	}
  
 	return Text;

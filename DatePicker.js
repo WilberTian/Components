@@ -15,7 +15,7 @@ define([
 
 		messages: {
 			'TEXT_CLICK': 'selectDate_message',
-			'CHOOSE_DATE': 'chooseDate_message',
+			'CALENDAR_SELECT_DATE': 'chooseDate_message',
 			'CLICK_OUTSIDE': 'clickOutside_message'
 		},
 
@@ -35,6 +35,8 @@ define([
 		self.c_text = new Text({
 			$el: $('.C_DatePicker_Text'),
 			text: self.date,
+			enabled: false,
+			iconUrl: 'url(./images/icon-calendar.png)',
 			msgBus: self
 		});
 

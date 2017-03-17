@@ -1,0 +1,44 @@
+.C_Stepper {
+	display: inline-block;
+}
+
+.C_Stepper .dec, .C_Stepper .inc {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	color: orange;
+	border: 1px solid #999;
+	cursor: pointer;
+}
+
+.C_Stepper .dec {
+	float: left;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.C_Stepper .inc {
+	float: right;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.C_Stepper_input_wrapper {
+	display: inline-block;
+	height: 30px;
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+}
+
+.C_Stepper .C_Stepper_input {
+	border: none;
+    height: 30px;
+    line-height: 30px;
+    margin: 0px;
+    padding: 0px 8px;
+    text-align: center;
+}

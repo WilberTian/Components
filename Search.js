@@ -37,6 +37,7 @@ define([
 		self.c_text = new Text({
 			$el: self.find('.C_Search_Text'),
 			text: self.selected.label || '',
+			iconUrl: 'url(./images/icon-search.png)',
 			msgBus: self
 		});
 

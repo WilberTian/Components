@@ -1,0 +1,9 @@
+<div class="C_Pagination">
+	<div class="C_Pagination_prev <%= (currentPage === 1) ? 'disable' : ''%>">Prev</div>
+	
+	<% for(var i = 1; i <= totalPages; i++) { %>
+		<div class="C_Pagination_item <%= (i === currentPage) ? 'current' : ''%>"><%= i %></div>
+	<% } %>
+
+	<div class="C_Pagination_next <%= (currentPage === totalPages) ? 'disable' : ''%>">Next</div>
+</div>

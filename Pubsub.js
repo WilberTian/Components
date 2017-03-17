@@ -1,7 +1,7 @@
 define([
-	'Settings'
-], function(Settings){
-	function Pubsub(Settings) {
+	'Utils'
+], function(Utils){
+	function Pubsub() {
 	}
 
 	Pubsub.prototype.subscribe = function(ev, callback) {
@@ -33,6 +33,8 @@ define([
 		var args = Array.prototype.slice.call(arguments);
 				
 		var ev = args.shift();
+
+		Utils.logDebugMsg('MSG: ' + ev + '; ARGS: ' + args);
 		
 		if(!this._callbacks) return this;
 		if(!this._callbacks[ev]) return this;
@@ -42,17 +44,6 @@ define([
 		}
 		
 		return this;
-	}
-
-	if(Settings.debug) {
-		var publichFn = Pubsub.prototype.publish;
-		Pubsub.prototype.publish = publichFn.before(function(){
-			var args = Array.prototype.slice.call(arguments);
-			var ev = args.shift();
-
-			console.log('MSG: ' + ev + ', ARGS: ' + args);
-		})
-
 	}
 
 	return Pubsub

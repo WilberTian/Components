@@ -1,4 +1,6 @@
-define([], function(){
+define([
+	'Settings'
+], function(Settings){
 	var inherit = function(child, parent) {
 		child.prototype = Object.create(parent.prototype);
 	};
@@ -8,6 +10,10 @@ define([], function(){
 			var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
 			return v.toString(16);
 		});
+	}
+
+	function logDebugMsg(debugMsg) {
+		if(Settings.debug) console.log(debugMsg);
 	}
 
 	// enhance Function object
@@ -33,7 +39,8 @@ define([], function(){
 
 	return {
 		inherit: inherit,
-		guid: guid
+		guid: guid,
+		logDebugMsg: logDebugMsg
 	}
 });
 
