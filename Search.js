@@ -3,9 +3,9 @@ define([
 	'Component',
 	'Utils',
 	'text!Search.ejs',
-	'Text',
+	'IconText',
 	'Options'
-], function($, Component, Utils, ejsTpl, Text, Options) {
+], function($, Component, Utils, ejsTpl, IconText, Options) {
 	var _data = {
 		url: null,
 		options: [],
@@ -34,17 +34,17 @@ define([
 	Search.prototype.afterMount = function() {
 		var self = this;
 
-		self.c_text = new Text({
+		self.c_iconText = new IconText({
 			$el: self.find('.C_Search_Text'),
 			text: self.selected.label || '',
-			iconUrl: 'url(./images/icon-search.png)',
-			msgBus: self
+			msgBus: self.msgBus,
+			iconClass: 'fa fa-search'
 		});
 
 		self.c_options = new Options({
 			$el: self.find('.C_Search_options'),
 			options: self.options,
-			msgBus: self
+			msgBus: self.msgBus
 		})
 	}
 
@@ -69,7 +69,7 @@ define([
 
 	Search.prototype.selectOption_message = function(selectedItem){
 		this.selected = selectedItem;
-		this.c_text.updateData({
+		this.c_iconText.updateData({
 			text: this.selected.label
 		});
 

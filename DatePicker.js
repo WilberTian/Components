@@ -4,9 +4,9 @@ define([
 	'Component',
 	'Utils',
 	'text!DatePicker.ejs',
-	'Text',
+	'IconText',
 	'Calendar'
-], function($, moment, Component, Utils, ejsTpl, Text, Calendar) {
+], function($, moment, Component, Utils, ejsTpl, IconText, Calendar) {
 	var _data = {
 		url: null,
 		date: moment().format('YYYY-MM-DD'),
@@ -32,19 +32,19 @@ define([
 	
 	DatePicker.prototype.afterMount = function() {
 		var self = this;
-		self.c_text = new Text({
+		self.c_text = new IconText({
 			$el: $('.C_DatePicker_Text'),
 			text: self.date,
 			enabled: false,
-			iconUrl: 'url(./images/icon-calendar.png)',
-			msgBus: self
+			msgBus: self.msgBus,
+			iconClass: 'fa fa-calendar'
 		});
 
 		self.c_calendar = new Calendar({
 			$el: $('.C_DatePicker_Calendar'),
 			month: moment(self.date).format('YYYY-MM'),
 			day: moment(self.date).format('D'),
-			msgBus: self
+			msgBus: self.msgBus
 		})
 
 		self.c_calendar.hide();

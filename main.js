@@ -10,8 +10,10 @@ require.config({
 require([
     'Icon',
     'Text',
+    'IconText',
     'TextLength',
     'Button',
+    'IconButton',
     'Select',
     'Search',
     'DatePicker',
@@ -23,7 +25,7 @@ require([
     'Tab',
     'Pagination',
     'Stepper'
-], function (Icon, Text, TextLength, Button, Select, Search, DatePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
+], function (Icon, Text, IconText, TextLength, Button, IconButton, Select, Search, DatePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
 
     var icon = new Icon({
         $el: $('.icon-search'),
@@ -37,6 +39,12 @@ require([
         placeholder: 'input user name'
     });
 
+    var iconText = new IconText({
+        $el: $('.icon-text'),
+        placeholder: 'Search...',
+        iconClass: 'fa fa-search'
+    })
+
     var textLength = new TextLength({
         $el: $('.text-length'),
         limitationLength: 20
@@ -46,6 +54,17 @@ require([
         $el: $('.button'),
         text: 'submit'
     })
+
+    var iconButton = new IconButton({
+        $el: $('.icon-button'),
+        text: 'Setting',
+        iconClass: 'fa fa-cog'
+    });
+
+    var onlyIconButton = new IconButton({
+        $el: $('.only-icon-button'),
+        iconClass: 'fa fa-cog'
+    });
 
     var select = new Select({
         $el: $('.select'),

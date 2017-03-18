@@ -2,21 +2,18 @@ define([
 	'jquery',
 	'Component',
 	'Utils',
+	'Text',
+	'IconButton',
 	'text!Stepper.ejs'
-], function($, Component, Utils, ejsTpl){
+], function($, Component, Utils, Text, IconButton, ejsTpl){
 
 	var _data = {
 		number: 0,
 		upperLimitation: Infinity,
 		lowerLimitation: -Infinity,
 
-		template: ejsTpl,
+		template: ejsTpl
 
-		events: {
-			'click .C_Stepper .dec': 'decNumber_event',
-			'click .C_Stepper .inc': 'incNumber_event',
-			'keyup .C_Stepper_input': 'changeNumber_event'
-		}
 	}
 
 	function Stepper(options) {
@@ -25,17 +22,25 @@ define([
 	}
 
 	Utils.inherit(Stepper, Component);
-	
-	Stepper.prototype.decNumber_event = function(e) {
-		console.log('dec')
-	}
 
-	Stepper.prototype.incNumber_event = function(e) {
-		console.log('inc')
-	}
+	Stepper.prototype.afterMount = function() {
+		var self = this;
 
-	Stepper.prototype.changeNumber_event = function(e) {
-		console.log('change')
+		self.c_text = new Text({
+			$el: self.find('.C_Stepper_text'),
+			text: self.number,
+			msgBus: self.msgBus
+		});
+
+		self.c_dec = new IconButton({
+			$el: self.find('.C_Stepper_dec'),
+			iconClass: 'fa fa-minus'
+		})
+
+		self.c_inc = new IconButton({
+			$el: self.find('.C_Stepper_inc'),
+			iconClass: 'fa fa-plus'
+		})
 	}
  
 	return Stepper;

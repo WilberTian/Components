@@ -65,7 +65,7 @@ define([
 		self.c_options = new Options({
 			$el: self.find('.C_MultiSelect_options'),
 			options: self.options,
-			msgBus: self
+			msgBus: self.msgBus
 		})
 
 	}

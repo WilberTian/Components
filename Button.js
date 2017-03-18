@@ -6,7 +6,7 @@ define([
 ], function($, Component, Utils, ejsTpl){
 
 	var _data = {
-		text: 'button',
+		text: '',
 
 		template: ejsTpl,
 

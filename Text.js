@@ -9,7 +9,6 @@ define([
 		text: '',
 		placeholder: '',
 		enabled: true,
-		iconUrl: '',
 
 		template: ejsTpl,
 
@@ -28,7 +27,6 @@ define([
 	Utils.inherit(Text, Component);
 
 	Text.prototype.afterMount = function() {
-		if(this.iconUrl) this.setStyle(this.find('i'), 'background-image', this.iconUrl);
 
 		if(this.enabled) {
 			this.events = {

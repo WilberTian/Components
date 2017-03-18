@@ -3,9 +3,9 @@ define([
 	'Component',
 	'Utils',
 	'text!Select.ejs',
-	'Text',
+	'IconText',
 	'Options'
-], function($, Component, Utils, ejsTpl, Text, Options){
+], function($, Component, Utils, ejsTpl, IconText, Options){
 
 	var _data = {
 		options: [],
@@ -35,18 +35,18 @@ define([
 	Select.prototype.afterMount = function() {
 		var self = this;
 
-		self.c_text = new Text({
+		self.c_iconText = new IconText({
 			$el: self.find('.C_Select_Text'),
 			text: self.selected.label,
 			enabled: false,
-			iconUrl: 'url(./images/icon-arrow-down.png)',
-			msgBus: self
+			iconClass: 'fa fa-chevron-down',
+			msgBus: self.msgBus
 		});
 
 		self.c_options = new Options({
 			$el: self.find('.C_Select_options'),
 			options: self.options,
-			msgBus: self
+			msgBus: self.msgBus
 		})
 	}
 
@@ -61,7 +61,7 @@ define([
 
 	Select.prototype.selectOption_message = function(selectedItem) {
 		this.selected = selectedItem;
-		this.c_text.updateData({
+		this.c_iconText.updateData({
 			text: this.selected.label
 		})
 

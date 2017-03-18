@@ -1,0 +1,7 @@
+.C_IconButton {
+
+}
+
+.C_IconButton .C_Button_icon {
+	display: inline-block;
+}
