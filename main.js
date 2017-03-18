@@ -8,6 +8,7 @@ require.config({
 });
 
 require([
+    'Icon',
     'Text',
     'TextLength',
     'Button',
@@ -22,7 +23,13 @@ require([
     'Tab',
     'Pagination',
     'Stepper'
-], function (Text, TextLength, Button, Select, Search, DatePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
+], function (Icon, Text, TextLength, Button, Select, Search, DatePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
+
+    var icon = new Icon({
+        $el: $('.icon-search'),
+        iconClass: 'fa fa-search'
+    });
+
 
     var text = new Text({
         $el: $('.text'),
