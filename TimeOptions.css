@@ -1,0 +1,27 @@
+.C_TimeOptions {
+	position: absolute;
+    border: 1px solid #999;
+    padding: 6px;
+    z-index: 999;
+    background: #fff;
+}
+
+.C_TimeOptions>div {
+	position: relative;
+	height: 125px;
+	width: 60px;
+	overflow: auto;
+	display: inline-block;
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+}
+
+.C_TimeOptions>div .C_Options{
+	width: 56px;
+	margin: 0px 2px;
+	text-align: center;
+}
+
+.C_TimeOptions>div .C_Options ul{
+	margin: 0px;
+}

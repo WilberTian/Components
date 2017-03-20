@@ -10,9 +10,10 @@ define([
 		daysInMonth: [],
 		month: moment().format('YYYY-MM'),
 		day: moment().format('D'),
+		from: moment().subtract(6, 'month'),
+		to: moment().add(6, 'month'),
+
 		template: ejsTpl,
-		from: '',
-		to: '',
 
 		messages: {
 
@@ -32,34 +33,37 @@ define([
 
 	Utils.inherit(Calendar, Component);
 
-	Calendar.prototype.beforeMount = function() {
-		this.getMonthData();
+	Calendar.prototype.beforeRender = function() {
+		this.daysInMonth = this.getMonthData(this.month);
 
 		return this;
 	};
 
 	Calendar.prototype.showPreMonth_event = function(e) {
+		var self = this;
+		e.stopPropagation();
+
 		var currentMonth = moment(this.month);
-		var preMonth = currentMonth.subtract(1, 'month');
+		var preMonth = currentMonth.subtract(1, 'month').format('YYYY-MM');
 
-		this.month = preMonth.format('YYYY-MM');
-		this.daysInMonth.length = 0;
-		this.getMonthData();
 
-		this.render();
-		this.mount();
+		this.updateData({
+			month: preMonth,
+			daysInMonth: self.getMonthData(preMonth)
+		});
 	};
 
 	Calendar.prototype.showNextMonth_event = function(e) {
+		var self = this;
+		e.stopPropagation();
+
 		var currentMonth = moment(this.month);
-		var nextMonth = currentMonth.add(1, 'month');
+		var nextMonth = currentMonth.add(1, 'month').format('YYYY-MM');
 
-		this.month = nextMonth.format('YYYY-MM');
-		this.daysInMonth.length = 0;
-		this.getMonthData();
-
-		this.render();
-		this.mount();
+		this.updateData({
+			month: nextMonth,
+			daysInMonth: self.getMonthData(nextMonth)
+		});
 	};
 
 	Calendar.prototype.chooseDate_event = function(e) {
@@ -68,25 +72,37 @@ define([
 		self.msgBus.publish(self.msgBus.toMsgName('CALENDAR_SELECT_DATE'), choosenDate);
 	};
 
-	Calendar.prototype.getMonthData = function() {
-		var date = moment(this.month + '-01');
+	Calendar.prototype.getMonthData = function(month) {
+		var self = this;
+
+		var daysInMonth = [];
+		
+		daysInMonth.length = 0;
+		var date = moment(month + '-01');
 		var totalDays = date.daysInMonth();
 		var firstDay = date.day();
 
 		var calendarTotalCells = (firstDay + totalDays) > 35 ? 42 : 35;
 
 		for(var i = 0; i < firstDay; i++) {
-			this.daysInMonth.push('');
+			daysInMonth.push('');
 		}
 
-		for(var i = 0; i < totalDays; i++) {
-			this.daysInMonth.push(i + 1);
+		for(var i = 1; i <= totalDays; i++) {
+			var iDate = (i < 10) ? moment(month + '-0' + i) : moment(month + '-' + i);
+
+			daysInMonth.push({
+				value: i, 
+				enabled: iDate.isBefore(self.to) && iDate.isAfter(self.from)
+			});
 		}
 		
 		var leftDays = calendarTotalCells - totalDays - firstDay;
 		for(var i = 0; i < leftDays; i++) {
-			this.daysInMonth.push('');
+			daysInMonth.push('');
 		}
+
+		return daysInMonth;
 	}
 
 	Calendar.prototype.show = Calendar.prototype.show.after(function() {

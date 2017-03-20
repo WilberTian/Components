@@ -1,15 +1,13 @@
 .C_Options {
-
+	position: absolute;
+	z-index: 999;
+	background: #fff;
 }
 
 .C_Options ul{
-	position: absolute;
 	list-style: none;
 	padding: 0px;
 	margin: 4px 0px;
-	overflow-y: auto;
-	z-index: 999;
-	background: #fff;
 }
 
 .C_Options ul li {

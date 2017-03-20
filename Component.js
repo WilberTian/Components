@@ -33,16 +33,28 @@ define([
 	    return this;
 	}
 
-	Component.prototype.beforeMount = function() {
+	Component.prototype.beforeRender = function() {
 		return this;
 	}
 
 	Component.prototype.render = function() {
+		this.beforeRender();
+
 		var compiledTpl = ejs.compile(this.template);
 	    this.renderedPage = compiledTpl(this);
 
+	    this.afterRender();
+	    
 	    return this;
 	};
+
+	Component.prototype.afterRender = function() {
+		return this;
+	}
+
+	Component.prototype.beforeMount = function() {
+		return this;
+	}
 
 	Component.prototype.mount = function() {
 		this.beforeMount();

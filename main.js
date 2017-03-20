@@ -16,7 +16,9 @@ require([
     'IconButton',
     'Select',
     'Search',
+    'Calendar',
     'DatePicker',
+    'TimeOptions',
     'Modal',
     'Hover',
     'CheckboxGroup',
@@ -25,7 +27,7 @@ require([
     'Tab',
     'Pagination',
     'Stepper'
-], function (Icon, Text, IconText, TextLength, Button, IconButton, Select, Search, DatePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
+], function (Icon, Text, IconText, TextLength, Button, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
 
     var icon = new Icon({
         $el: $('.icon-search'),
@@ -89,9 +91,16 @@ require([
         selected: {}
     });
 
+    var calendar = new Calendar({
+        $el: $('.calendar')
+    });
 
     var datePicker = new DatePicker({
         $el: $('.date-picker')
+    });
+
+    var timeOptions = new TimeOptions({
+        $el: $('.time-options')
     });
 
 

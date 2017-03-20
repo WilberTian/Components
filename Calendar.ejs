@@ -28,7 +28,7 @@
 						idx += 1;
 						if(item) {
 					%>
-						<td class="enabled <%= (item==day) ? 'selected' : ''%>"><%= item %></td>
+						<td class="<%= (item.enabled) ? 'enabled' : 'disabled'%> <%= (item.value == day) ? 'selected' : ''%>"><%= item.value %></td>
 					<% } else { %>
 						<td class="disabled"></td>
 					<% } %>
