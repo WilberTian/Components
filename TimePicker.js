@@ -39,28 +39,43 @@ define([
 			$el: $('.C_TimePicker_Text'),
 			text: self.time,
 			enabled: false,
-			msgBus: self.msgBus,
+			msgBus: self,
 			iconClass: 'fa fa-clock-o'
 		});
 
 		self.c_timeOptions = new TimeOptions({
 			$el: $('.C_TimePicker_TimeOptions'),
-			msgBus: self.msgBus
+			msgBus: self
 		})
 
 		self.c_timeOptions.hide();
 	}
 
 	TimePicker.prototype.selectHour_message = function(e, guid, hour) {
-		console.log('hour')
+		var self = this;
+
+		this.updateData({
+			time: self.time.replace(/^\d\d/g, hour.label)
+		});
+		
 	}
 
 	TimePicker.prototype.selectMinute_message = function(e, guid, minute) {
+		var self = this;
 
+		this.updateData({
+			time: self.time.replace(/:\d\d:/g, ':' + minute.label + ':')
+		});
+		
 	}
 
 	TimePicker.prototype.selectSecond_message = function(e, guid, second) {
+		var self = this;
 
+		this.updateData({
+			time: self.time.replace(/\d\d$/g, second.label)
+		});
+		
 	}
 
 	TimePicker.prototype.selectTime_message = function(e, guid, text) {

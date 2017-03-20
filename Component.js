@@ -75,7 +75,8 @@ define([
 		for(var message in this.messages) {
 			var methodName = this.messages[message];
 			var method = this.proxy(this[methodName])
-			this.subscribe(this.toMsgName(message), method);
+			// it's not this.msgBus.subscribe
+			this.subscribe(message, method);
 		}
 
 		return this;
@@ -83,12 +84,6 @@ define([
 	Component.prototype.clearSubscriber = function() {
 
 	};
-	Component.prototype.toMsgName = function(message) {
-		if(!(message in MessageTypes)) {
-			throw new Error(message + ' was not define in the MessageTypes');
-		}
-		return this.guid + '-' + MessageTypes[message];
-	}
 
 	Component.prototype.eventSplitter = /^(\S+)\s*(.*)$/;
 

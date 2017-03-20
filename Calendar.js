@@ -69,7 +69,7 @@ define([
 	Calendar.prototype.chooseDate_event = function(e) {
 		var self = this;
 		var choosenDate = self.month + '-' + $(e.currentTarget).text();
-		self.msgBus.publish(self.msgBus.toMsgName('CALENDAR_SELECT_DATE'), choosenDate);
+		self.msgBus.publish('CALENDAR_SELECT_DATE', choosenDate);
 	};
 
 	Calendar.prototype.getMonthData = function(month) {
@@ -120,7 +120,7 @@ define([
 
 		if (!$el.is(e.currentTarget) && $el.has(e.currentTarget).length === 0) {
 			console.log('click outside of calendar')
-	        self.msgBus.publish(self.msgBus.toMsgName('CLICK_OUTSIDE'));
+	        self.msgBus.publish('CLICK_OUTSIDE');
 	    }
 
 		return this;

@@ -1,10 +1,13 @@
 define([
-	'Utils'
-], function(Utils){
+	'Utils',
+	'MessageTypes'
+], function(Utils, MessageTypes){
 	function Pubsub() {
 	}
 
 	Pubsub.prototype.subscribe = function(ev, callback) {
+		this.checkMessage(ev);
+
 		this._callbacks || (this._callbacks = {});
 		(this._callbacks[ev] || (this._callbacks[ev] = [])).push(callback);
 		
@@ -33,6 +36,7 @@ define([
 		var args = Array.prototype.slice.call(arguments);
 				
 		var ev = args.shift();
+		this.checkMessage(ev);
 
 		Utils.logDebugMsg('MSG: ' + ev + '; ARGS: ' + args);
 		
@@ -44,6 +48,12 @@ define([
 		}
 		
 		return this;
+	}
+
+	Pubsub.prototype.checkMessage = function(message) {
+		if(!(message in MessageTypes)) {
+			throw new Error(message + ' was not define in the MessageTypes');
+		}
 	}
 
 	return Pubsub

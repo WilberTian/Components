@@ -40,7 +40,7 @@ define([
 			this.setActiveTab(selectedTabIdx);
 		}
 
-		this.msgBus.publish(this.msgBus.toMsgName('TAB_CHANGE'), this.selected);
+		this.msgBus.publish('TAB_CHANGE', this.selected);
 	};
 
 	return Tab;

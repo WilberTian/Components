@@ -40,13 +40,13 @@ define([
 			text: self.selected.label,
 			enabled: false,
 			iconClass: 'fa fa-chevron-down',
-			msgBus: self.msgBus
+			msgBus: self
 		});
 
 		self.c_options = new Options({
 			$el: self.find('.C_Select_options'),
 			options: self.options,
-			msgBus: self.msgBus
+			msgBus: self
 		})
 	}
 
@@ -59,7 +59,7 @@ define([
 		this.c_options.hide();
 	}
 
-	Select.prototype.selectOption_message = function(selectedItem) {
+	Select.prototype.selectOption_message = function(e, guid, selectedItem) {
 		this.selected = selectedItem;
 		this.c_iconText.updateData({
 			text: this.selected.label

@@ -23,7 +23,7 @@ define([
 	Utils.inherit(Button, Component);
 
 	Button.prototype.buttonClick_event = function(e) {
-		this.msgBus.publish(this.msgBus.toMsgName('BUTTON_CLICK'), this.currentPage);
+		this.msgBus.publish('BUTTON_CLICK', this.currentPage);
 	}
  
 	return Button;

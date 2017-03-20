@@ -34,7 +34,7 @@ define([
 			})
 		}
 
-		this.msgBus.publish(this.msgBus.toMsgName('PAGINATION_CHANGE_PAGE'), this.currentPage);
+		this.msgBus.publish('PAGINATION_CHANGE_PAGE', this.currentPage);
 	}
 
 	Pagination.prototype.nextPage_event = function(e) {
@@ -46,7 +46,7 @@ define([
 			})
 		}
 
-		this.msgBus.publish(this.msgBus.toMsgName('PAGINATION_CHANGE_PAGE'), this.currentPage);
+		this.msgBus.publish('PAGINATION_CHANGE_PAGE', this.currentPage);
 	}
 
 	Pagination.prototype.changePage_event = function(e) {
@@ -57,7 +57,7 @@ define([
 				currentPage: changePageTo
 			})
 
-			this.msgBus.publish(this.msgBus.toMsgName('PAGINATION_CHANGE_PAGE'), this.currentPage);
+			this.msgBus.publish('PAGINATION_CHANGE_PAGE', this.currentPage);
 		}
 	}
  

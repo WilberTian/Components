@@ -67,7 +67,7 @@ define([
 		this.loadData();
 	}
 
-	Search.prototype.selectOption_message = function(selectedItem){
+	Search.prototype.selectOption_message = function(e, guid, selectedItem){
 		this.selected = selectedItem;
 		this.c_iconText.updateData({
 			text: this.selected.label
@@ -76,7 +76,7 @@ define([
 		this.c_options.hide();
 	}
 
-	Search.prototype.clickOutside_message = function(selectedItem){
+	Search.prototype.clickOutside_message = function(e, guid, selectedItem){
 		this.c_options.hide();
 	}
 

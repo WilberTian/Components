@@ -29,7 +29,7 @@ define([
 	Options.prototype.chooseOption_event = function(e) {
 		var self = this;
 		var selectedOptionIdx = $(e.currentTarget).index();
-		self.msgBus.publish(self.msgBus.toMsgName('SELECT_OPTION'), self.options[selectedOptionIdx]);
+		self.msgBus.publish('SELECT_OPTION', e, self.guid, self.options[selectedOptionIdx]);
 	}
 
 	Options.prototype.destory = Options.prototype.destory.after(function(){
@@ -50,7 +50,7 @@ define([
 		var $el = self.$el;
 
 		if (!$el.is(e.currentTarget) && $el.has(e.currentTarget).length === 0) {
-	        self.msgBus.publish(self.msgBus.toMsgName('CLICK_OUTSIDE'));
+	        self.msgBus.publish('CLICK_OUTSIDE');
 	    }
 
 		return this;

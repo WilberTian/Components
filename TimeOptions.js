@@ -58,19 +58,19 @@ define([
 		self.c_hour_options = new Options({
 			$el: self.find('.C_TimeOptions_hour'),
 			options: hourOptions,
-			msgBus: self.msgBus
+			msgBus: self
 		});
 
 		self.c_minute_options = new Options({
 			$el: self.find('.C_TimeOptions_minute'),
 			options: minuteOptions,
-			msgBus: self.msgBus
+			msgBus: self
 		});
 
 		self.c_second_options = new Options({
 			$el: self.find('.C_TimeOptions_second'),
 			options: secondOptions,
-			msgBus: self.msgBus
+			msgBus: self
 		});
 
 	}
@@ -79,11 +79,11 @@ define([
 		var self = this;
 
 		if (guid === self.c_hour_options.guid) {
-			self.msgBus.publish(self.msgBus.toMsg('SELECT_HOUR'), e, self.guid, selectedItem);
+			self.msgBus.publish('SELECT_HOUR', e, self.guid, selectedItem);
 		} else if (guid === self.c_minute_options.guid) {
-			self.msgBus.publish(self.msgBus.toMsg('SELECT_MINUTE'), e, self.guid, selectedItem);
+			self.msgBus.publish('SELECT_MINUTE', e, self.guid, selectedItem);
 		} else if (guid === self.c_second_options.guid) {
-			self.msgBus.publish(self.msgBus.toMsg('SELECT_SECOND'), e, self.guid, selectedItem);
+			self.msgBus.publish('SELECT_SECOND', e, self.guid, selectedItem);
 		} 
 	}
 
@@ -92,7 +92,7 @@ define([
 		var $el = self.$el;
 
 		if (!$el.is(e.currentTarget) && $el.has(e.currentTarget).length === 0) {
-	        self.msgBus.publish(self.msgBus.toMsg('CLICK_OUTSIDE'), e, self.guid);
+	        self.msgBus.publish('CLICK_OUTSIDE', e, self.guid);
 	    }
 
 		return this;

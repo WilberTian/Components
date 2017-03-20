@@ -47,7 +47,7 @@ define([
 		this.mount();
 	}
 
-	MultiSelect.prototype.selectOption_message = function(selectedItem) {
+	MultiSelect.prototype.selectOption_message = function(e, guid, selectedItem) {
 		this.selected.push(selectedItem);
 		this.render();
 		this.mount();

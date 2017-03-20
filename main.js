@@ -114,7 +114,7 @@ require([
         })
         modal.mount();
 
-        modal.subscribe(modal.toMsgName('MODAL_CONFIRM'), function(data){
+        modal.subscribe('MODAL_CONFIRM', function(data){
             console.log('modal was confirmed')
             modal.destory();
         });
@@ -125,9 +125,9 @@ require([
         $el: $('.hover')
     })
     $('.hover').on('mouseover', function(e){
-        hover.publish(hover.toMsgName('HOVER_SHOW'), e, hover.guid);
+        hover.publish('HOVER_SHOW', e, hover.guid);
     }).on('mouseout', function(e){
-        hover.publish(hover.toMsgName('HOVER_HIDE'), e, hover.guid);
+        hover.publish('HOVER_HIDE', e, hover.guid);
     })
 
     var element = $('.ellipsis-hint span')[0];
@@ -136,9 +136,9 @@ require([
             $el: $('.ellipsis-hint')
         })
         $('.ellipsis-hint').on('mouseover', function(e){
-            ellipsisHint.publish(ellipsisHint.toMsgName('HOVER_SHOW'), e, ellipsisHint.guid);
+            ellipsisHint.publish('HOVER_SHOW', e, ellipsisHint.guid);
         }).on('mouseout', function(e){
-            ellipsisHint.publish(ellipsisHint.toMsgName('HOVER_HIDE'), e, ellipsisHint.guid);
+            ellipsisHint.publish('HOVER_HIDE', e, ellipsisHint.guid);
         })
     }
     
