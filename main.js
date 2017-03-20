@@ -19,6 +19,7 @@ require([
     'Calendar',
     'DatePicker',
     'TimeOptions',
+    'TimePicker',
     'Modal',
     'Hover',
     'CheckboxGroup',
@@ -27,7 +28,7 @@ require([
     'Tab',
     'Pagination',
     'Stepper'
-], function (Icon, Text, IconText, TextLength, Button, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
+], function (Icon, Text, IconText, TextLength, Button, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, TimePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
 
     var icon = new Icon({
         $el: $('.icon-search'),
@@ -103,6 +104,9 @@ require([
         $el: $('.time-options')
     });
 
+    var timePicker = new TimePicker({
+        $el: $('.time-picker')
+    });
 
     $('.show-modal').on('click', function() {
         var modal = new Modal({
@@ -120,10 +124,10 @@ require([
     var hover = new Hover({
         $el: $('.hover')
     })
-    $('.hover').on('mouseover', function(){
-        hover.publish(hover.toMsgName('HOVER_SHOW'));
-    }).on('mouseout', function(){
-        hover.publish(hover.toMsgName('HOVER_HIDE'));
+    $('.hover').on('mouseover', function(e){
+        hover.publish(hover.toMsgName('HOVER_SHOW'), e, hover.guid);
+    }).on('mouseout', function(e){
+        hover.publish(hover.toMsgName('HOVER_HIDE'), e, hover.guid);
     })
 
     var element = $('.ellipsis-hint span')[0];
@@ -131,10 +135,10 @@ require([
         var ellipsisHint = new Hover({
             $el: $('.ellipsis-hint')
         })
-        $('.ellipsis-hint').on('mouseover', function(){
-            ellipsisHint.publish(ellipsisHint.toMsgName('HOVER_SHOW'));
-        }).on('mouseout', function(){
-            ellipsisHint.publish(ellipsisHint.toMsgName('HOVER_HIDE'));
+        $('.ellipsis-hint').on('mouseover', function(e){
+            ellipsisHint.publish(ellipsisHint.toMsgName('HOVER_SHOW'), e, ellipsisHint.guid);
+        }).on('mouseout', function(e){
+            ellipsisHint.publish(ellipsisHint.toMsgName('HOVER_HIDE'), e, ellipsisHint.guid);
         })
     }
     

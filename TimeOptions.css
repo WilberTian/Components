@@ -1,6 +1,7 @@
 .C_TimeOptions {
 	position: absolute;
     border: 1px solid #999;
+    border-radius: 4px;
     padding: 6px;
     z-index: 999;
     background: #fff;

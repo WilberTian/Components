@@ -2,21 +2,6 @@
 	position: relative;
 }
 
-.C_Search .C_Search_input {
-	display: inline-block;
-	border-radius: 4px;
-	width: 120px;
-	height: 24px;
-	line-height: 24px;
-	padding: 0px 20px 0px 10px;
-	border: 1px solid #999;
-}
-
-.C_Search .search-icon {
-	display: inline-block;
-	border-top: 5px solid black;
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	margin-left: -20px;
-	vertical-align: 2px;
+.C_Search .C_Search_options {
+	margin-top: 2px;
 }

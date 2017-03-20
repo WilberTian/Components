@@ -7,7 +7,7 @@
 .C_Options ul{
 	list-style: none;
 	padding: 0px;
-	margin: 4px 0px;
+	margin: 0px;
 }
 
 .C_Options ul li {
@@ -21,6 +21,7 @@
 .C_Options ul li:hover {
 	background-color: #f63;
     color: #fff;
+    cursor: pointer;
 }
 
 

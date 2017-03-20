@@ -13,6 +13,11 @@ define([], function() {
 		// Option
 		SELECT_OPTION: 'SELECT_OPTION',
 
+		// TimeOptions
+		SELECT_HOUR: 'SELECT_HOUR',
+		SELECT_MINUTE: 'SELECT_MINUTE',
+		SELECT_SECOND: 'SELECT_SECOND',
+
 		// Select
 
 		// Search

@@ -6,12 +6,11 @@ define([
 	'Options'
 ], function($, Component, Utils, ejsTpl, Options){
 
-	var _data = {
-		time: '00:00:00',
-		
+	var _data = {		
 		template: ejsTpl,
 
 		messages: {
+			'SELECT_OPTION': 'selectOption_message',
 		},
 
 		events: {
@@ -23,6 +22,11 @@ define([
 		Component.call(this, options || {});
 	}
 	Utils.inherit(TimeOptions, Component);
+
+	TimeOptions.prototype.render = Options.prototype.render.after(function() {
+		var self = this;
+		$(window).off('click').on('click', self.proxy(_windowClickHandler));
+	});
 
 	TimeOptions.prototype.afterMount = function() {
 		var self = this;
@@ -69,6 +73,29 @@ define([
 			msgBus: self.msgBus
 		});
 
+	}
+
+	TimeOptions.prototype.selectOption_message = function(e, guid, selectedItem) {
+		var self = this;
+
+		if (guid === self.c_hour_options.guid) {
+			self.msgBus.publish(self.msgBus.toMsg('SELECT_HOUR'), e, self.guid, selectedItem);
+		} else if (guid === self.c_minute_options.guid) {
+			self.msgBus.publish(self.msgBus.toMsg('SELECT_MINUTE'), e, self.guid, selectedItem);
+		} else if (guid === self.c_second_options.guid) {
+			self.msgBus.publish(self.msgBus.toMsg('SELECT_SECOND'), e, self.guid, selectedItem);
+		} 
+	}
+
+	function _windowClickHandler(e) {
+		var self = this;
+		var $el = self.$el;
+
+		if (!$el.is(e.currentTarget) && $el.has(e.currentTarget).length === 0) {
+	        self.msgBus.publish(self.msgBus.toMsg('CLICK_OUTSIDE'), e, self.guid);
+	    }
+
+		return this;
 	}
 
 	return TimeOptions;
