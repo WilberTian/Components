@@ -13,6 +13,7 @@ require([
     'IconText',
     'TextLength',
     'Button',
+    'Switch',
     'IconButton',
     'Select',
     'Search',
@@ -28,7 +29,7 @@ require([
     'Tab',
     'Pagination',
     'Stepper'
-], function (Icon, Text, IconText, TextLength, Button, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, TimePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
+], function (Icon, Text, IconText, TextLength, Button, Switch, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, TimePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
 
     var icon = new Icon({
         $el: $('.icon-search'),
@@ -57,6 +58,10 @@ require([
         $el: $('.button'),
         text: 'submit'
     })
+
+    var switchBtn = new Switch({
+        $el: $('.switch')
+    });
 
     var iconButton = new IconButton({
         $el: $('.icon-button'),

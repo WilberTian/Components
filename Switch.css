@@ -1,0 +1,30 @@
+.C_Switch {
+    position: relative;
+    width: 50px;
+    height: 30px;
+    border: 2px solid #dfdfdf;
+    border-radius: 20px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.C_Switch span {
+    position: absolute;
+    display: block;	
+    margin: 0px;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    top: 0px;
+    border-radius: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4)
+}
+
+.C_Switch_on {
+    background-color: #4cd964;
+    border-color: #4cd964;
+}
+
+.C_Switch_off span {
+    left: 20px;
+}
