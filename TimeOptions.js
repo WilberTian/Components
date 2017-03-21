@@ -23,11 +23,6 @@ define([
 	}
 	Utils.inherit(TimeOptions, Component);
 
-	TimeOptions.prototype.render = Options.prototype.render.after(function() {
-		var self = this;
-		$(window).off('click').on('click', self.proxy(_windowClickHandler));
-	});
-
 	TimeOptions.prototype.afterMount = function() {
 		var self = this;
 
@@ -86,6 +81,15 @@ define([
 			self.msgBus.publish('SELECT_SECOND', e, self.guid, selectedItem);
 		} 
 	}
+
+	TimeOptions.prototype.show = TimeOptions.prototype.show.after(function() {
+		var self = this;
+		$(window).off('click').on('click', self.proxy(_windowClickHandler));
+	});
+
+	TimeOptions.prototype.hide = TimeOptions.prototype.hide.after(function(){
+		$(window).off('click');
+	})
 
 	function _windowClickHandler(e) {
 		var self = this;
