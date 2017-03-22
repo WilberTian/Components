@@ -23,13 +23,14 @@ require([
     'TimePicker',
     'Modal',
     'Hover',
+    'Toast',
     'CheckboxGroup',
     'RadioboxGroup',
     'MultiSelect',
     'Tab',
     'Pagination',
     'Stepper'
-], function (Icon, Text, IconText, TextLength, Button, Switch, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, TimePicker, Modal, Hover, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
+], function (Icon, Text, IconText, TextLength, Button, Switch, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, TimePicker, Modal, Hover, Toast, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
 
     var icon = new Icon({
         $el: $('.icon-search'),
@@ -130,7 +131,7 @@ require([
         $el: $('.hover')
     })
     $('.hover').on('mouseover', function(e){
-        hover.publish('HOVER_SHOW', e, hover.guid);
+        hover.publish('HOVER_SHOW', e, hover.guid, 'this');
     }).on('mouseout', function(e){
         hover.publish('HOVER_HIDE', e, hover.guid);
     })
@@ -147,6 +148,12 @@ require([
         })
     }
     
+    $('.toast-btn').on('click', function() {
+        new Toast({
+            $el: $('.toast'),
+            content: 'this is a toast message'
+        })
+    });
 
     var checkboxGroup = new CheckboxGroup({
         $el: $('.checkbox-group'),

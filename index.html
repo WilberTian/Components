@@ -31,6 +31,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
+      .toast {
+        position: fixed;
+        right: 0px;
+        bottom: 0px;
+      }
   	</style>
 
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css"/>
@@ -49,6 +55,7 @@
     <link rel="stylesheet" href="TimePicker.css">
     <link rel="stylesheet" href="Modal.css"/>
     <link rel="stylesheet" href="Hover.css"/>
+    <link rel="stylesheet" href="Toast.css"/>
     <link rel="stylesheet" href="CheckboxGroup.css"/>
     <link rel="stylesheet" href="RadioboxGroup.css"/>
     <link rel="stylesheet" href="MultiSelect.css"/>
@@ -88,6 +95,9 @@
       <span>this is a long text; this is a long text; this is a long text;
       </span>
     </div>
+
+    <div class="element toast"></div>
+    <div class="element toast-btn">Show toast</div>
   
     <div class="element checkbox-group"></div>
 

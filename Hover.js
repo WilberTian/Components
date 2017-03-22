@@ -6,7 +6,7 @@ define([
 ], function($, Component, Utils, ejsTpl){
 
 	var _data = {
-		content: 'Hover content',
+		content: 'Please fill the content',
 		arrowPos: 1,
 
 		template: ejsTpl,
@@ -25,15 +25,30 @@ define([
 	Utils.inherit(Hover, Component);
 
 	Hover.prototype.beforeMount = function () {
+		if (this._$el) {
+			this.$el = this._$el;
+		}
+
+		if(this.find('.C_Hover_Wrapper')) {
+			this.$el.remove('.C_Hover_Wrapper');
+		}
+
 		this.$el.append('<div class="C_Hover_Wrapper"></div>');
 		this.$el.css('position', 'relative');
 
-		this.$el = this.$el.find('.C_Hover_Wrapper');
+		this._$el = this.$el;
+		this.$el = this.find('.C_Hover_Wrapper');
 		this.$el.css('display', 'none');
 		this.$el.attr('arrow-pos', this.arrowPos);
 	};
 
-	Hover.prototype.showHover_message = function () {
+	Hover.prototype.showHover_message = function (e, guid, content) {
+		if(content) {
+			this.updateData({
+				content: content
+			})
+		}
+
 		this.$el.show();
 	}
 

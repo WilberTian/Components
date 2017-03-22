@@ -1,14 +1,15 @@
 .C_Hover_Wrapper {
-	position: absolute;
-	bottom: 24px;
+	  position: absolute;
+	  bottom: 24px;
 }
 
 .C_Hover {
-	border-radius: 5px;
+    padding: 6px;
+	  border-radius: 5px;
   	border: 1px solid #999;
   	background: #f7f7f7;
-  	height: 24px;
-  	line-height: 24px;
+
+    word-break: break-word;
 }
 
 .C_Hover_Wrapper:before {
