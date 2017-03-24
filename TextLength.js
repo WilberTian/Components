@@ -28,6 +28,14 @@ define([
 		this.updateData({
 			currentLength: len
 		})
+
+		if(this.currentLength > this.limitationLength) {
+			this.find('.C_TextLength').addClass('error');
+			this.msgBus.publish('TEXT_LENGTH_ERROR');
+		} else {
+			this.find('.C_TextLength').removeClass('error');
+			this.msgBus.publish('TEXT_LENGTH_OK');
+		}
 	}
  
 	return TextLength;

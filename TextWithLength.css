@@ -1,0 +1,12 @@
+.C_TextWithLenght {
+
+}
+
+.C_TextWithLenght .C_TextWithLenght_Text {
+	display: inline-block;
+}
+
+.C_TextWithLenght .C_TextWithLenght_TextLength {
+	display: inline-block;
+	margin: 0px 8px;
+}

@@ -12,6 +12,7 @@ require([
     'Text',
     'IconText',
     'TextLength',
+    'TextWithLength',
     'Button',
     'Switch',
     'IconButton',
@@ -30,7 +31,7 @@ require([
     'Tab',
     'Pagination',
     'Stepper'
-], function (Icon, Text, IconText, TextLength, Button, Switch, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, TimePicker, Modal, Hover, Toast, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
+], function (Icon, Text, IconText, TextLength, TextWithLength, Button, Switch, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, TimePicker, Modal, Hover, Toast, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
 
     var icon = new Icon({
         $el: $('.icon-search'),
@@ -53,6 +54,12 @@ require([
     var textLength = new TextLength({
         $el: $('.text-length'),
         limitationLength: 20
+    });
+
+    var textWithLength = new TextWithLength({
+        $el: $('.text-with-length'),
+        placeholder: 'address...',
+        limitationLength: 10
     });
 
     var button = new Button({

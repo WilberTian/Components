@@ -6,6 +6,8 @@ define([], function() {
 
 		// TextLength
 		TEXT_LENGTH_UPDATE: 'TEXT_LENGTH_UPDATE',
+		TEXT_LENGTH_ERROR: 'TEXT_LENGTH_ERROR',
+		TEXT_LENGTH_OK: 'TEXT_LENGTH_OK',
 
 		// Button
 		BUTTON_CLICK: 'BUTTON_CLICK',

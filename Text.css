@@ -12,6 +12,10 @@
 	border: 1px solid #999;
 }
 
+.C_Text .C_Text_wrapper.error {
+	border: 1px solid red;
+}
+
 .C_Text .C_Text_wrapper .C_Text_input {
 	width: 120px;
 	height: 30px;

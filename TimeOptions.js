@@ -53,19 +53,19 @@ define([
 		self.c_hour_options = new Options({
 			$el: self.find('.C_TimeOptions_hour'),
 			options: hourOptions,
-			msgBus: self
+			msgBus: self.msgBus
 		});
 
 		self.c_minute_options = new Options({
 			$el: self.find('.C_TimeOptions_minute'),
 			options: minuteOptions,
-			msgBus: self
+			msgBus: self.msgBus
 		});
 
 		self.c_second_options = new Options({
 			$el: self.find('.C_TimeOptions_second'),
 			options: secondOptions,
-			msgBus: self
+			msgBus: self.msgBus
 		});
 
 	}

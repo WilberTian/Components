@@ -75,8 +75,8 @@ define([
 		for(var message in this.messages) {
 			var methodName = this.messages[message];
 			var method = this.proxy(this[methodName])
-			// it's not this.msgBus.subscribe
-			this.subscribe(message, method);
+			// here should be this.msgBus instead of this
+			this.msgBus.subscribe(message, method);
 		}
 
 		return this;

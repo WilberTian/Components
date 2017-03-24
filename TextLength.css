@@ -3,3 +3,7 @@
 	height: 30px;
 	line-height: 30px;
 }
+
+.C_TextLength.error {
+	color: red;
+}
