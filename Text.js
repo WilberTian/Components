@@ -10,11 +10,14 @@ define([
 		placeholder: '',
 		enabled: true,
 
+		rules: [],
+
 		template: ejsTpl,
 
 		events: {
 			// see setup in afterMount
 			'keyup .C_Text_input': 'onKeyup_evnet',
+			'blur .C_Text_input': 'onBlur_event',
 			'click .C_Text_wrapper': 'onClick_event'
 		}
 	}
@@ -30,7 +33,8 @@ define([
 
 		if(this.enabled) {
 			this.events = {
-				'keyup .C_Text_input': 'onKeyup_evnet'
+				'keyup .C_Text_input': 'onKeyup_evnet',
+				'blur .C_Text_input': 'onBlur_event'
 			}
 		} else {
 			this.events = {
@@ -47,6 +51,14 @@ define([
 	Text.prototype.onKeyup_evnet = function(e) {
 		this.text = $(e.currentTarget).val();
 		this.msgBus.publish('TEXT_KEY_UP', e, this.guid, this.text);
+	}
+
+	Text.prototype.onBlur_event = function(e) {
+		this.text = $(e.currentTarget).val();
+
+		if (this.rules.length > 0) {
+			this.validate(this.text);
+		}
 	}
  
 	return Text;

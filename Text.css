@@ -17,11 +17,14 @@
 }
 
 .C_Text .C_Text_wrapper .C_Text_input {
-	width: 120px;
 	height: 30px;
 	line-height: 30px;
 	font-size: 14px;
 	padding: 0px 4px;
 	border: none;
 	border-radius: 4px;
+}
+
+.C_Text .C_Text_errorMsg {
+	color: red;
 }

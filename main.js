@@ -52,6 +52,20 @@ require([
         iconClass: 'fa fa-search'
     })
 
+    var textOnlyNum = new Text({
+        $el: $('.text-only-num'),
+        text: '',
+        placeholder: 'input number',
+        rules: [{
+            errorMsg: 'please input number only',
+            errorMsgIdentity: '.C_Text_errorMsg',
+            validator: function(value) {
+                var pattern=/^[0-9]*[1-9][0-9]*$/;
+                return pattern.test(value);
+            }
+        }]
+    });
+
     var textLength = new TextLength({
         $el: $('.text-length'),
         limitationLength: 20

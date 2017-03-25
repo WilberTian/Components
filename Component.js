@@ -1,10 +1,9 @@
 define([
 	'jquery',
 	'ejs',
-	'MessageTypes',
 	'Pubsub',
 	'Utils'
-], function($, ejs, MessageTypes, Pubsub, Utils){
+], function($, ejs, Pubsub, Utils){
 
 	function Component(options) {
 		if(options.$el.length === 0) {
@@ -130,6 +129,21 @@ define([
 		this.msgBus = null;
 	}
 
+	Component.prototype.validate = function(value) {
+		var self = this;
+		self.rules.forEach(function(rule){
+			var $errorMsgEl = self.find(rule.errorMsgIdentity);
+
+			if(!rule.validator(value)) {
+				$errorMsgEl.text(rule.errorMsg);
+			} else {
+				$errorMsgEl.text('');
+			}
+		});
+
+		return this;
+	}
+
 	Component.prototype.hide = function() {
 		this.$el.hide();
 	};
@@ -144,7 +158,7 @@ define([
 
 	Component.prototype.find = function(identity) {
 		if(this.$el.find(identity).length === 0) return null;
-		
+
 		return this.$el.find(identity);
 	}
 
