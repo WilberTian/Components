@@ -30,8 +30,9 @@ require([
     'MultiSelect',
     'Tab',
     'Pagination',
-    'Stepper'
-], function (Icon, Text, IconText, TextLength, TextWithLength, Button, Switch, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, TimePicker, Modal, Hover, Toast, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper) {
+    'Stepper',
+    'FormElement'
+], function (Icon, Text, IconText, TextLength, TextWithLength, Button, Switch, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, TimePicker, Modal, Hover, Toast, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper, FormElement) {
 
     var icon = new Icon({
         $el: $('.icon-search'),
@@ -240,6 +241,20 @@ require([
     var stepper = new Stepper({
         $el: $('.stepper'),
         number: 100
+    });
+
+    var formElementText = new FormElement({
+        $el: $('.form-element-text'),
+        required: true,
+        label: 'User name',
+        component: {
+            type: 'TextWithLength',
+            data: {
+                placeholder: 'user name...',
+                text: '',
+                limitationLength: 20
+            }
+        }
     });
     
 });

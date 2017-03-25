@@ -1,40 +1,51 @@
 define([
+	'jquery',
+	'require',
 	'Component',
-	'Utils'
-], function(Component, Utils){
-	
+	'Utils',
+	'text!FormElement.ejs'
+], function($, require, Component, Utils, ejsTpl){
+
+	var _data = {
+		required: true,
+		lable: 'form label',
+		component: {
+			type: null,
+			data: null
+		},
+
+		template: ejsTpl,
+	}
+
 	function FormElement(options) {
+		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
-
-		this._type = options.type;
-
-		this._required = options.required;
-
-		this._label = options.label;
-
-		this._key = options.key;
-
-		this._value = options.value;
-
-		this._hint = options.hint;
-
-		this._validators = options.validators || [];
-
 	}
 
 	Utils.inherit(FormElement, Component);
 
-	FormElement.prototype._validate = function() {
-		if(this._validators.length > 0) {
-			
+	FormElement.prototype.validate = function() {
+		
+	}
+
+	FormElement.prototype.afterMount = function() {
+		var self = this;
+		var componentData = $.extend({}, self.component.data, {$el: self.find('.C_FormElement_component')});
+		
+		var componentType = self.component.type;
+		if(typeof componentType !== 'string') {
+			throw new Error('please input the component type in string');
 		}
-	};
 
-	FormElement.prototype._scrollTo = function() {
+		var Component = null;
 
-	};
+		try {
+			Component = require(componentType);
+			new Component(componentData);
+		} catch(e) {
+			throw new Error('can not load module ' + componentType);
+		}
+	}
 
 	return FormElement;
-
 });
-
