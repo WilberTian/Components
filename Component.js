@@ -143,6 +143,8 @@ define([
 	}
 
 	Component.prototype.find = function(identity) {
+		if(this.$el.find(identity).length === 0) return null;
+		
 		return this.$el.find(identity);
 	}
 
