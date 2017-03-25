@@ -29,8 +29,9 @@ define([
 			this.$el = this._$el;
 		}
 
-		if(this.find('.C_Hover_Wrapper')) {
-			this.$el.remove('.C_Hover_Wrapper');
+		var $hoverEl = this.find('.C_Hover_Wrapper');
+		if($hoverEl) {
+			$hoverEl.remove();
 		}
 
 		this.$el.append('<div class="C_Hover_Wrapper"></div>');
