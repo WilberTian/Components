@@ -31,8 +31,9 @@ require([
     'Tab',
     'Pagination',
     'Stepper',
-    'FormElement'
-], function (Icon, Text, IconText, TextLength, TextWithLength, Button, Switch, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, TimePicker, Modal, Hover, Toast, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper, FormElement) {
+    'FormElement',
+    'Form'
+], function (Icon, Text, IconText, TextLength, TextWithLength, Button, Switch, IconButton, Select, Search, Calendar, DatePicker, TimeOptions, TimePicker, Modal, Hover, Toast, CheckboxGroup, RadioboxGroup, MultiSelect, Tab, Pagination, Stepper, FormElement, Form) {
 
     var icon = new Icon({
         $el: $('.icon-search'),
@@ -139,8 +140,7 @@ require([
     $('.show-modal').on('click', function() {
         var modal = new Modal({
             $el: $('.modal')
-        })
-        modal.mount();
+        });
 
         modal.subscribe('MODAL_CONFIRM', function(data){
             console.log('modal was confirmed')
@@ -258,7 +258,7 @@ require([
     });
 
     var formElementText = new FormElement({
-        $el: $('.form-element-text'),
+        $el: $('<div></div>'),
         required: true,
         label: 'User name',
         component: {
@@ -269,6 +269,47 @@ require([
                 limitationLength: 20
             }
         }
+    });
+    formElementText.updateData({$el: $('.form-element-text')});
+
+
+    var textInForm = new FormElement({
+        $el: $('<div></div>'),
+        required: true,
+        label: 'User name',
+        component: {
+            type: 'TextWithLength',
+            data: {
+                placeholder: 'user name...',
+                text: '',
+                limitationLength: 20
+            }
+        }
+    });
+    var checkBoxGroupInForm = new FormElement({
+        $el: $('<div></div>'),
+        required: true,
+        label: 'interests',
+        component: {
+            type: 'CheckboxGroup',
+            data: {
+                checked: [2, 3],
+                options: [{
+                    label: 'Reading',
+                    value: '1'
+                }, {
+                    label: 'Running',
+                    value: '2'
+                }, {
+                    label: 'Swimming',
+                    value: '3'
+                }]
+            }
+        }
+    });
+    var form = new Form({
+        $el: $('.form'),
+        formElements: [textInForm, checkBoxGroupInForm]
     });
     
 });

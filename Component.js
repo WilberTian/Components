@@ -40,7 +40,7 @@ define([
 		this.beforeRender();
 
 		var compiledTpl = ejs.compile(this.template);
-	    this.renderedPage = compiledTpl(this);
+	    this.renderedComponent = compiledTpl(this);
 
 	    this.afterRender();
 	    
@@ -59,7 +59,7 @@ define([
 		this.beforeMount();
 
 		var $el = this.$el;
-	    $el.html(this.renderedPage);
+	    $el.html(this.renderedComponent);
 
 	    this.afterMount();
 
@@ -178,6 +178,10 @@ define([
 		
 		this.render();
 		this.mount();
+	}
+
+	Component.prototype.getData = function() {
+		throw new Error('please implement the getData method for the Component');
 	}
 
 	return Component;

@@ -14,7 +14,7 @@ define([
 			data: null
 		},
 
-		template: ejsTpl,
+		template: ejsTpl
 	}
 
 	function FormElement(options) {
@@ -23,10 +23,6 @@ define([
 	}
 
 	Utils.inherit(FormElement, Component);
-
-	FormElement.prototype.validate = function() {
-		
-	}
 
 	FormElement.prototype.afterMount = function() {
 		var self = this;

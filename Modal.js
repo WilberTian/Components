@@ -7,7 +7,6 @@ define([
 
 	var _data = {
 		header: 'Modal header',
-		content: 'Modal content',
 		template: ejsTpl,
 
 		events: {
@@ -23,7 +22,8 @@ define([
 
 	Utils.inherit(Modal, Component);
 
-	Modal.prototype.beforeMount = function() {
+	Modal.prototype.afterMount = function() {
+		// set the modal content with other component
 		return this;
 	};
 

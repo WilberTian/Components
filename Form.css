@@ -1,0 +1,9 @@
+.C_Form {
+	padding: 12px;
+	border: 1px solid #e1e1e1;
+	border-radius: 4px;
+}
+
+.C_Form .C_Form_formElements>div {
+	padding: 10px 0px;
+}
