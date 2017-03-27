@@ -24,6 +24,7 @@ define([
 
 	Modal.prototype.afterMount = function() {
 		// set the modal content with other component
+		this.find('.modal-body').append('add modal content or component in the afterMount method');
 		return this;
 	};
 

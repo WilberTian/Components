@@ -12,3 +12,8 @@
 .C_Button .C_Button_text {
 	font-size: 16px;
 }
+
+.C_Button.disabled-button {
+	cursor: not-allowed;
+	color: #999;
+}

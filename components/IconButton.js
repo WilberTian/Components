@@ -31,6 +31,10 @@ define([
 			$el: self.find('.C_Button_icon'),
 			iconClass: self.iconClass
 		})
+
+		// !!! inherits from other components
+		// the method will be overwrite, need to call parent's method
+		Button.prototype.afterMount.apply(self, arguments);
 	}
 
 	return IconButton;

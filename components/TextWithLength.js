@@ -16,7 +16,7 @@ define([
 		template: ejsTpl,
 
 		messages: {
-			'TEXT_KEY_UP': 'textKeyup_message',
+			'TEXT_KEYUP': 'textKeyup_message',
 			'TEXT_LENGTH_ERROR': 'textLengthError_message',
 			'TEXT_LENGTH_OK': 'textLengthOk_message'
 		}

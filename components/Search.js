@@ -15,7 +15,7 @@ define([
 
 		messages: {
 			'TEXT_CLICK': 'clickSearch_message',
-			'TEXT_KEY_UP': 'searchKeyup_message',
+			'TEXT_KEYUP': 'searchKeyup_message',
 			'SELECT_OPTION': 'selectOption_message',
 			'CLICK_OUTSIDE': 'clickOutside_message'
 		},

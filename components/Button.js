@@ -7,6 +7,7 @@ define([
 
 	var _data = {
 		text: '',
+		disabled: false,
 
 		template: ejsTpl,
 
@@ -22,9 +23,17 @@ define([
 
 	Utils.inherit(Button, Component);
 
-	Button.prototype.buttonClick_event = function(e) {
-		this.msgBus.publish('BUTTON_CLICK', this.currentPage);
+	Button.prototype.afterMount = function() {
+		if(this.disabled) {
+			this.find('.C_Button').addClass('disabled-button');
+		} else {
+			this.find('.C_Button').removeClass('disabled-button');
+		}
 	}
- 
+
+	Button.prototype.buttonClick_event = function(e) {
+		if(!this.disabled) this.msgBus.publish('BUTTON_CLICK', this.currentPage);
+	}
+
 	return Button;
 });

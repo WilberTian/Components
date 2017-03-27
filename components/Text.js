@@ -50,7 +50,7 @@ define([
 
 	Text.prototype.onKeyup_evnet = function(e) {
 		this.text = $(e.currentTarget).val();
-		this.msgBus.publish('TEXT_KEY_UP', e, this.guid, this.text);
+		this.msgBus.publish('TEXT_KEYUP', e, this.guid, this.text);
 	}
 
 	Text.prototype.onBlur_event = function(e) {

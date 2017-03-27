@@ -1,7 +1,7 @@
 define([], function() {
 	return {
 		// Text
-		TEXT_KEY_UP: 'TEXT_KEY_UP',
+		TEXT_KEYUP: 'TEXT_KEYUP',
 		TEXT_CLICK: 'TEXT_CLICK',
 
 		// TextLength

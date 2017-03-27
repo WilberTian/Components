@@ -1,9 +1,10 @@
 require.config({
+    baseUrl: 'components',
     paths: {
-        jquery: 'vendor/jquery.min',
-        text: 'vendor/text',
-        ejs: 'node_modules/ejs/ejs.min',
-        moment: 'node_modules/moment/min/moment.min',
+        jquery: '../vendor/jquery.min',
+        text: '../vendor/text',
+        ejs: '../node_modules/ejs/ejs.min',
+        moment: '../node_modules/moment/min/moment.min',
     }
 });
 
@@ -51,11 +52,11 @@ require([
         $el: $('.icon-text'),
         placeholder: 'Search...',
         iconClass: 'fa fa-search'
-    })
+    });
 
     var textOnlyNum = new Text({
         $el: $('.text-only-num'),
-        text: '',
+        text: 0,
         placeholder: 'input number',
         rules: [{
             errorMsg: 'please input number only',
@@ -81,7 +82,7 @@ require([
     var button = new Button({
         $el: $('.button'),
         text: 'submit'
-    })
+    });
 
     var switchBtn = new Switch({
         $el: $('.switch')
@@ -151,12 +152,12 @@ require([
 
     var hover = new Hover({
         $el: $('.hover')
-    })
+    });
     $('.hover').on('mouseover', function(e){
         hover.publish('HOVER_SHOW', e, hover.guid, 'this');
     }).on('mouseout', function(e){
         hover.publish('HOVER_HIDE', e, hover.guid);
-    })
+    });
 
     var element = $('.ellipsis-hint span')[0];
     if(element.scrollWidth > element.offsetWidth) {
@@ -244,7 +245,7 @@ require([
             label: '高级',
             value: '3'
         }]
-    })
+    });
 
     var pagination = new Pagination({
         $el: $('.pagination'),

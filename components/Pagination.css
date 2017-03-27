@@ -2,7 +2,7 @@
 	display: table;
 }
 
-.C_Pagination div {
+.C_Pagination .C_Pagination_prev,  .C_Pagination .C_Pagination_next, .C_Pagination .C_Pagination_item	{
 	display: table-cell;
 	height: 30px;
 	line-height: 30px;
@@ -33,6 +33,21 @@
 .C_Pagination .disable {
 	cursor: not-allowed;
 	background-color: #d7d7d7;
+}
+
+.C_Pagination .C_Pagination_goto_text {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.C_Pagination .C_Pagination_goto_text .C_Text_input {
+	width: 48px;
+	text-align: center;
+}
+
+.C_Pagination .C_Pagination_goto_button {
+	display: inline-block;
+	
 }
 
 
