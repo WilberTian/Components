@@ -1,8 +1,8 @@
 define([
 	'jquery',
-	'Component',
-	'Utils',
-	'text!Button.ejs'
+	'../Component',
+	'../Utils',
+	'text!./Button.ejs'
 ], function($, Component, Utils, ejsTpl){
 
 	var _data = {

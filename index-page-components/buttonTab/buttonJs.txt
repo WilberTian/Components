@@ -1,0 +1,4 @@
+new Button({
+    $el: self.find('.submit-button'),
+    text: 'submit'
+});

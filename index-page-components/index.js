@@ -4,8 +4,9 @@ define([
 	'components/Utils',
 	'text!./Index.ejs',
 	'components/tab/Tab',
-	'./iconTab/IconTab'
-], function($, Component, Utils, ejsTpl, Tab, IconTab){
+	'./iconTab/IconTab',
+	'./buttonTab/ButtonTab'
+], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab){
 
 	var _data = {
 		template: ejsTpl,
@@ -50,9 +51,12 @@ define([
 			case 0:
 				new IconTab({
 					$el: self.find('.tab-content-container')
-				})
+				});
 				break;
 			case 1:
+				new ButtonTab({
+					$el: self.find('.tab-content-container')
+				});
 				break
 		}
 	}
