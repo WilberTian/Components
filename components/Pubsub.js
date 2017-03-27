@@ -1,6 +1,6 @@
 define([
-	'Utils',
-	'MessageTypes'
+	'components/Utils',
+	'components/MessageTypes'
 ], function(Utils, MessageTypes){
 	function Pubsub() {
 	}

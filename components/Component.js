@@ -1,8 +1,8 @@
 define([
 	'jquery',
 	'ejs',
-	'Pubsub',
-	'Utils'
+	'components/Pubsub',
+	'components/Utils'
 ], function($, ejs, Pubsub, Utils){
 
 	function Component(options) {

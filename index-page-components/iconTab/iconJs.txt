@@ -1,0 +1,4 @@
+new Icon({
+    $el: $('.icon-search'),
+    iconClass: 'fa fa-search'
+});

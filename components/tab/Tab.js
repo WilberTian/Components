@@ -1,8 +1,8 @@
 define([
 	'jquery',
-	'Component',
-	'Utils',
-	'text!Tab.ejs'
+	'../Component',
+	'../Utils',
+	'text!./Tab.ejs'
 ], function($, Component, Utils, ejsTpl){
 
 	var _data = {
@@ -24,6 +24,7 @@ define([
 
 	Tab.prototype.afterMount = function() {
 		this.setActiveTab(this.selected);
+		this.msgBus.publish('TAB_CHANGE', this.selected);
 		return this;
 	};
 

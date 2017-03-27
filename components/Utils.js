@@ -1,5 +1,5 @@
 define([
-	'Settings'
+	'components/Settings'
 ], function(Settings){
 	var inherit = function(child, parent) {
 		child.prototype = Object.create(parent.prototype);
