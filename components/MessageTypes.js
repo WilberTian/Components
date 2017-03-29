@@ -3,6 +3,8 @@ define([], function() {
 		// Text
 		TEXT_KEYUP: 'TEXT_KEYUP',
 		TEXT_CLICK: 'TEXT_CLICK',
+		TEXT_FOCUS: 'TEXT_FOCUS',
+		TEXT_BLUR: 'TEXT_BLUR',
 
 		// TextLength
 		TEXT_LENGTH_UPDATE: 'TEXT_LENGTH_UPDATE',

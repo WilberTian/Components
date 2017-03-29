@@ -5,8 +5,14 @@ define([
 	'text!./Index.ejs',
 	'components/tab/Tab',
 	'./iconTab/IconTab',
-	'./buttonTab/ButtonTab'
-], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab){
+	'./buttonTab/ButtonTab',
+	'./textTab/TextTab',
+	'./switchTab/SwitchTab',
+	'./radioboxGroupTab/RadioboxGroupTab',
+	'./checkboxGroupTab/CheckboxGroupTab',
+	'./selectAndSearchTab/SelectAndSearchTab',
+	'./dateTab/DateTab'
+], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab, TextTab, SwitchTab, RadioboxGroupTab, CheckboxGroupTab, SelectAndSearchTab, DateTab){
 
 	var _data = {
 		template: ejsTpl,
@@ -38,9 +44,24 @@ define([
 	        }, {
 	            label: 'Text',
 	            value: '3'
+	        }, {
+	            label: 'Switch',
+	            value: '4'
+	        }, {
+	            label: 'RadioboxGroup',
+	            value: '5'
+	        }, {
+	            label: 'CheckboxGroup',
+	            value: '6'
+	        }, {
+	            label: 'Select & Search',
+	            value: '7'
+	        }, {
+	            label: 'Date',
+	            value: '8'
 	        }],
 
-	        msgBus: self
+	        msgBus: self.msgBus
 		})
 	}
 
@@ -57,7 +78,37 @@ define([
 				new ButtonTab({
 					$el: self.find('.tab-content-container')
 				});
-				break
+				break;
+			case 2:
+				new TextTab({
+					$el: self.find('.tab-content-container')
+				});
+				break;	
+			case 3:
+				new SwitchTab({
+					$el: self.find('.tab-content-container')
+				});
+				break;		
+			case 4:
+				new RadioboxGroupTab({
+					$el: self.find('.tab-content-container')
+				});
+				break;		
+			case 5:
+				new CheckboxGroupTab({
+					$el: self.find('.tab-content-container')
+				});
+				break;	
+			case 6:
+				new SelectAndSearchTab({
+					$el: self.find('.tab-content-container')
+				});
+				break;		
+			case 7:
+				new DateTab({
+					$el: self.find('.tab-content-container')
+				});
+				break;						
 		}
 	}
 

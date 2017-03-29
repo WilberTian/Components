@@ -1,0 +1,20 @@
+.C_DateRange {
+
+}
+
+.C_DateRange .from_label{
+	padding-right: 8px;
+}
+
+.C_DateRange .to_label{
+	padding-left: 16px;
+	padding-right: 8px;
+}
+
+.C_DateRange .C_DateRange_from {
+	display: inline-block;
+}
+
+.C_DateRange .C_DateRange_to {
+	display: inline-block;
+}

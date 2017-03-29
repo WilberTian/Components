@@ -4,12 +4,13 @@ define([
 	'components/Utils',
 	'text!./ButtonTab.ejs',
 	'components/button/Button',
+	'components/iconButton/IconButton',
 	'../demoCode/DemoCode',
 	'text!./buttonHtml.txt',
 	'text!./buttonJs.txt',
 	'text!./buttonEvents.txt',
 	'text!./buttonMessages.txt'
-], function($, Component, Utils, ejsTpl, Button, DemoCode, buttonHtml, buttonJs, buttonEvents, buttonMessages){
+], function($, Component, Utils, ejsTpl, Button, IconButton, DemoCode, buttonHtml, buttonJs, buttonEvents, buttonMessages){
 
 	var _data = {
 		template: ejsTpl,
@@ -35,13 +36,24 @@ define([
 	        text: 'Cancel'
 	    });
 
+	    new IconButton({
+	        $el: self.find('.icon-button'),
+	        text: 'Setting',
+	        iconClass: 'fa fa-cog'
+	    });
+
+    	new IconButton({
+	        $el: self.find('.icon-only-button'),
+	        iconClass: 'fa fa-cog'
+	    });
+
 		new DemoCode({
 			$el: self.find('.demo-code'),
 			htmlCode: buttonHtml,
 			jsCode: buttonJs,
 			eventsCode: buttonEvents,
 			messagesCode: buttonMessages
-		})
+		});
 	}
 
 	return ButtonTab;

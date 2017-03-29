@@ -1,1 +1,7 @@
 <div class="icon icon-search"></div>
+
+=>
+
+<div class="icon icon-search">
+    <i class="C_Icon fa fa-search"></i>
+</div>

@@ -13,13 +13,11 @@ define([
 		}
 
 		this.guid = Utils.guid();
-		this.msgBus = options.msgBus || this;
+		this.msgBus = options.msgBus || new Pubsub;
 
 		this.init();
 		return this;
 	}
-
-	Utils.inherit(Component, Pubsub);
 
 	Component.prototype.init = function() {
 		this.initSubscriber();

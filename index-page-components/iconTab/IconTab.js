@@ -23,33 +23,35 @@ define([
 	Utils.inherit(IconTab, Component);
 
 	IconTab.prototype.afterMount = function() {
+		var self = this;
+
 		new Icon({
-			$el: $('.icon-search'),
+			$el: self.find('.icon-search'),
 			iconClass: 'fa fa-search'
 		});
 
 		new Icon({
-			$el: $('.icon-cog'),
+			$el: self.find('.icon-cog'),
 			iconClass: 'fa fa-cog'
 		});
 
 		new Icon({
-			$el: $('.icon-cogs'),
+			$el: self.find('.icon-cogs'),
 			iconClass: 'fa fa-cogs'
 		});
 
 		new Icon({
-			$el: $('.icon-file'),
+			$el: self.find('.icon-file'),
 			iconClass: 'fa fa-file'
 		});
 
 		new Icon({
-			$el: $('.icon-list'),
+			$el: self.find('.icon-list'),
 			iconClass: 'fa fa-list'
 		});
 
 		new DemoCode({
-			$el: $('.demo-code'),
+			$el: self.find('.demo-code'),
 			htmlCode: iconHtml,
 			jsCode: iconJs,
 			eventsCode: iconEvents,
