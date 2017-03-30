@@ -13,13 +13,6 @@ define([
 
 		template: ejsTpl,
 
-		messages: {
-			'TEXT_FOCUS': 'focusSearch_message',
-			'TEXT_KEYUP': 'searchKeyup_message',
-			'SELECT_OPTION': 'selectOption_message',
-			'CLICK_OUTSIDE': 'clickOutside_message'
-		},
-
 		events: {
 			'click .C_Search': 'clickSearch_event'
 		}
@@ -37,14 +30,20 @@ define([
 		self.c_iconText = new IconText({
 			$el: self.find('.C_Search_Text'),
 			text: self.selected.label || '',
-			msgBus: self.msgBus,
-			iconClass: 'fa fa-search'
+			iconClass: 'fa fa-search',
+			messages: {
+				'TEXT_FOCUS': self.proxy(self.focusSearch_message),
+				'TEXT_KEYUP': self.proxy(self.searchKeyup_message)
+			}
 		});
 
 		self.c_options = new Options({
 			$el: self.find('.C_Search_options'),
 			options: self.options,
-			msgBus: self.msgBus
+			messages: {
+				'SELECT_OPTION': self.proxy(self.selectOption_message),
+				'CLICK_OUTSIDE': self.proxy(self.clickOutside_message)
+			}
 		})
 	}
 

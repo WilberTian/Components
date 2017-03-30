@@ -10,6 +10,10 @@ define([
 		selected: -1,
 		template: ejsTpl,
 
+		messages: {
+			'TAB_CHANGE': Utils.noop
+		},
+
 		events: {
 			'click .C_Tab .tab-item': 'setActiveTab_event'
 		}

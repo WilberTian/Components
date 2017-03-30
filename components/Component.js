@@ -70,6 +70,7 @@ define([
 
 	Component.prototype.initSubscriber = function() {
 		for(var message in this.messages) {
+			
 			var func = this.messages[message];
 
 			this.msgBus.subscribe(message, func);

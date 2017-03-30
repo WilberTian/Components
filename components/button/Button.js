@@ -11,6 +11,10 @@ define([
 
 		template: ejsTpl,
 
+		messages: {
+			'BUTTON_CLICK': Utils.noop
+		},
+
 		events: {
 			'click .C_Button': 'buttonClick_event'
 		}

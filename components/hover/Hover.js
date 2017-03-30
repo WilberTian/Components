@@ -14,7 +14,7 @@ define([
 		messages: {
 			'HOVER_SHOW': 'showHover_message',
 			'HOVER_HIDE': 'hideHover_message'
-		},
+		}
 	}
 
 	function Hover(options) {

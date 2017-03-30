@@ -9,6 +9,11 @@ define([
 		options: [],
 		template: ejsTpl,
 
+		messages: {
+			'SELECT_OPTION': Utils.noop,
+			'CLICK_OUTSIDE': Utils.noop
+		},
+
 		events: {
 			'click .C_Options li': 'chooseOption_event'
 		}

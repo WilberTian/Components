@@ -5,36 +5,39 @@ define([
 	'text!./Text.ejs'
 ], function($, Component, Utils, ejsTpl){
 
-	var _data = {
+	var model = {
 		text: '',
 		placeholder: '',
 		enabled: true,
 
-		rules: [],
+		rules: []
+	};
 
+	var view = {
 		template: ejsTpl,
 
-		messages: {
-			'TEXT_CLICK': Utils.noop,
-			'TEXT_KEYUP': Utils.noop,
-			'TEXT_FOCUS': Utils.noop
-		},
-
-		events: {
+		evnets: {
 			// see setup in afterMount
 			'keyup .C_Text_input': 'onKeyup_evnet',
 			'blur .C_Text_input': 'onBlur_event',
 			'focus .C_Text_input': 'onFocus_event',
 			'click .C_Text_wrapper': 'onClick_event'
 		}
-	}
+	};
+
 
 	function Text(options) {
-		$.extend(true, this, _data, options);
+		$.extend(true, this, model, view, options);
 		Component.apply(this, arguments || {});
 	}
 
 	Utils.inherit(Text, Component);
+
+	Text.prototype.MESSAGES = {
+		TEXT_CLICK: 'TEXT_CLICK', 
+		TEXT_KEYUP: 'TEXT_KEYUP', 
+		TEXT_FOCUS: 'TEXT_FOCUS'
+	};
 
 	Text.prototype.afterMount = function() {
 
@@ -53,12 +56,12 @@ define([
 
 	Text.prototype.onClick_event = function(e) {
 		this.text = $(e.currentTarget).val();
-		this.msgBus.publish('TEXT_CLICK', e, this.guid, this.text);
+		this.msgBus.publish(this.MESSAGES.TEXT_CLICK, e, this.guid, this.text);
 	}
 
 	Text.prototype.onKeyup_evnet = function(e) {
 		this.text = $(e.currentTarget).val();
-		this.msgBus.publish('TEXT_KEYUP', e, this.guid, this.text);
+		this.msgBus.publish(this.MESSAGES.TEXT_KEYUP, e, this.guid, this.text);
 	}
 
 	Text.prototype.onBlur_event = function(e) {
@@ -71,7 +74,7 @@ define([
 
 	Text.prototype.onFocus_event = function(e) {
 		this.text = $(e.currentTarget).val();
-		this.msgBus.publish('TEXT_FOCUS', e, this.guid, this.text);
+		this.msgBus.publish(this.MESSAGES.TEXT_FOCUS, e, this.guid, this.text);
 	}
  
 	return Text;

@@ -9,6 +9,10 @@ define([
 		header: 'Modal header',
 		template: ejsTpl,
 
+		messages: {
+			'MODAL_CONFIRM': Utils.noop
+		},
+
 		events: {
 			'click .C_Modal .modal-confirm': 'modalConfirm_event',
 			'click .C_Modal .modal-cancel': 'modalCancel_event',

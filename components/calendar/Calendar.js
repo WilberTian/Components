@@ -16,7 +16,8 @@ define([
 		template: ejsTpl,
 
 		messages: {
-
+			'CALENDAR_SELECT_DATE': Utils.noop,
+			'CLICK_OUTSIDE': Utils.noop
 		},
 
 		events: {

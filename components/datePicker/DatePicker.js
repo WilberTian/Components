@@ -79,7 +79,7 @@ define([
 			text: dateStr
 		});
 
-		self.msgBus.publish('DATEPICKER_SELECT_DATE', dateStr);
+		this.msgBus.publish('DATEPICKER_SELECT_DATE', dateStr);
 	}
 
 	DatePicker.prototype.clickOutside_message = function(){

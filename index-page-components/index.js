@@ -15,11 +15,8 @@ define([
 ], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab, TextTab, SwitchTab, RadioboxGroupTab, CheckboxGroupTab, SelectAndSearchTab, DateTab){
 
 	var _data = {
-		template: ejsTpl,
+		template: ejsTpl
 
-		messages: {
-			'TAB_CHANGE': 'tabChange_message'
-		}
 	}
 
 	function Index(options) {
@@ -61,7 +58,9 @@ define([
 	            value: '8'
 	        }],
 
-	        msgBus: self.msgBus
+	        messages: {
+	        	'TAB_CHANGE': self.proxy(self.tabChange_message)
+	        }
 		})
 	}
 

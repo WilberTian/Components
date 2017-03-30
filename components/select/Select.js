@@ -16,12 +16,6 @@ define([
 		
 		template: ejsTpl,
 
-		messages: {
-			'TEXT_CLICK': 'clickSelect_message',
-			'SELECT_OPTION': 'selectOption_message',
-			'CLICK_OUTSIDE': 'clickOutside_message'
-		},
-
 		events: {
 		}
 	};
@@ -40,13 +34,18 @@ define([
 			text: self.selected.label,
 			enabled: false,
 			iconClass: 'fa fa-chevron-down',
-			msgBus: self.msgBus
+			messages: {
+				'TEXT_CLICK': self.proxy(self.clickSelect_message)
+			},
 		});
 
 		self.c_options = new Options({
 			$el: self.find('.C_Select_options'),
 			options: self.options,
-			msgBus: self.msgBus
+			messages: {
+				'SELECT_OPTION': self.proxy(self.selectOption_message),
+				'CLICK_OUTSIDE': self.proxy(self.clickOutside_message)
+			}
 		})
 	}
 

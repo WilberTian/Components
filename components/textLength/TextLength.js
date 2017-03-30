@@ -9,11 +9,7 @@ define([
 		currentLength: 0,
 		limitationLength: 0,
 
-		template: ejsTpl,
-
-		messages: {
-			'TEXT_LENGTH_UPDATE': 'textLengthUpdate_message'
-		}
+		template: ejsTpl
 	}
 
 	function TextLength(options) {
@@ -24,11 +20,7 @@ define([
 	Utils.inherit(TextLength, Component);
 	
 
-	TextLength.prototype.textLengthUpdate_message = function(len) {
-		this.updateData({
-			currentLength: len
-		})
-
+	TextLength.prototype.afterMount = function() {
 		if(this.currentLength > this.limitationLength) {
 			this.find('.C_TextLength').addClass('error');
 			this.msgBus.publish('TEXT_LENGTH_ERROR');

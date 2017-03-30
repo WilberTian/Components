@@ -24,14 +24,26 @@ define([
 		
 		self.from = new DatePicker({
 	        $el: self.find('.C_DateRange_from'),
-	        msgBus: self.msgBus
+	        messages: {
+	        	'DATEPICKER_SELECT_DATE': fromDateChange
+	        }
 	    });
 
 		self.to = new DatePicker({
 	        $el: self.find('.C_DateRange_to'),
 	        date: moment().add(1, 'month').format('YYYY-MM-DD'),
-	        msgBus: self.msgBus
+	        messages: {
+	        	'DATEPICKER_SELECT_DATE': toDateChange
+	        }
 	    });
+
+	    var fromDateChange = function() {
+
+	    }
+
+	    var toDateChange = function() {
+
+	    }
 	}
 
 	DateRange.prototype.getDate = function() {

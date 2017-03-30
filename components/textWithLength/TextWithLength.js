@@ -15,11 +15,6 @@ define([
 
 		template: ejsTpl,
 
-		messages: {
-			'TEXT_KEYUP': 'textKeyup_message',
-			'TEXT_LENGTH_ERROR': 'textLengthError_message',
-			'TEXT_LENGTH_OK': 'textLengthOk_message'
-		}
 	}
 
 	function TextWithLength(options) {
@@ -37,19 +32,27 @@ define([
 			$el: self.find('.C_TextWithLenght_Text'),
 			text: self.text,
 			placeholder: self.placeholder,
-			msgBus: self.msgBus
+			messages: {
+				'TEXT_KEYUP': self.proxy(self.textKeyup_message)
+			}
+			
 		});
 
 		self.c_textLength = new TextLength({
 			$el: self.find('.C_TextWithLenght_TextLength'),
 			currentLength: self.currentLength,
 			limitationLength: self.limitationLength,
-			msgBus: self.msgBus
+			messages: {
+				'TEXT_LENGTH_ERROR': self.proxy(self.textLengthError_message),
+				'TEXT_LENGTH_OK': self.proxy(self.textLengthOk_message)
+			}
 		});
 	}
 
 	TextWithLength.prototype.textKeyup_message = function(e, guid, text) {
-		this.msgBus.publish('TEXT_LENGTH_UPDATE', text.length);
+		this.c_textLength.updateData({
+			currentLength: text.length
+		});
 	}
  	
  	TextWithLength.prototype.textLengthError_message = function() {
