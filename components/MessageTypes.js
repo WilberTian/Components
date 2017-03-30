@@ -44,6 +44,9 @@ define([], function() {
 		// Calendar
 		CALENDAR_SELECT_DATE: 'CALENDAR_SELECT_DATE',
 
+		// DatePicker
+		DATEPICKER_SELECT_DATE: 'DATEPICKER_SELECT_DATE',
+
 		// Hover
 		HOVER_SHOW: 'HOVER_SHOW',
 		HOVER_HIDE: 'HOVER_HIDE',

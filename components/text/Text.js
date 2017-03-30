@@ -14,6 +14,12 @@ define([
 
 		template: ejsTpl,
 
+		messages: {
+			'TEXT_CLICK': Utils.noop,
+			'TEXT_KEYUP': Utils.noop,
+			'TEXT_FOCUS': Utils.noop
+		},
+
 		events: {
 			// see setup in afterMount
 			'keyup .C_Text_input': 'onKeyup_evnet',

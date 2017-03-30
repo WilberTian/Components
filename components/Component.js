@@ -70,10 +70,9 @@ define([
 
 	Component.prototype.initSubscriber = function() {
 		for(var message in this.messages) {
-			var methodName = this.messages[message];
-			var method = this.proxy(this[methodName])
-			// here should be this.msgBus instead of this
-			this.msgBus.subscribe(message, method);
+			var func = this.messages[message];
+
+			this.msgBus.subscribe(message, func);
 		}
 
 		return this;

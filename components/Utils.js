@@ -40,7 +40,8 @@ define([
 	return {
 		inherit: inherit,
 		guid: guid,
-		logDebugMsg: logDebugMsg
+		logDebugMsg: logDebugMsg,
+		noop: function() {}
 	}
 });
 

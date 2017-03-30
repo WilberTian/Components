@@ -15,9 +15,7 @@ define([
 		template: ejsTpl,
 
 		messages: {
-			'TEXT_CLICK': 'selectDate_message',
-			'CALENDAR_SELECT_DATE': 'chooseDate_message',
-			'CLICK_OUTSIDE': 'clickOutside_message'
+			'DATEPICKER_SELECT_DATE': Utils.noop
 		},
 
 		events: {
@@ -37,8 +35,11 @@ define([
 			$el: self.find('.C_DatePicker_Text'),
 			text: self.date,
 			enabled: false,
-			msgBus: self.msgBus,
-			iconClass: 'fa fa-calendar'
+			iconClass: 'fa fa-calendar',
+
+			messages: {
+				'TEXT_CLICK': self.proxy(self.selectDate_message),
+			}
 		});
 
 		self.c_calendar = new Calendar({
@@ -47,7 +48,10 @@ define([
 			day: moment(self.date).format('D'),
 			from: self.from,
 			to: self.to,
-			msgBus: self.msgBus
+			messages: {
+				'CALENDAR_SELECT_DATE': self.proxy(self.chooseDate_message),
+				'CLICK_OUTSIDE': self.proxy(self.clickOutside_message),
+			}
 		})
 
 		self.c_calendar.hide();
@@ -74,6 +78,8 @@ define([
 		this.c_text.updateData({
 			text: dateStr
 		});
+
+		self.msgBus.publish('DATEPICKER_SELECT_DATE', dateStr);
 	}
 
 	DatePicker.prototype.clickOutside_message = function(){
