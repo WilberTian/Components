@@ -45,7 +45,7 @@ define([
 
 	Hover.prototype.showHover_message = function (e, guid, content) {
 		if(content) {
-			this.updateData({
+			this.updateModel({
 				content: content
 			})
 		}

@@ -7,22 +7,22 @@ define([
 	'../options/Options'
 ], function($, Component, Utils, ejsTpl, IconText, Options){
 
-	var _data = {
+	Select._model = {
 		options: [],
 		selected: {
 			label: '未选择',
 			value: -100
-		},
-		
-		template: ejsTpl,
-
-		events: {
 		}
 	};
 
+	Select._view = {
+		template: ejsTpl
+	};
+
+	Select._messages = {};
+
 	function Select(options) {
-		$.extend(true, this, _data, options);
-		Component.call(this, options || {});
+		Component.apply(this, arguments || {});
 	}
 	Utils.inherit(Select, Component);
 
@@ -31,19 +31,25 @@ define([
 
 		self.c_iconText = new IconText({
 			$el: self.find('.C_Select_Text'),
-			text: self.selected.label,
-			enabled: false,
-			iconClass: 'fa fa-chevron-down',
+			model: {
+				text: self.model.selected.label,
+				enabled: false,
+				iconClass: 'fa fa-chevron-down'
+			},
+			
 			messages: {
 				'TEXT_CLICK': self.proxy(self.clickSelect_message)
-			},
+			}
 		});
 
 		self.c_options = new Options({
 			$el: self.find('.C_Select_options'),
-			options: self.options,
+			model: {
+				options: self.model.options
+			},
+			
 			messages: {
-				'SELECT_OPTION': self.proxy(self.selectOption_message),
+				'OPTIONS_SELECT': self.proxy(self.selectOption_message),
 				'CLICK_OUTSIDE': self.proxy(self.clickOutside_message)
 			}
 		})
@@ -59,9 +65,9 @@ define([
 	}
 
 	Select.prototype.selectOption_message = function(e, guid, selectedItem) {
-		this.selected = selectedItem;
-		this.c_iconText.updateData({
-			text: this.selected.label
+		this.model.selected = selectedItem;
+		this.c_iconText.updateModel({
+			text: this.model.selected.label
 		})
 
 		this.c_options.hide();

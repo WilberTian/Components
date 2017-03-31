@@ -3,9 +3,9 @@ define([
 	'Component',
 	'Utils',
 	'Text',
-	'IconButton',
+	'Button',
 	'text!Stepper.ejs'
-], function($, Component, Utils, Text, IconButton, ejsTpl){
+], function($, Component, Utils, Text, Button, ejsTpl){
 
 	var _data = {
 		number: 0,
@@ -32,12 +32,12 @@ define([
 			msgBus: self.msgBus
 		});
 
-		self.c_dec = new IconButton({
+		self.c_dec = new Button({
 			$el: self.find('.C_Stepper_dec'),
 			iconClass: 'fa fa-minus'
 		})
 
-		self.c_inc = new IconButton({
+		self.c_inc = new Button({
 			$el: self.find('.C_Stepper_inc'),
 			iconClass: 'fa fa-plus'
 		})

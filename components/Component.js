@@ -15,6 +15,10 @@ define([
 		this.guid = Utils.guid();
 		this.msgBus = options.msgBus || new Pubsub;
 
+		this.model = $.extend(true, {}, this.constructor._model || {}, options.model || {});
+		this.view = $.extend(true, {}, this.constructor._view || {}, options.view || {});
+		this.messages = options.messages || {};
+
 		this.init();
 		return this;
 	}
@@ -37,7 +41,7 @@ define([
 	Component.prototype.render = function() {
 		this.beforeRender();
 
-		var compiledTpl = ejs.compile(this.template);
+		var compiledTpl = ejs.compile(this.view.template);
 	    this.renderedComponent = compiledTpl(this);
 
 	    this.afterRender();
@@ -70,10 +74,14 @@ define([
 
 	Component.prototype.initSubscriber = function() {
 		for(var message in this.messages) {
-			
-			var func = this.messages[message];
+			if(!(message in this.constructor._messages)) {
+				throw new Error(message + ' is not defined in ' + this.constructor.name);
+			} else {
+				var func = this.messages[message];
 
-			this.msgBus.subscribe(message, func);
+				this.msgBus.subscribe(message, func);
+			}
+			
 		}
 
 		return this;
@@ -85,8 +93,10 @@ define([
 	Component.prototype.eventSplitter = /^(\S+)\s*(.*)$/;
 
 	Component.prototype.delegateEvents = function () {
-        for (var key in this.events) {
-            var methodName = this.events[key];
+		var events = this.view.events;
+
+        for (var key in events) {
+            var methodName = events[key];
             var method = this.proxy(this[methodName]);
 
             var match = key.match(this.eventSplitter);
@@ -103,8 +113,10 @@ define([
         return this;
     }
     Component.prototype.undelegateEvents = function() {
-    	for (var key in this.events) {
-            var methodName = this.events[key];
+    	var events = this.view.events;
+
+    	for (var key in events) {
+            var methodName = events[key];
             var method = this.proxy(this[methodName]);
 
             var match = key.match(this.eventSplitter);
@@ -171,15 +183,11 @@ define([
 		$el.css(styleProp, styleValue);
 	}
 
-	Component.prototype.updateData = function(data) {
-		$.extend(this, data);
+	Component.prototype.updateModel = function(data) {
+		$.extend(this.model, data);
 		
 		this.render();
 		this.mount();
-	}
-
-	Component.prototype.getData = function() {
-		throw new Error('please implement the getData method for the Component');
 	}
 
 	return Component;

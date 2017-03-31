@@ -11,12 +11,15 @@ define([
 	'text!./iconMessages.txt'
 ], function($, Component, Utils, ejsTpl, Icon, DemoCode, iconHtml, iconJs, iconEvents, iconMessages){
 
-	var _data = {
-		template: ejsTpl,
-	}
+	IconTab._model = {};
+
+	IconTab._view = {
+		template: ejsTpl
+	};
+
+	IconTab._messages = {};
 
 	function IconTab(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -27,35 +30,48 @@ define([
 
 		new Icon({
 			$el: self.find('.icon-search'),
-			iconClass: 'fa fa-search'
+			model: {
+				iconClass: 'fa fa-search'
+			}
 		});
 
 		new Icon({
 			$el: self.find('.icon-cog'),
-			iconClass: 'fa fa-cog'
+			model: {
+				iconClass: 'fa fa-cog'
+			}
 		});
 
 		new Icon({
 			$el: self.find('.icon-cogs'),
-			iconClass: 'fa fa-cogs'
+			model: {
+				iconClass: 'fa fa-cogs'
+			}
 		});
 
 		new Icon({
 			$el: self.find('.icon-file'),
-			iconClass: 'fa fa-file'
+			model: {
+				iconClass: 'fa fa-file'
+			}
 		});
 
 		new Icon({
 			$el: self.find('.icon-list'),
-			iconClass: 'fa fa-list'
+			model: {
+				iconClass: 'fa fa-list'
+			}
 		});
 
 		new DemoCode({
 			$el: self.find('.demo-code'),
-			htmlCode: iconHtml,
-			jsCode: iconJs,
-			eventsCode: iconEvents,
-			messagesCode: iconMessages
+			model: {
+				htmlCode: iconHtml,
+				jsCode: iconJs,
+				eventsCode: iconEvents,
+				messagesCode: iconMessages
+			}
+			
 		})
 	}
 

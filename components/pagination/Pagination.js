@@ -1,32 +1,29 @@
 define([
 	'jquery',
-	'Component',
-	'Utils',
-	'text!Pagination.ejs',
-	'Text',
-	'IconButton'
-], function($, Component, Utils, ejsTpl, Text, IconButton){
-
-	var _data = {
+	'../Component',
+	'../Utils',
+	'text!./Pagination.ejs',
+	'../text/Text',
+	'../button/Button'
+], function($, Component, Utils, ejsTpl, Text, Button){
+	Pagination._model = {
 		currentPage: 1,
-		totalPages: 1,
+		totalPages: 1
+	};
 
+	Pagination._view = {
 		template: ejsTpl,
 
 		events: {
 			'click .C_Pagination_prev': 'prevPage_event',
 			'click .C_Pagination_next': 'nextPage_event',
 			'click .C_Pagination_item': 'changePage_event'
-		},
-
-		messages: {
-			'TEXT_KEYUP': 'changeGotoNum_message',
-			'BUTTON_CLICK': 'clickGoto_message'
 		}
-	}
+	};
+
+	Pagination._messages = {};
 
 	function Pagination(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -37,52 +34,62 @@ define([
 
 		self.c_text = new Text({
 			$el: self.find('.C_Pagination_goto_text'),
-			text: '',
-	        placeholder: 'goto...',
-	        msgBus: self.msgBus
+			model: {
+				text: '',
+	        	placeholder: 'goto...'
+			},
+			
+	        messages: {
+				'TEXT_KEYUP': self.proxy(self.changeGotoNum_message)
+			}
 		});
 
-		self.c_button = new IconButton({
+		self.c_button = new Button({
 			$el: self.find('.C_Pagination_goto_button'),
-			iconClass: 'fa fa-arrow-circle-right',
-			disabled: true,
-			msgBus: self.msgBus
+			model: {
+				iconClass: 'fa fa-arrow-circle-right',
+				disabled: true
+			},
+			
+			messages: {
+				'BUTTON_CLICK': self.proxy(self.clickGoto_message)
+			}
 		});
 	}
 	
 	Pagination.prototype.prevPage_event = function(e) {
-		var currentPage = this.currentPage;
+		var currentPage = this.model.currentPage;
 
 		if(currentPage > 1) {
-			this.updateData({
+			this.updateModel({
 				currentPage: currentPage - 1
 			})
 		}
 
-		this.msgBus.publish('PAGINATION_CHANGE_PAGE', this.currentPage);
+		this.msgBus.publish('PAGINATION_CHANGE_PAGE', this.model.currentPage);
 	}
 
 	Pagination.prototype.nextPage_event = function(e) {
-		var currentPage = this.currentPage;
+		var currentPage = this.model.currentPage;
 
-		if(currentPage < this.totalPages) {
-			this.updateData({
+		if(currentPage < this.model.totalPages) {
+			this.updateModel({
 				currentPage: currentPage + 1
 			})
 		}
 
-		this.msgBus.publish('PAGINATION_CHANGE_PAGE', this.currentPage);
+		this.msgBus.publish('PAGINATION_CHANGE_PAGE', this.model.currentPage);
 	}
 
 	Pagination.prototype.changePage_event = function(e) {
 		var changePageTo = parseInt($(e.currentTarget).text(), 10);
 
-		if(changePageTo !== this.currentPage) {
-			this.updateData({
+		if(changePageTo !== this.model.currentPage) {
+			this.updateModel({
 				currentPage: changePageTo
 			})
 
-			this.msgBus.publish('PAGINATION_CHANGE_PAGE', this.currentPage);
+			this.msgBus.publish('PAGINATION_CHANGE_PAGE', this.model.currentPage);
 		}
 	}
 
@@ -91,8 +98,8 @@ define([
 
 		var pattern=/^0|[1-9][0-9]*$/;
 
-		this.c_button.updateData({
-			disabled: !(pattern.test(text) && (parseInt(text, 10) <= self.totalPages))
+		this.c_button.updateModel({
+			disabled: !(pattern.test(text) && (parseInt(text, 10) <= self.model.totalPages))
 		});
 	}
 
@@ -101,12 +108,12 @@ define([
 
 		var gotoPage = parseInt(self.c_text.text);
 
-		if(gotoPage !== this.currentPage) {
-			this.updateData({
+		if(gotoPage !== this.model.currentPage) {
+			this.updateModel({
 				currentPage: gotoPage
 			})
 
-			this.msgBus.publish('PAGINATION_CHANGE_PAGE', this.currentPage);
+			this.msgBus.publish('PAGINATION_CHANGE_PAGE', this.model.currentPage);
 		}
 	}
  

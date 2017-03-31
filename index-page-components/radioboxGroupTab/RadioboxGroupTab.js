@@ -11,12 +11,14 @@ define([
 	'text!./radioboxGroupMessages.txt'
 ], function($, Component, Utils, ejsTpl, RadioboxGroup, DemoCode, radioboxGroupHtml, radioboxGroupJs, radioboxGroupEvents, radioboxGroupMessages){
 
-	var _data = {
-		template: ejsTpl,
-	}
+	RadioboxGroupTab._model = {};
+	RadioboxGroupTab._view = {
+		template: ejsTpl
+	};
+
+	RadioboxGroupTab._messages = {};
 
 	function RadioboxGroupTab(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -27,25 +29,31 @@ define([
 
 		new RadioboxGroup({
 	        $el: self.find('.radiobox-group'),
-	        checked: 2,
-	        options: [{
-	            label: '初级',
-	            value: '1'
-	        }, {
-	            label: '中级',
-	            value: '2'
-	        }, {
-	            label: '高级',
-	            value: '3'
-	        }]
+	        model: {
+	        	checked: 2,
+		        options: [{
+		            label: '初级',
+		            value: '1'
+		        }, {
+		            label: '中级',
+		            value: '2'
+		        }, {
+		            label: '高级',
+		            value: '3'
+		        }]
+	        }
+	        
 	    });
 
 		new DemoCode({
 			$el: self.find('.demo-code'),
-			htmlCode: radioboxGroupHtml,
-			jsCode: radioboxGroupJs,
-			eventsCode: radioboxGroupEvents,
-			messagesCode: radioboxGroupMessages
+			model: {
+				htmlCode: radioboxGroupHtml,
+				jsCode: radioboxGroupJs,
+				eventsCode: radioboxGroupEvents,
+				messagesCode: radioboxGroupMessages
+			}
+			
 		});
 	}
 

@@ -1,5 +1,10 @@
 <div class="C_Button">
-	<span class="C_Button_text">
-		<%= text %>
-	</span>
+	<% if(model.text) { %>
+		<span class="C_Button_text">
+			<%= model.text %>
+		</span>
+	<% } %>		
+	<% if(model.iconClass) { %>
+		<div class="C_Button_icon"></div>
+	<% } %>	
 </div>

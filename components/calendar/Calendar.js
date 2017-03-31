@@ -5,37 +5,37 @@ define([
 	'../Utils',
 	'text!./Calendar.ejs'
 ], function($, moment, Component, Utils, ejsTpl){
-
-	var _data = {
+	Calendar._model = {
 		daysInMonth: [],
 		month: moment().format('YYYY-MM'),
 		day: moment().format('D'),
 		from: moment().subtract(6, 'month'),
 		to: moment().add(6, 'month'),
+	};
 
+	Calendar._view = {
 		template: ejsTpl,
-
-		messages: {
-			'CALENDAR_SELECT_DATE': Utils.noop,
-			'CLICK_OUTSIDE': Utils.noop
-		},
 
 		events: {
 			'click .pre': 'showPreMonth_event',
 			'click .next': 'showNextMonth_event',
 			'click .enabled': 'chooseDate_event'
 		}
-	}
+	};
+
+	Calendar._messages = {
+			CALENDAR_SELECT_DATE: 'CALENDAR_SELECT_DATE',
+			CLICK_OUTSIDE: 'CLICK_OUTSIDE'
+		};
 
 	function Calendar(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
 	Utils.inherit(Calendar, Component);
 
 	Calendar.prototype.beforeRender = function() {
-		this.daysInMonth = this.getMonthData(this.month);
+		this.model.daysInMonth = this.getMonthData(this.model.month);
 
 		return this;
 	};
@@ -44,11 +44,11 @@ define([
 		var self = this;
 		e.stopPropagation();
 
-		var currentMonth = moment(this.month);
+		var currentMonth = moment(this.model.month);
 		var preMonth = currentMonth.subtract(1, 'month').format('YYYY-MM');
 
 
-		this.updateData({
+		this.updateModel({
 			month: preMonth,
 			daysInMonth: self.getMonthData(preMonth)
 		});
@@ -58,10 +58,10 @@ define([
 		var self = this;
 		e.stopPropagation();
 
-		var currentMonth = moment(this.month);
+		var currentMonth = moment(this.model.month);
 		var nextMonth = currentMonth.add(1, 'month').format('YYYY-MM');
 
-		this.updateData({
+		this.updateModel({
 			month: nextMonth,
 			daysInMonth: self.getMonthData(nextMonth)
 		});
@@ -69,7 +69,7 @@ define([
 
 	Calendar.prototype.chooseDate_event = function(e) {
 		var self = this;
-		var choosenDate = self.month + '-' + $(e.currentTarget).text();
+		var choosenDate = self.model.month + '-' + $(e.currentTarget).text();
 		self.msgBus.publish('CALENDAR_SELECT_DATE', choosenDate);
 	};
 
@@ -94,7 +94,7 @@ define([
 
 			daysInMonth.push({
 				value: i, 
-				enabled: iDate.isBefore(self.to) && iDate.isAfter(self.from)
+				enabled: iDate.isBefore(self.model.to) && iDate.isAfter(self.model.from)
 			});
 		}
 		

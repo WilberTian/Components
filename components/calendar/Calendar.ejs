@@ -1,7 +1,7 @@
 <div class="C_Calendar">
 	<div class="C_Calendar_selector">
 		<div class="pre"><</div>
-		<span class="picked-month"><%= month %></span>
+		<span class="picked-month"><%= model.month %></span>
 		<div class="next">></div>
 	</div>
 	<table class="C_Calendar_table">
@@ -19,7 +19,7 @@
 		<tbody>
 			<% 
 				var idx = 0;
-				daysInMonth.forEach(function(item){ 
+				model.daysInMonth.forEach(function(item){ 
 					
 					if(idx%7 === 0) {
 			%>
@@ -28,7 +28,7 @@
 						idx += 1;
 						if(item) {
 					%>
-						<td class="<%= (item.enabled) ? 'enabled' : 'disabled'%> <%= (item.value == day) ? 'selected' : ''%>"><%= item.value %></td>
+						<td class="<%= (item.enabled) ? 'enabled' : 'disabled'%> <%= (item.value == model.day) ? 'selected' : ''%>"><%= item.value %></td>
 					<% } else { %>
 						<td class="disabled"></td>
 					<% } %>

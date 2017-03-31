@@ -13,12 +13,14 @@ define([
 	'text!./selectAndSearchMessages.txt'
 ], function($, Component, Utils, ejsTpl, Options, Select, Search, DemoCode, selectAndSearchHtml, selectAndSearchJs, selectAndSearchEvents, selectAndSearchMessages){
 
-	var _data = {
-		template: ejsTpl,
-	}
+	SelectAndSearchTab._model = {};
+	SelectAndSearchTab._view = {
+		template: ejsTpl
+	};
+
+	SelectAndSearchTab._messages = {};
 
 	function SelectAndSearchTab(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -29,44 +31,53 @@ define([
 
 		new Options({
 			$el: self.find('.options'),
-			options: [{
-	            label: 'male',
-	            value: '1'
-	        }, {
-	            label: 'female',
-	            value: '2'
-        	}]
+			model: {
+				options: [{
+		            label: 'male',
+		            value: '1'
+		        }, {
+		            label: 'female',
+		            value: '2'
+	        	}]
+			}
+			
 		});
 
 		new Select({
 	        $el: self.find('.select'),
-	        label: 'Gender',
-	        required: true,
-	        selected: {
-	            label: 'female',
-	            value: '2'
-	        },
-	        options: [{
-	            label: 'male',
-	            value: '1'
-	        }, {
-	            label: 'female',
-	            value: '2'
-	        }]
+	        model: {
+	        	selected: {
+		            label: 'female',
+		            value: '2'
+		        },
+		        options: [{
+		            label: 'male',
+		            value: '1'
+		        }, {
+		            label: 'female',
+		            value: '2'
+		        }]
+	        }
+	        
 	    });
 
 	    new Search({
 	        $el: self.find('.search'),
-	        url: '/mock/search_mock',
-	        selected: {}
+	        model: {
+	        	url: '/mock/search_mock',
+	        	selected: {}
+	        }
 	    });
 
 		new DemoCode({
 			$el: self.find('.demo-code'),
-			htmlCode: selectAndSearchHtml,
-			jsCode: selectAndSearchJs,
-			eventsCode: selectAndSearchEvents,
-			messagesCode: selectAndSearchMessages
+			model: {
+				htmlCode: selectAndSearchHtml,
+				jsCode: selectAndSearchJs,
+				eventsCode: selectAndSearchEvents,
+				messagesCode: selectAndSearchMessages
+			}
+			
 		});
 	}
 

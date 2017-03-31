@@ -7,24 +7,21 @@ define([
 	'../iconText/IconText',
 	'../calendar/Calendar'
 ], function($, moment, Component, Utils, ejsTpl, IconText, Calendar) {
-	var _data = {
+	DatePicker._model = {
 		date: moment().format('YYYY-MM-DD'),
 		from: moment().subtract(6, 'month'),
 		to: moment().add(6, 'month'),
+	};
 
-		template: ejsTpl,
+	DatePicker._view = {
+		template: ejsTpl
+	};
 
-		messages: {
-			'DATEPICKER_SELECT_DATE': Utils.noop
-		},
-
-		events: {
-			
-		}
-	}
+	DatePicker._messages = {
+		DATEPICKER_SELECT_DATE: 'DATEPICKER_SELECT_DATE'
+	};
 
 	function DatePicker(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 	Utils.inherit(DatePicker, Component);
@@ -33,10 +30,13 @@ define([
 		var self = this;
 		self.c_text = new IconText({
 			$el: self.find('.C_DatePicker_Text'),
-			text: self.date,
-			enabled: false,
-			iconClass: 'fa fa-calendar',
 
+			model: {
+				text: self.model.date,
+				enabled: false,
+				iconClass: 'fa fa-calendar'
+			},
+			
 			messages: {
 				'TEXT_CLICK': self.proxy(self.selectDate_message),
 			}
@@ -44,10 +44,14 @@ define([
 
 		self.c_calendar = new Calendar({
 			$el: self.find('.C_DatePicker_Calendar'),
-			month: moment(self.date).format('YYYY-MM'),
-			day: moment(self.date).format('D'),
-			from: self.from,
-			to: self.to,
+
+			model: {
+				month: moment(self.model.date).format('YYYY-MM'),
+				day: moment(self.model.date).format('D'),
+				from: self.model.from,
+				to: self.model.to
+			},
+
 			messages: {
 				'CALENDAR_SELECT_DATE': self.proxy(self.chooseDate_message),
 				'CLICK_OUTSIDE': self.proxy(self.clickOutside_message),
@@ -63,19 +67,19 @@ define([
 		var self = this;
 		this.c_calendar.show();
 
-		this.c_calendar.updateData({
-			month: moment(self.date).format('YYYY-MM'),
-			day: moment(self.date).format('D'),
+		this.c_calendar.updateModel({
+			month: moment(self.model.date).format('YYYY-MM'),
+			day: moment(self.model.date).format('D'),
 		})
 	}
 
 	DatePicker.prototype.chooseDate_message = function(date){
 		var dateStr = moment(date).format('YYYY-MM-DD');
 
-		this.date = dateStr;
+		this.model.date = dateStr;
 		this.c_calendar.hide();
 
-		this.c_text.updateData({
+		this.c_text.updateModel({
 			text: dateStr
 		});
 
@@ -86,13 +90,6 @@ define([
 		this.c_calendar.hide();
 	}
 
-	DatePicker.prototype.getData = function() {
-		var self = this;
-
-		return {
-			date: self.date
-		};
-	}
 	return DatePicker;
 
 });

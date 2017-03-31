@@ -6,20 +6,24 @@ define([
 	'../iconText/IconText',
 	'../options/Options'
 ], function($, Component, Utils, ejsTpl, IconText, Options) {
-	var _data = {
+
+	Search._model = {
 		url: null,
 		options: [],
-		selected: {},
+		selected: {}
+	};
 
+	Search._view = {
 		template: ejsTpl,
 
 		events: {
 			'click .C_Search': 'clickSearch_event'
 		}
-	}
+	};
+	
+	Search._messages = {};
 
 	function Search(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 	Utils.inherit(Search, Component);
@@ -29,8 +33,11 @@ define([
 
 		self.c_iconText = new IconText({
 			$el: self.find('.C_Search_Text'),
-			text: self.selected.label || '',
-			iconClass: 'fa fa-search',
+			model: {
+				text: self.model.selected.label || '',
+				iconClass: 'fa fa-search'
+			},
+			
 			messages: {
 				'TEXT_FOCUS': self.proxy(self.focusSearch_message),
 				'TEXT_KEYUP': self.proxy(self.searchKeyup_message)
@@ -39,9 +46,11 @@ define([
 
 		self.c_options = new Options({
 			$el: self.find('.C_Search_options'),
-			options: self.options,
+			model: {
+				options: self.model.options
+			},
 			messages: {
-				'SELECT_OPTION': self.proxy(self.selectOption_message),
+				'OPTIONS_SELECT': self.proxy(self.selectOption_message),
 				'CLICK_OUTSIDE': self.proxy(self.clickOutside_message)
 			}
 		})
@@ -53,8 +62,8 @@ define([
 
 	Search.prototype.focusSearch_message = function(e, guid, text) {
 		var searchValue = $(e.currentTarget).val().trim();
-		if(searchValue !== '' && searchValue !== this.selected.label) {
-			this.selected.label = $(e.currentTarget).val();
+		if(searchValue !== '' && searchValue !== this.model.selected.label) {
+			this.model.selected.label = $(e.currentTarget).val();
 			this.loadData();
 		}
 
@@ -64,14 +73,14 @@ define([
 	}
 
 	Search.prototype.searchKeyup_message = function(e, text) {
-		this.selected.label = $(e.currentTarget).val();
+		this.model.selected.label = $(e.currentTarget).val();
 		this.loadData();
 	}
 
 	Search.prototype.selectOption_message = function(e, guid, selectedItem){
-		this.selected = selectedItem;
-		this.c_iconText.updateData({
-			text: this.selected.label
+		this.model.selected = selectedItem;
+		this.c_iconText.updateModel({
+			text: this.model.selected.label
 		});
 
 		this.c_options.hide();
@@ -84,11 +93,11 @@ define([
 	Search.prototype.loadData = function() {
 		var self = this;
 
-		$.get(self.url, {}, function(data) {
-			self.options = data.msg.options;
+		$.get(self.model.url, {}, function(data) {
+			self.model.options = data.msg.options;
 			
-			self.c_options.updateData({
-				options: self.options
+			self.c_options.updateModel({
+				options: self.model.options
 			})
 
 			self.c_options.show();

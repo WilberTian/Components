@@ -14,13 +14,15 @@ define([
 	'./dateTab/DateTab'
 ], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab, TextTab, SwitchTab, RadioboxGroupTab, CheckboxGroupTab, SelectAndSearchTab, DateTab){
 
-	var _data = {
-		template: ejsTpl
+	Index._model = {};
 
-	}
+	Index._view = {
+		template: ejsTpl
+	};
+
+	Index._messages = {};
 
 	function Index(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -31,33 +33,35 @@ define([
 
 		new Tab({
 			$el: self.find('.tabs-container'),
-			selected: 0,
-	        tabs: [{
-	            label: 'Icon',
-	            value: '1'
-	        }, {
-	            label: 'Button',
-	            value: '2'
-	        }, {
-	            label: 'Text',
-	            value: '3'
-	        }, {
-	            label: 'Switch',
-	            value: '4'
-	        }, {
-	            label: 'RadioboxGroup',
-	            value: '5'
-	        }, {
-	            label: 'CheckboxGroup',
-	            value: '6'
-	        }, {
-	            label: 'Select & Search',
-	            value: '7'
-	        }, {
-	            label: 'Date',
-	            value: '8'
-	        }],
-
+			model: {
+				selected: 0,
+		        tabs: [{
+		            label: 'Icon',
+		            value: '1'
+		        }, {
+		            label: 'Button',
+		            value: '2'
+		        }, {
+		            label: 'Text',
+		            value: '3'
+		        }, {
+		            label: 'Switch',
+		            value: '4'
+		        }, {
+		            label: 'RadioboxGroup',
+		            value: '5'
+		        }, {
+		            label: 'CheckboxGroup',
+		            value: '6'
+		        }, {
+		            label: 'Select & Search',
+		            value: '7'
+		        }, {
+		            label: 'Date',
+		            value: '8'
+		        }]
+			},
+			
 	        messages: {
 	        	'TAB_CHANGE': self.proxy(self.tabChange_message)
 	        }

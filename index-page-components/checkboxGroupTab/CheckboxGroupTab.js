@@ -11,12 +11,14 @@ define([
 	'text!./checkboxGroupMessages.txt'
 ], function($, Component, Utils, ejsTpl, CheckboxGroup, DemoCode, checkboxGroupHtml, checkboxGroupJs, checkboxGroupEvents, checkboxGroupMessages){
 
-	var _data = {
-		template: ejsTpl,
-	}
+	CheckboxGroupTab._model = {};
+	CheckboxGroupTab._view = {
+		template: ejsTpl
+	};
+
+	CheckboxGroupTab._messages = {};
 
 	function CheckboxGroupTab(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -27,25 +29,30 @@ define([
 
 		new CheckboxGroup({
 	        $el: self.find('.checkbox-group'),
-	        checked: [2, 3],
-	        options: [{
-	            label: '初级',
-	            value: '1'
-	        }, {
-	            label: '中级',
-	            value: '2'
-	        }, {
-	            label: '高级',
-	            value: '3'
-	        }]
+	        model: {
+	        	checked: [2, 3],
+		        options: [{
+		            label: '初级',
+		            value: '1'
+		        }, {
+		            label: '中级',
+		            value: '2'
+		        }, {
+		            label: '高级',
+		            value: '3'
+		        }]
+	        }
+	        
 	    });
 
 		new DemoCode({
 			$el: self.find('.demo-code'),
-			htmlCode: checkboxGroupHtml,
-			jsCode: checkboxGroupJs,
-			eventsCode: checkboxGroupEvents,
-			messagesCode: checkboxGroupMessages
+			model: {
+				htmlCode: checkboxGroupHtml,
+				jsCode: checkboxGroupJs,
+				eventsCode: checkboxGroupEvents,
+				messagesCode: checkboxGroupMessages
+			}
 		});
 	}
 

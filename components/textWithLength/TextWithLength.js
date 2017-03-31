@@ -6,19 +6,18 @@ define([
 	'../text/Text',
 	'../textLength/TextLength'
 ], function($, Component, Utils, ejsTpl, Text, TextLength){
-
-	var _data = {
+	TextWithLength._model = {
 		text: '',
 		placeholder: '',
 		currentLength: 0,
-		limitationLength: 0,
+		limitationLength: 0
+	};
 
-		template: ejsTpl,
-
-	}
+	TextWithLength._view = {
+		template: ejsTpl
+	};
 
 	function TextWithLength(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -30,8 +29,10 @@ define([
 
 		self.c_text = new Text({
 			$el: self.find('.C_TextWithLenght_Text'),
-			text: self.text,
-			placeholder: self.placeholder,
+			model: {
+				text: self.model.text,
+				placeholder: self.model.placeholder,
+			},
 			messages: {
 				'TEXT_KEYUP': self.proxy(self.textKeyup_message)
 			}
@@ -40,8 +41,11 @@ define([
 
 		self.c_textLength = new TextLength({
 			$el: self.find('.C_TextWithLenght_TextLength'),
-			currentLength: self.currentLength,
-			limitationLength: self.limitationLength,
+			model: {
+				currentLength: self.model.currentLength,
+				limitationLength: self.model.limitationLength
+			},
+			
 			messages: {
 				'TEXT_LENGTH_ERROR': self.proxy(self.textLengthError_message),
 				'TEXT_LENGTH_OK': self.proxy(self.textLengthOk_message)
@@ -50,7 +54,7 @@ define([
 	}
 
 	TextWithLength.prototype.textKeyup_message = function(e, guid, text) {
-		this.c_textLength.updateData({
+		this.c_textLength.updateModel({
 			currentLength: text.length
 		});
 	}

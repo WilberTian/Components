@@ -5,19 +5,22 @@ define([
 	'text!./RadioboxGroup.ejs'
 ], function($, Component, Utils, ejsTpl){
 
-	var _data = {
+	RadioboxGroup._model = {
 		options: [],
-		checked: -1,
+		checked: -1
+	};
 
+	RadioboxGroup._view = {
 		template: ejsTpl,
 
 		events: {
 			'click .C_radiobox': 'selectRadiobox_event'
 		}
-	}
-
+	};
+	
+	RadioboxGroup._messages = {};
+	
 	function RadioboxGroup(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -29,7 +32,7 @@ define([
 
 		self.find('.C_radiobox').removeClass('checked')
 
-		this.checked = $(e.currentTarget).find('.C_Radiobox_label').data('value');
+		this.model.checked = $(e.currentTarget).find('.C_Radiobox_label').data('value');
 		$(e.currentTarget).addClass('checked');
 
 	}
@@ -39,7 +42,7 @@ define([
 
 		self.find('.C_radiobox').each(function(){
 			var radioboxValue = $(this).find('.C_Radiobox_label').data('value');
-			if(self.checked === radioboxValue) {
+			if(self.model.checked === radioboxValue) {
 				$(this).addClass('checked');
 			}
 		})

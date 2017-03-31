@@ -4,18 +4,18 @@ define([
 	'components/Utils',
 	'text!./DemoCode.ejs'
 ], function($, Component, Utils, ejsTpl, Icon){
-
-	var _data = {
+	DemoCode._model = {
 		htmlCode: '',
 		jsCode: '',
 		eventsCode: '',
-		messagesCode: '',
+		messagesCode: ''
+	};
 
-		template: ejsTpl,
-	}
+	DemoCode._view = {
+		template: ejsTpl
+	};
 
 	function DemoCode(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 

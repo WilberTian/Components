@@ -54,7 +54,7 @@ define([
 	TimePicker.prototype.selectHour_message = function(e, guid, hour) {
 		var self = this;
 
-		this.updateData({
+		this.updateModel({
 			time: self.time.replace(/^\d\d/g, hour.label)
 		});
 		
@@ -63,7 +63,7 @@ define([
 	TimePicker.prototype.selectMinute_message = function(e, guid, minute) {
 		var self = this;
 
-		this.updateData({
+		this.updateModel({
 			time: self.time.replace(/:\d\d:/g, ':' + minute.label + ':')
 		});
 		
@@ -72,7 +72,7 @@ define([
 	TimePicker.prototype.selectSecond_message = function(e, guid, second) {
 		var self = this;
 
-		this.updateData({
+		this.updateModel({
 			time: self.time.replace(/\d\d$/g, second.label)
 		});
 		

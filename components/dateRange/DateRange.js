@@ -6,15 +6,18 @@ define([
 	'text!./DateRange.ejs',
 	'../datePicker/DatePicker'
 ], function($, moment, Component, Utils, ejsTpl, DatePicker) {
-	var _data = {
-		date: moment().format('YYYY-MM-DD'),
+	DateRange._model = {
+		from: '',
+		to: ''
+	};
 
-
+	DateRange._view = {
 		template: ejsTpl
-	}
+	};
+	
+	DateRange._messages = {};
 
 	function DateRange(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 	Utils.inherit(DateRange, Component);
@@ -25,34 +28,27 @@ define([
 		self.from = new DatePicker({
 	        $el: self.find('.C_DateRange_from'),
 	        messages: {
-	        	'DATEPICKER_SELECT_DATE': fromDateChange
+	        	'DATEPICKER_SELECT_DATE': self.proxy(self.fromDateChange)
 	        }
 	    });
 
 		self.to = new DatePicker({
 	        $el: self.find('.C_DateRange_to'),
-	        date: moment().add(1, 'month').format('YYYY-MM-DD'),
+	        model: {
+	        	date: moment().add(1, 'month').format('YYYY-MM-DD')
+	        },
 	        messages: {
-	        	'DATEPICKER_SELECT_DATE': toDateChange
+	        	'DATEPICKER_SELECT_DATE': self.proxy(self.toDateChange)
 	        }
 	    });
-
-	    var fromDateChange = function() {
-
-	    }
-
-	    var toDateChange = function() {
-
-	    }
 	}
 
-	DateRange.prototype.getDate = function() {
-		var self = this;
+	DateRange.prototype.fromDateChange = function() {
 
-		return {
-			from: self.from.getData().date,
-			to: self.to.getData().date
-		}
+	}
+
+	DateRange.prototype.toDateChange = function() {
+
 	}
 
 	return DateRange;

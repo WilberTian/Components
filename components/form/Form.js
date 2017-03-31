@@ -24,7 +24,7 @@ define([
 
 		this.formElements.forEach(function(formElement){
 			self.find('.C_Form_formElements').append('<div id="' + formElement.guid + '"></div>');
-			formElement.updateData({
+			formElement.updateModel({
 				$el: self.find('#' + formElement.guid),
 				msgBus: self.msgBus
 			});

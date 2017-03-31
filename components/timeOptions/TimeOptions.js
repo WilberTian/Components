@@ -10,7 +10,7 @@ define([
 		template: ejsTpl,
 
 		messages: {
-			'SELECT_OPTION': 'selectOption_message',
+			'OPTIONS_SELECT': 'selectOption_message',
 		},
 
 		events: {

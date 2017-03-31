@@ -5,7 +5,7 @@ define([
 	'text!./Text.ejs'
 ], function($, Component, Utils, ejsTpl){
 
-	var model = {
+	Text._model = {
 		text: '',
 		placeholder: '',
 		enabled: true,
@@ -13,10 +13,10 @@ define([
 		rules: []
 	};
 
-	var view = {
+	Text._view = {
 		template: ejsTpl,
 
-		evnets: {
+		events: {
 			// see setup in afterMount
 			'keyup .C_Text_input': 'onKeyup_evnet',
 			'blur .C_Text_input': 'onBlur_event',
@@ -25,19 +25,19 @@ define([
 		}
 	};
 
+	Text._messages = {
+		TEXT_CLICK: 'TEXT_CLICK', 
+		TEXT_KEYUP: 'TEXT_KEYUP', 
+		TEXT_FOCUS: 'TEXT_FOCUS'
+	};
 
 	function Text(options) {
-		$.extend(true, this, model, view, options);
 		Component.apply(this, arguments || {});
 	}
 
 	Utils.inherit(Text, Component);
 
-	Text.prototype.MESSAGES = {
-		TEXT_CLICK: 'TEXT_CLICK', 
-		TEXT_KEYUP: 'TEXT_KEYUP', 
-		TEXT_FOCUS: 'TEXT_FOCUS'
-	};
+	Text.prototype
 
 	Text.prototype.afterMount = function() {
 
@@ -55,26 +55,26 @@ define([
 	}
 
 	Text.prototype.onClick_event = function(e) {
-		this.text = $(e.currentTarget).val();
-		this.msgBus.publish(this.MESSAGES.TEXT_CLICK, e, this.guid, this.text);
+		var text = $(e.currentTarget).val();
+		this.msgBus.publish('TEXT_CLICK', e, this.guid, text);
 	}
 
 	Text.prototype.onKeyup_evnet = function(e) {
-		this.text = $(e.currentTarget).val();
-		this.msgBus.publish(this.MESSAGES.TEXT_KEYUP, e, this.guid, this.text);
+		this.model.text = $(e.currentTarget).val();
+		this.msgBus.publish('TEXT_KEYUP', e, this.guid, this.model.text);
 	}
 
 	Text.prototype.onBlur_event = function(e) {
-		this.text = $(e.currentTarget).val();
+		var text = $(e.currentTarget).val();
 
-		if (this.rules.length > 0) {
-			this.validate(this.text);
+		if (this.model.rules.length > 0) {
+			this.validate(text);
 		}
 	}
 
 	Text.prototype.onFocus_event = function(e) {
-		this.text = $(e.currentTarget).val();
-		this.msgBus.publish(this.MESSAGES.TEXT_FOCUS, e, this.guid, this.text);
+		var text = $(e.currentTarget).val();
+		this.msgBus.publish('TEXT_FOCUS', e, this.guid, text);
 	}
  
 	return Text;

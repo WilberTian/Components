@@ -5,22 +5,23 @@ define([
 	'text!./Options.ejs'
 ], function($, Component, Utils, ejsTpl){
 
-	var _data = {
-		options: [],
+	Options._model = {
+		options: []
+	};
+
+	Options._view = {
 		template: ejsTpl,
-
-		messages: {
-			'SELECT_OPTION': Utils.noop,
-			'CLICK_OUTSIDE': Utils.noop
-		},
-
 		events: {
 			'click .C_Options li': 'chooseOption_event'
 		}
-	}
+	};
+
+	Options._messages = {
+		OPTIONS_SELECT: 'OPTIONS_SELECT',
+		CLICK_OUTSIDE: 'CLICK_OUTSIDE'
+	};
 
 	function Options(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -34,7 +35,7 @@ define([
 	Options.prototype.chooseOption_event = function(e) {
 		var self = this;
 		var selectedOptionIdx = $(e.currentTarget).index();
-		self.msgBus.publish('SELECT_OPTION', e, self.guid, self.options[selectedOptionIdx]);
+		self.msgBus.publish('OPTIONS_SELECT', e, self.guid, self.model.options[selectedOptionIdx]);
 	}
 
 	Options.prototype.destory = Options.prototype.destory.after(function(){

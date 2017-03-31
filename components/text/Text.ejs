@@ -1,9 +1,9 @@
 <div class='C_Text'>
 
 	<div class="C_Text_wrapper">
-		<input class='C_Text_input' typt='text' placeholder='<%= placeholder %>' value='<%= text %>' <%= enabled ? '' : 'disabled'%>></input>
+		<input class='C_Text_input' typt='text' placeholder='<%= model.placeholder %>' value='<%= model.text %>' <%= model.enabled ? '' : 'disabled'%>></input>
 	</div>
-	<% if(rules) { %>
+	<% if(model.rules) { %>
 		<div class="C_Text_errorMsg">
 		</div>
 	<% } %>

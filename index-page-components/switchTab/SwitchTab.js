@@ -1,22 +1,26 @@
 define([
 	'jquery',
+	'require',
 	'components/Component',
 	'components/Utils',
 	'text!./SwitchTab.ejs',
 	'components/switch/Switch',
+	'text!components/switch/LabelSwitch.ejs',
 	'../demoCode/DemoCode',
 	'text!./switchHtml.txt',
 	'text!./switchJs.txt',
 	'text!./switchEvents.txt',
 	'text!./switchMessages.txt'
-], function($, Component, Utils, ejsTpl, Switch, DemoCode, switchHtml, switchJs, switchEvents, switchMessages){
+], function($, require, Component, Utils, ejsTpl, Switch, labelSwitchTpl, DemoCode, switchHtml, switchJs, switchEvents, switchMessages){
 
-	var _data = {
-		template: ejsTpl,
-	}
+	SwitchTab._model = {};
+	SwitchTab._view = {
+		template: ejsTpl
+	};
+
+	SwitchTab._messages = {};
 
 	function SwitchTab(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -29,12 +33,25 @@ define([
 	        $el: self.find('.switch')
 	    });
 
+	    new Switch({
+	        $el: self.find('.label-switch'),
+	        view: {
+	        	template: labelSwitchTpl,
+	        	events: {
+					'click .C_LabelSwitch': 'toggleSwitch_event'
+				}
+	        }
+	    });
+
 		new DemoCode({
 			$el: self.find('.demo-code'),
-			htmlCode: switchHtml,
-			jsCode: switchJs,
-			eventsCode: switchEvents,
-			messagesCode: switchMessages
+			model: {
+				htmlCode: switchHtml,
+				jsCode: switchJs,
+				eventsCode: switchEvents,
+				messagesCode: switchMessages
+			}
+			
 		});
 	}
 

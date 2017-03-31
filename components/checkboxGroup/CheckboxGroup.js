@@ -5,19 +5,25 @@ define([
 	'text!./CheckboxGroup.ejs'
 ], function($, Component, Utils, ejsTpl){
 
-	var _data = {
+	CheckboxGroup._model = {
 		options: [],
-		checked: [],
+		checked: []
+	};
 
+	CheckboxGroup._view = {
 		template: ejsTpl,
 
 		events: {
 			'click .C_checkbox': 'selectCheckbox_event'
 		}
-	}
+	};
+
+	CheckboxGroup._messages = {};
 
 	function CheckboxGroup(options) {
-		$.extend(true, this, _data, options);
+		if(options.options && options.options.length === 0) {
+			throw new Error('options is not available');
+		}
 		Component.apply(this, arguments || {});
 	}
 
@@ -29,10 +35,10 @@ define([
 
 		if($(e.currentTarget).hasClass('checked')) {
 			$(e.currentTarget).removeClass('checked');
-			this.checked.splice(this.checked.indexOf(checkboxValue), 1);
+			this.model.checked.splice(this.model.checked.indexOf(checkboxValue), 1);
 		} else {
 			$(e.currentTarget).addClass('checked');
-			this.checked.push(checkboxValue);
+			this.model.checked.push(checkboxValue);
 		}
 	}
 
@@ -41,7 +47,7 @@ define([
 
 		self.find('.C_checkbox').each(function(){
 			var checkboxValue = $(this).find('.C_Checkbox_label').data('value');
-			if(self.checked.indexOf(checkboxValue) > -1) {
+			if(self.model.checked.indexOf(checkboxValue) > -1) {
 				$(this).addClass('checked');
 			}
 		})

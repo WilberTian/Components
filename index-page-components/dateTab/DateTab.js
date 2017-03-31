@@ -13,12 +13,14 @@ define([
 	'text!./calendarMessages.txt'
 ], function($, Component, Utils, ejsTpl, Calendar, DatePicker, DateRange, DemoCode, calendarHtml, calendarJs, calendarEvents, calendarMessages){
 
-	var _data = {
-		template: ejsTpl,
-	}
+	DateTab._model = {};
+	DateTab._view = {
+		template: ejsTpl
+	};
+
+	DateTab._messages = {};
 
 	function DateTab(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -41,10 +43,13 @@ define([
 
 		new DemoCode({
 			$el: self.find('.demo-code'),
-			htmlCode: calendarHtml,
-			jsCode: calendarJs,
-			eventsCode: calendarEvents,
-			messagesCode: calendarMessages
+			model: {
+				htmlCode: calendarHtml,
+				jsCode: calendarJs,
+				eventsCode: calendarEvents,
+				messagesCode: calendarMessages
+			}
+			
 		});
 	}
 
