@@ -1,24 +1,25 @@
 define([
 	'jquery',
-	'Component',
-	'Utils',
-	'text!TimeOptions.ejs',
-	'Options'
+	'../Component',
+	'../Utils',
+	'text!./TimeOptions.ejs',
+	'../options/Options'
 ], function($, Component, Utils, ejsTpl, Options){
 
-	var _data = {		
-		template: ejsTpl,
+	TimeOptions._model = {};
 
-		messages: {
-			'OPTIONS_SELECT': 'selectOption_message',
-		},
+	TimeOptions._view = {
+		template: ejsTpl
+	};
 
-		events: {
-		}
+	TimeOptions._messages = {
+		TIMEOPTIONS_SELECT_HOUR: 'TIMEOPTIONS_SELECT_HOUR',
+		TIMEOPTIONS_SELECT_MINUTE: 'TIMEOPTIONS_SELECT_MINUTE',
+		TIMEOPTIONS_SELECT_SECOND: 'TIMEOPTIONS_SELECT_SECOND',
+		CLICK_OUTSIDE: 'CLICK_OUTSIDE'
 	};
 
 	function TimeOptions(options) {
-		$.extend(true, this, _data, options);
 		Component.call(this, options || {});
 	}
 	Utils.inherit(TimeOptions, Component);
@@ -52,20 +53,35 @@ define([
 
 		self.c_hour_options = new Options({
 			$el: self.find('.C_TimeOptions_hour'),
-			options: hourOptions,
-			msgBus: self.msgBus
+			model: {
+				options: hourOptions
+			},
+			
+			messages: {
+				'OPTIONS_SELECT': self.proxy(self.selectOption_message)
+			}
 		});
 
 		self.c_minute_options = new Options({
 			$el: self.find('.C_TimeOptions_minute'),
-			options: minuteOptions,
-			msgBus: self.msgBus
+			model: {
+				options: minuteOptions
+			},
+			
+			messages: {
+				'OPTIONS_SELECT': self.proxy(self.selectOption_message)
+			}
 		});
 
 		self.c_second_options = new Options({
 			$el: self.find('.C_TimeOptions_second'),
-			options: secondOptions,
-			msgBus: self.msgBus
+			model: {
+				options: secondOptions
+			},
+			
+			messages: {
+				'OPTIONS_SELECT': self.proxy(self.selectOption_message)
+			}
 		});
 
 	}
@@ -74,11 +90,11 @@ define([
 		var self = this;
 
 		if (guid === self.c_hour_options.guid) {
-			self.msgBus.publish('SELECT_HOUR', e, self.guid, selectedItem);
+			self.msgBus.publish('TIMEOPTIONS_SELECT_HOUR', e, self.guid, selectedItem);
 		} else if (guid === self.c_minute_options.guid) {
-			self.msgBus.publish('SELECT_MINUTE', e, self.guid, selectedItem);
+			self.msgBus.publish('TIMEOPTIONS_SELECT_MINUTE', e, self.guid, selectedItem);
 		} else if (guid === self.c_second_options.guid) {
-			self.msgBus.publish('SELECT_SECOND', e, self.guid, selectedItem);
+			self.msgBus.publish('TIMEOPTIONS_SELECT_SECOND', e, self.guid, selectedItem);
 		} 
 	}
 

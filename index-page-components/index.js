@@ -11,8 +11,15 @@ define([
 	'./radioboxGroupTab/RadioboxGroupTab',
 	'./checkboxGroupTab/CheckboxGroupTab',
 	'./selectAndSearchTab/SelectAndSearchTab',
-	'./dateTab/DateTab'
-], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab, TextTab, SwitchTab, RadioboxGroupTab, CheckboxGroupTab, SelectAndSearchTab, DateTab){
+	'./dateTab/DateTab',
+	'./timeTab/TimeTab',
+	'./modalTab/ModalTab',
+	'./hoverTab/HoverTab',
+	'./toastTab/ToastTab',
+	'./formTab/FormTab',
+	'./paginationTab/PaginationTab',
+	'./tableTab/TableTab'
+], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab, TextTab, SwitchTab, RadioboxGroupTab, CheckboxGroupTab, SelectAndSearchTab, DateTab, TimeTab, ModalTab, HoverTab, ToastTab, FormTab, PaginationTab, TableTab){
 
 	Index._model = {};
 
@@ -59,6 +66,27 @@ define([
 		        }, {
 		            label: 'Date',
 		            value: '8'
+		        }, {
+		            label: 'Time',
+		            value: '9'
+		        }, {
+		            label: 'Modal',
+		            value: '10'
+		        }, {
+		            label: 'Hover',
+		            value: '11'
+		        }, {
+		            label: 'Toast',
+		            value: '12'
+		        }, {
+		            label: 'Form',
+		            value: '13'
+		        }, {
+		            label: 'Pagination',
+		            value: '14'
+		        }, {
+		            label: 'Table',
+		            value: '15'
 		        }]
 			},
 			
@@ -111,7 +139,44 @@ define([
 				new DateTab({
 					$el: self.find('.tab-content-container')
 				});
-				break;						
+				break;	
+			case 8:
+				new TimeTab({
+					$el: self.find('.tab-content-container')
+				});
+				break;	
+			case 9:
+				new ModalTab({
+					$el: self.find('.tab-content-container')
+				});
+				break;
+			case 10:
+				new HoverTab({
+					$el: self.find('.tab-content-container')
+				});	
+				break;	
+			case 11:
+				new ToastTab({
+					$el: self.find('.tab-content-container')
+				});	
+				break;	
+			case 12:
+				new FormTab({
+					$el: self.find('.tab-content-container')
+				});	
+				break;	
+			case 13:
+				new PaginationTab({
+					$el: self.find('.tab-content-container')
+				});	
+				break;	
+			case 14:
+				new TableTab({
+					$el: self.find('.tab-content-container')
+				});	
+				break;							
+			default:
+				throw new Error('selected tab value was not existed!')						
 		}
 	}
 

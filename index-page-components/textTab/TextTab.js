@@ -38,6 +38,14 @@ define([
 		    }
 	    });
 
+	    new Text({
+	        $el: self.find('.disabled-text'),
+	        model: {
+		        text: 'readonly text',
+		        disabled: true
+		    }
+	    });
+
 	    new IconText({
 	        $el: self.find('.icon-text'),
 	        model: {

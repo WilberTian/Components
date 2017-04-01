@@ -1,10 +1,9 @@
 .C_Toast {
-	width: 160px;
-	padding: 6px;
+	padding: 8px;
 	margin: 4px;
 	border: 1px solid #d7d7d7;
 	border-radius: 4px;
-	background: #f7f7f7;
+	background: #d7d7d7;
 }
 
 .C_Toast i {

@@ -190,6 +190,14 @@ define([
 		this.mount();
 	}
 
+	Component.prototype.mountTo = function($el) {
+		if(!$el || $el.length === 0) {
+			throw new Error('can not mount to ' + $el);
+		}
+		$el.append(this.$el.children());
+		this.$el = $el;
+	}
+
 	return Component;
 
 });

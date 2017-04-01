@@ -1,23 +1,29 @@
 define([
 	'jquery',
-	'Component',
-	'Utils',
-	'text!Toast.ejs'
+	'../Component',
+	'../Utils',
+	'text!./Toast.ejs'
 ], function($, Component, Utils, ejsTpl){
 
-	var _data = {
+	Toast._model = {
 		content: 'Please fill the content',
 		timeout: 3000,
+		style: {
+			width: '200px'
+		}
+	};
 
+	Toast._view = {
 		template: ejsTpl,
 
 		events: {
 			'click .toast-close': 'closeToast_event'
 		}
-	}
+	};
+
+	Toast._messages = {};
 
 	function Toast(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -26,7 +32,10 @@ define([
 	Toast.prototype.mount = function() {
 		var $el = this.$el;
 
-		this.$toastItem = $(this.renderedPage);
+		this.$toastItem = $(this.renderedComponent);
+		for(var styleProp in this.model.style) {
+			this.$toastItem.css(styleProp, this.model.style[styleProp]);
+		}
 	    $el.append(this.$toastItem);
 
 	    this.afterMount();
@@ -37,17 +46,22 @@ define([
 	Toast.prototype.afterMount = function() {
 		var self = this;
 
-		if(this.timeout > 0) {
-			var autoCloseTimer = setTimeout(function(){
+		if(this.model.timeout > 0) {
+			this._autoCloseTimer = setTimeout(function(){
 				self.$toastItem.remove();
-				clearTimeout(autoCloseTimer);
+				clearTimeout(this._autoCloseTimer);
 
-			}, this.timeout);
+			}, this.model.timeout);
 		}
 	}
 
 	Toast.prototype.closeToast_event = function(e) {
+		if(this._autoCloseTimer) {
+			clearTimeout(this._autoCloseTimer);
+		}
+
 		$(e.currentTarget).parent().remove();
+
 	}
 
 	return Toast;

@@ -1,0 +1,19 @@
+.toast-tab .element {
+	margin: 20px;
+}
+
+.toast-tab .show-default-toast {
+	display: block;
+	width: 160px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border: 1px solid #d7d7d7;
+	border-radius: 4px;
+}
+
+.toast-tab .default-toast {
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+}

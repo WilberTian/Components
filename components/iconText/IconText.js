@@ -10,7 +10,7 @@ define([
 	IconText._model = {
 		text: '',
 		placeholder: '',
-		enabled: true,
+		disabled: false,
 		iconClass: ''
 	};
 
@@ -32,7 +32,7 @@ define([
 			model: {
 				text: self.model.text,
 				placeholder: self.model.placeholder,
-				enabled: self.model.enabled,
+				disabled: self.model.disabled,
 			},
 			msgBus: self.msgBus
 		});

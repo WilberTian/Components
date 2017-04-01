@@ -8,7 +8,7 @@ define([
 	Text._model = {
 		text: '',
 		placeholder: '',
-		enabled: true,
+		disabled: false,
 
 		rules: []
 	};
@@ -41,7 +41,7 @@ define([
 
 	Text.prototype.afterMount = function() {
 
-		if(this.enabled) {
+		if(!this.disabled) {
 			this.events = {
 				'keyup .C_Text_input': 'onKeyup_evnet',
 				'blur .C_Text_input': 'onBlur_event',

@@ -33,7 +33,7 @@ define([
 			$el: self.find('.C_Select_Text'),
 			model: {
 				text: self.model.selected.label,
-				enabled: false,
+				disabled: true,
 				iconClass: 'fa fa-chevron-down'
 			},
 			

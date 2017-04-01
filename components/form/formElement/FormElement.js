@@ -1,24 +1,27 @@
 define([
 	'jquery',
 	'require',
-	'Component',
-	'Utils',
-	'text!FormElement.ejs'
+	'../../Component',
+	'../../Utils',
+	'text!./FormElement.ejs'
 ], function($, require, Component, Utils, ejsTpl){
 
-	var _data = {
+	FormElement._model = {
 		required: true,
 		lable: 'form label',
 		component: {
 			type: null,
 			data: null
-		},
+		}
+	};
 
+	FormElement._view = {
 		template: ejsTpl
-	}
+	};
+
+	FormElement._messages = {};
 
 	function FormElement(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -26,9 +29,9 @@ define([
 
 	FormElement.prototype.afterMount = function() {
 		var self = this;
-		var componentData = $.extend({}, self.component.data, {$el: self.find('.C_FormElement_component')});
+		var componentOptions = $.extend({}, {model: self.model.component.model}, {$el: self.find('.C_FormElement_component')});
 		
-		var componentType = self.component.type;
+		var componentType = self.model.component.type;
 		if(typeof componentType !== 'string') {
 			throw new Error('please input the component type in string');
 		}
@@ -37,7 +40,7 @@ define([
 
 		try {
 			Component = require(componentType);
-			new Component(componentData);
+			new Component(componentOptions);
 		} catch(e) {
 			throw new Error('can not load module ' + componentType);
 		}

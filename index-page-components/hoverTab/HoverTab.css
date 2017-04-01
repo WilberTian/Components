@@ -1,0 +1,29 @@
+.hover-tab .element {
+	margin: 60px;
+}
+
+.hover-tab .default-hover, 
+.hover-tab .hover-style-2,
+.hover-tab .hover-style-3,
+.hover-tab .hover-style-5,
+.hover-tab .hover-style-6,
+.hover-tab .hover-style-7 {
+	display: block;
+	border: 1px solid #d7d7d7;
+	padding: 4px 10px;
+	width: 100px;
+}
+
+.hover-tab .ellipsis-hint {
+	border: 1px solid #d7d7d7;
+	padding: 4px 10px;
+	width: 100px;
+}
+
+.hover-tab .ellipsis-hint span {
+	display: block;
+	width: 100px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

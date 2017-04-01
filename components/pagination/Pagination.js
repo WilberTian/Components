@@ -106,7 +106,7 @@ define([
 	Pagination.prototype.clickGoto_message = function() {
 		var self = this;
 
-		var gotoPage = parseInt(self.c_text.text);
+		var gotoPage = parseInt(self.c_text.model.text, 10);
 
 		if(gotoPage !== this.model.currentPage) {
 			this.updateModel({

@@ -33,7 +33,7 @@ define([
 
 			model: {
 				text: self.model.date,
-				enabled: false,
+				disabled: true,
 				iconClass: 'fa fa-calendar'
 			},
 			

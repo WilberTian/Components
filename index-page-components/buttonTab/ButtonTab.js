@@ -42,6 +42,14 @@ define([
 	    });
 
 	    new Button({
+	        $el: self.find('.disabled-button'),
+	        model: {
+	        	text: 'Disabled Btn',
+	        	disabled: true
+	        }
+	    });
+
+	    new Button({
 	        $el: self.find('.icon-button'),
 	        model: {
 	        	text: 'Setting',

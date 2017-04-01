@@ -1,0 +1,18 @@
+.C_TableHeader {
+	
+}
+
+.C_TableHeader .C_TableHeader_tr {
+	display: table;
+	table-layout: fixed;
+	width: 800px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #e1e1e1;
+	font-weight: bold;
+}
+
+.C_TableHeader .C_TableHeader_tr .C_TableHeader_th {
+	display: table-cell;
+	text-align: center;
+}

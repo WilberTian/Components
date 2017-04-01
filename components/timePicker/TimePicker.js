@@ -1,34 +1,28 @@
 define([
 	'jquery',
 	'moment',
-	'Component',
-	'Utils',
-	'text!TimePicker.ejs',
-	'IconText',
-	'TimeOptions'
+	'../Component',
+	'../Utils',
+	'text!./TimePicker.ejs',
+	'../iconText/IconText',
+	'../timeOptions/TimeOptions'
 ], function($, moment, Component, Utils, ejsTpl, IconText, TimeOptions) {
-	var _data = {
+
+	TimePicker._model = {
 		time: '00:00:00',
 		from: '',
-		to: '',
+		to: ''
+	};
 
-		template: ejsTpl,
+	TimePicker._view = {
+		template: ejsTpl
+	};
 
-		messages: {
-			'SELECT_HOUR': 'selectHour_message',
-			'SELECT_MINUTE': 'selectMinute_message',
-			'SELECT_SECOND': 'selectSecond_message',
-			'TEXT_CLICK': 'selectTime_message',
-			'CLICK_OUTSIDE': 'clickOutside_message'
-		},
-
-		events: {
-			
-		}
-	}
+	TimePicker._messages = {
+		TIMEPICKER_SELECT_TIME: 'TIMEPICKER_SELECT_TIME'
+	};
 
 	function TimePicker(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 	Utils.inherit(TimePicker, Component);
@@ -37,15 +31,25 @@ define([
 		var self = this;
 		self.c_text = new IconText({
 			$el: self.find('.C_TimePicker_Text'),
-			text: self.time,
-			enabled: false,
-			msgBus: self.msgBus,
-			iconClass: 'fa fa-clock-o'
+			model: {
+				text: self.model.time,
+				disabled: true,
+				iconClass: 'fa fa-clock-o'
+			},
+			
+			messages: {
+				'TEXT_CLICK': self.proxy(self.selectTime_message)
+			}
 		});
 
 		self.c_timeOptions = new TimeOptions({
 			$el: self.find('.C_TimePicker_TimeOptions'),
-			msgBus: self.msgBus
+			messages: {
+				'TIMEOPTIONS_SELECT_HOUR': self.proxy(self.selectHour_message),
+				'TIMEOPTIONS_SELECT_MINUTE': self.proxy(self.selectMinute_message),
+				'TIMEOPTIONS_SELECT_SECOND': self.proxy(self.selectSecond_message),
+				'CLICK_OUTSIDE': self.proxy(self.clickOutside_message)
+			}
 		})
 
 		self.c_timeOptions.hide();
@@ -55,7 +59,7 @@ define([
 		var self = this;
 
 		this.updateModel({
-			time: self.time.replace(/^\d\d/g, hour.label)
+			time: self.model.time.replace(/^\d\d/g, hour.label)
 		});
 		
 	}
@@ -64,7 +68,7 @@ define([
 		var self = this;
 
 		this.updateModel({
-			time: self.time.replace(/:\d\d:/g, ':' + minute.label + ':')
+			time: self.model.time.replace(/:\d\d:/g, ':' + minute.label + ':')
 		});
 		
 	}
@@ -73,7 +77,7 @@ define([
 		var self = this;
 
 		this.updateModel({
-			time: self.time.replace(/\d\d$/g, second.label)
+			time: self.model.time.replace(/\d\d$/g, second.label)
 		});
 		
 	}

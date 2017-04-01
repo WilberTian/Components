@@ -1,0 +1,17 @@
+.C_TableBody {
+	
+}
+
+.C_TableBody .C_TableBody_tr {
+	display: table;
+	table-layout: fixed;
+	width: 800px;
+	height: 30px;
+	line-height: 30px;
+	font-weight: bold;
+}
+
+.C_TableBody .C_TableBody_tr .C_TableBody_td {
+	display: table-cell;
+	text-align: center;
+}	

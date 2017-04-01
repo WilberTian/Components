@@ -1,0 +1,13 @@
+.modal-tab .element {
+	margin: 20px;
+}
+
+.modal-tab .show-default-modal {
+	display: block;
+	width: 160px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border: 1px solid #d7d7d7;
+	border-radius: 4px;
+}

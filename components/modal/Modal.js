@@ -1,26 +1,28 @@
 define([
 	'jquery',
-	'Component',
-	'Utils',
-	'text!Modal.ejs'
+	'../Component',
+	'../Utils',
+	'text!./Modal.ejs'
 ], function($, Component, Utils, ejsTpl){
 
-	var _data = {
-		header: 'Modal header',
-		template: ejsTpl,
+	Modal._model = {
+		header: 'Modal header'
+	};
 
-		messages: {
-			'MODAL_CONFIRM': Utils.noop
-		},
+	Modal._view = {
+		template: ejsTpl,
 
 		events: {
 			'click .C_Modal .modal-confirm': 'modalConfirm_event',
 			'click .C_Modal .modal-cancel': 'modalCancel_event',
 		}
-	}
+	};
+
+	Modal._messages = {
+		MODAL_CONFIRM: 'MODAL_CONFIRM'
+	};
 
 	function Modal(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
