@@ -11,7 +11,16 @@
 	font-weight: bold;
 }
 
+.C_TableBody .C_TableBody_tr:nth-child(odd) {
+	background-color: aliceblue;
+}
+
+.C_TableBody .C_TableBody_tr:nth-child(even) {
+
+}
+
 .C_TableBody .C_TableBody_tr .C_TableBody_td {
 	display: table-cell;
 	text-align: center;
 }	
+

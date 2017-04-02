@@ -31,22 +31,27 @@ define([
 		new TableHeader({
 			$el: $('.table-header'),
 			model: {
+				sortable: true,
 				thead: ['ID', 'Name', 'Gender', 'Age']
+			},
+
+			messages: {
+				'TABLE_HEADER_CLICK': self.proxy(self.tableHeaderClick_message)
 			}
 		});
 
-		new TableBody({
+		self.table = new TableBody({
 			$el: $('.table-body'),
 			model: {
 				tbody: [
-					['1', 'Wilber', 'Male', '23'],
-					['2', 'Wilber', 'Male', '23'],
-					['3', 'Wilber', 'Male', '23'],
-					['4', 'Wilber', 'Male', '23'],
-					['5', 'Wilber', 'Male', '23'],
-					['6', 'Wilber', 'Male', '23'],
-					['7', 'Wilber', 'Male', '23'],
-					['8', 'Wilber', 'Male', '23']
+					['1', 'Wilber', 'Male', 23],
+					['2', 'June', 'Female', 18],
+					['3', 'Charles', 'Male', 26],
+					['4', 'Peter', 'Male', 24],
+					['5', 'Sharon', 'Female', 18],
+					['6', 'Helena', 'Female', 19],
+					['7', 'Harry', 'Male', 23],
+					['8', 'Will', 'Male', 27]
 				]
 			}
 		});
@@ -61,6 +66,13 @@ define([
 			}
 			
 		});
+	}
+
+	TableTab.prototype.tableHeaderClick_message = function(columnId, order) {
+		// order - 0: default; 1: desc; 2: asc;
+		var self = this;
+
+		self.table.sort(columnId, order);
 	}
 
 	return TableTab;

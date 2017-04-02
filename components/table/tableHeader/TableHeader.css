@@ -16,3 +16,9 @@
 	display: table-cell;
 	text-align: center;
 }
+
+.C_TableHeader .C_TableHeader_tr .C_TableHeader_th .C_TableHeader_th_icon{
+	font-size: 12px;
+	padding-left: 4px;
+	cursor: pointer;
+}

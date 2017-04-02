@@ -3,6 +3,8 @@
 		<% model.thead.forEach(function (th, idx) { %>
 			<div class="C_TableHeader_th" data-col="<%= idx %>">
 				<%= th %>
+				<span class="C_TableHeader_th_icon sortable-icon-<%= idx %>">
+				</span>
 			</div>
 		<% }) %>
 	</div>
