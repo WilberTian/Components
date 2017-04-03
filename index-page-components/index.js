@@ -18,8 +18,9 @@ define([
 	'./toastTab/ToastTab',
 	'./formTab/FormTab',
 	'./paginationTab/PaginationTab',
-	'./tableTab/TableTab'
-], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab, TextTab, SwitchTab, RadioboxGroupTab, CheckboxGroupTab, SelectAndSearchTab, DateTab, TimeTab, ModalTab, HoverTab, ToastTab, FormTab, PaginationTab, TableTab){
+	'./tableTab/TableTab',
+	'./stepperTab/StepperTab'
+], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab, TextTab, SwitchTab, RadioboxGroupTab, CheckboxGroupTab, SelectAndSearchTab, DateTab, TimeTab, ModalTab, HoverTab, ToastTab, FormTab, PaginationTab, TableTab, StepperTab){
 
 	Index._model = {};
 
@@ -87,6 +88,9 @@ define([
 		        }, {
 		            label: 'Table',
 		            value: '15'
+		        }, {
+		            label: 'Stepper',
+		            value: '16'
 		        }]
 			},
 			
@@ -174,7 +178,12 @@ define([
 				new TableTab({
 					$el: self.find('.tab-content-container')
 				});	
-				break;							
+				break;	
+			case 15:
+				new StepperTab({
+					$el: self.find('.tab-content-container')
+				});	
+				break;								
 			default:
 				throw new Error('selected tab value was not existed!')						
 		}

@@ -1,23 +1,26 @@
 define([
 	'jquery',
-	'Component',
-	'Utils',
-	'Text',
-	'Button',
-	'text!Stepper.ejs'
+	'../Component',
+	'../Utils',
+	'../text/Text',
+	'../button/Button',
+	'text!./Stepper.ejs'
 ], function($, Component, Utils, Text, Button, ejsTpl){
 
-	var _data = {
+	Stepper._model ={
 		number: 0,
+		step: 1,
 		upperLimitation: Infinity,
-		lowerLimitation: -Infinity,
+		lowerLimitation: -Infinity
+	};
 
+	Stepper._view = {
 		template: ejsTpl
+	};
 
-	}
+	Stepper._messages = {};
 
 	function Stepper(options) {
-		$.extend(true, this, _data, options);
 		Component.apply(this, arguments || {});
 	}
 
@@ -28,19 +31,50 @@ define([
 
 		self.c_text = new Text({
 			$el: self.find('.C_Stepper_text'),
-			text: self.number,
-			msgBus: self.msgBus
+			model: {
+				text: self.model.number,
+				disabled: true
+			}
 		});
+		self.c_text.find('.C_Text_input').css('text-align', 'center');
 
 		self.c_dec = new Button({
 			$el: self.find('.C_Stepper_dec'),
-			iconClass: 'fa fa-minus'
+			model: {
+				iconClass: 'fa fa-minus'
+			},
+
+			messages: {
+				'BUTTON_CLICK': self.proxy(self.decButtonClick_message)
+			}
 		})
 
 		self.c_inc = new Button({
 			$el: self.find('.C_Stepper_inc'),
-			iconClass: 'fa fa-plus'
+			model: {
+				iconClass: 'fa fa-plus'
+			},
+
+			messages: {
+				'BUTTON_CLICK': self.proxy(self.incButtonClick_message)
+			}
 		})
+	}
+
+	Stepper.prototype.decButtonClick_message = function() {
+		var self = this;
+
+		this.updateModel({
+			number: self.model.number - self.model.step
+		});
+	}
+
+	Stepper.prototype.incButtonClick_message = function() {
+		var self = this;
+
+		this.updateModel({
+			number: self.model.number + self.model.step
+		});
 	}
  
 	return Stepper;
