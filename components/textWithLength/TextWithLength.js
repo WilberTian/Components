@@ -54,9 +54,12 @@ define([
 	}
 
 	TextWithLength.prototype.textKeyup_message = function(e, guid, text) {
-		this.c_textLength.updateModel({
+		this.updateModel({
+			text: text,
 			currentLength: text.length
 		});
+
+		this.find('.C_Text_input').focus();
 	}
  	
  	TextWithLength.prototype.textLengthError_message = function() {

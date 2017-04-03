@@ -8,9 +8,7 @@ define([
 	Text._model = {
 		text: '',
 		placeholder: '',
-		disabled: false,
-
-		rules: []
+		disabled: false
 	};
 
 	Text._view = {
@@ -52,6 +50,9 @@ define([
 				'click .C_Text_wrapper': 'onClick_event'
 			}
 		}
+
+		// make sure when we call fucus, the cursor will be at the end of the text
+		this.find('.C_Text_input').val(this.model.text);
 	}
 
 	Text.prototype.onClick_event = function(e) {
@@ -67,9 +68,7 @@ define([
 	Text.prototype.onBlur_event = function(e) {
 		var text = $(e.currentTarget).val();
 
-		if (this.model.rules.length > 0) {
-			this.validate(text);
-		}
+		this.msgBus.publish('TEXT_BLUR', e, this.guid, text);
 	}
 
 	Text.prototype.onFocus_event = function(e) {

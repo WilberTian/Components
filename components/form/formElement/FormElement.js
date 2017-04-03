@@ -9,9 +9,11 @@ define([
 	FormElement._model = {
 		required: true,
 		lable: 'form label',
+		rules: [],
 		component: {
 			type: null,
-			data: null
+			model: null,
+			submitField: null
 		}
 	};
 
@@ -40,9 +42,25 @@ define([
 
 		try {
 			Component = require(componentType);
-			new Component(componentOptions);
+			self._componentInstance = new Component(componentOptions);
 		} catch(e) {
 			throw new Error('can not load module ' + componentType);
+		}
+	}
+
+	FormElement.prototype.getSubmitObject = function() {
+		var self = this;
+		var submitField = self.model.component.submitField;
+		
+		if(submitField === null) {
+			throw new Error('please set submit field for ' + self.model.component.type);
+		} else {
+			var submitObject = {};
+			submitObject[submitField.key] = self._componentInstance.model[submitField.field];
+
+			Utils.logDebugMsg('submit data of ' + self.model.component.type + ' is ' + JSON.stringify(submitObject));
+
+			return submitObject;
 		}
 	}
 

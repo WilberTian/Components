@@ -78,6 +78,10 @@ define([
 		                placeholder: 'user name...',
 		                text: '',
 		                limitationLength: 20
+		            },
+		            submitField: {
+		            	key: 'name',
+		            	field: 'text'
 		            }
 		        }
 	        }
@@ -101,6 +105,10 @@ define([
 		                    label: 'Swimming',
 		                    value: '3'
 		                }]
+		            },
+		            submitField: {
+		            	key: 'interests',
+		            	field: 'checked'
 		            }
 		        }
 	        }
