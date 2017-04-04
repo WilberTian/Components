@@ -53,7 +53,7 @@ define([
 
 	DropdownButton.prototype.clickDropdownButton_message = function(e) {
 		e.stopPropagation();
-		this.c_options.show();
+		this.c_options.toggle();
 	}
 
 	DropdownButton.prototype.clickOutside_message = function() {
