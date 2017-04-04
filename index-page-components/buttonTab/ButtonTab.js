@@ -4,12 +4,13 @@ define([
 	'components/Utils',
 	'text!./ButtonTab.ejs',
 	'components/button/Button',
+	'components/dropdownButton/DropdownButton',
 	'../demoCode/DemoCode',
 	'text!./buttonHtml.txt',
 	'text!./buttonJs.txt',
 	'text!./buttonEvents.txt',
 	'text!./buttonMessages.txt'
-], function($, Component, Utils, ejsTpl, Button, DemoCode, buttonHtml, buttonJs, buttonEvents, buttonMessages){
+], function($, Component, Utils, ejsTpl, Button, DropdownButton, DemoCode, buttonHtml, buttonJs, buttonEvents, buttonMessages){
 
 	ButtonTab._model = {};
 	ButtonTab._view = {
@@ -61,6 +62,23 @@ define([
 	        $el: self.find('.icon-only-button'),
 	        model: {
 	        	iconClass: 'fa fa-cog'
+	        }
+	    });
+
+	    new DropdownButton({
+	        $el: self.find('.dropdown-button'),
+	        model: {
+	        	text: 'Actions',
+	        	options: [{
+	        		label: 'Add',
+	        		value: 1
+	        	},{
+	        		label: 'Delete',
+	        		value: 2
+	        	},{
+	        		label: 'Edit',
+	        		value: 3
+	        	}]
 	        }
 	    });
 

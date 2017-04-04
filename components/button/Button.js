@@ -46,7 +46,7 @@ define([
 	}
 
 	Button.prototype.buttonClick_event = function(e) {
-		if(!this.model.disabled) this.msgBus.publish('BUTTON_CLICK', this.currentPage);
+		if(!this.model.disabled) this.msgBus.publish('BUTTON_CLICK', e);
 	}
 
 	return Button;
