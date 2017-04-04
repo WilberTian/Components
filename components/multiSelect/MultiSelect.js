@@ -1,30 +1,29 @@
 define([
 	'jquery',
-	'Component',
-	'Utils',
-	'text!MultiSelect.ejs',
-	'Options'
+	'../Component',
+	'../Utils',
+	'text!./MultiSelect.ejs',
+	'../options/Options'
 ], function($, Component, Utils, ejsTpl, Options){
 
-	var _data = {
+	MultiSelect._model = {
 		options: [],
-		selected: [],
+		selected: []
+	};
 
+	MultiSelect._view = {
 		template: ejsTpl,
 
-		messages: {
-			'OPTIONS_SELECT': 'selectOption_message',
-			'CLICK_OUTSIDE': 'clickOutside_message'
-		},
-
 		events: {
-			'click .C_MulitSelect .C_selected_area .C_selected_item i': 'removeSelectedItem_event',
+			'click .C_MulitSelect .C_selected_area .C_selected_item .delete-item-icon': 'removeSelectedItem_event',
+			'click .C_MulitSelect .C_selected_area .C_selected_item': 'stopPropagation_event',
 			'click .C_selected_area': 'renderChildren_event'
 		}
-	}
+	};
+
+	MultiSelect._messages = {};
 
 	function MultiSelect(options) {
-		$.extend(true, this, _data, options);		
 		Component.apply(this, arguments || {});
 	}
 
@@ -37,24 +36,19 @@ define([
 		var selectedValue = $(e.currentTarget).parent().data('value');
 
 		var idx = -1;
-		this.selected.forEach(function(item, index){
+		this.model.selected.forEach(function(item, index){
 			if(item.value == selectedValue) {
 				idx = index;
 			}
 		});
-		this.selected.splice(idx, 1);
+		this.model.selected.splice(idx, 1);
 
-		this.mount();
-	}
-
-	MultiSelect.prototype.selectOption_message = function(e, guid, selectedItem) {
-		this.selected.push(selectedItem);
 		this.render();
 		this.mount();
 	}
 
-	MultiSelect.prototype.clickOutside_message = function() {
-		this.c_options.destory();
+	MultiSelect.prototype.stopPropagation_event = function(e) {
+		e.stopPropagation();
 	}
 
 	MultiSelect.prototype.renderChildren_event = function(e) {
@@ -64,10 +58,26 @@ define([
 
 		self.c_options = new Options({
 			$el: self.find('.C_MultiSelect_options'),
-			options: self.options,
-			msgBus: self.msgBus
+			model: {
+				options: self.model.options,
+			},
+			
+			messages: {
+				'OPTIONS_SELECT': self.proxy(self.selectOption_message),
+				'CLICK_OUTSIDE': self.proxy(self.clickOutside_message)
+			}
 		})
 
+	}
+
+	MultiSelect.prototype.selectOption_message = function(e, guid, selectedItem) {
+		this.model.selected.push(selectedItem);
+		this.render();
+		this.mount();
+	}
+
+	MultiSelect.prototype.clickOutside_message = function() {
+		this.c_options.destory();
 	}
   
 	return MultiSelect;

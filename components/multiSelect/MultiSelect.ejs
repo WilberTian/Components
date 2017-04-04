@@ -1,9 +1,9 @@
 <div class="C_MulitSelect">
 	<div class="C_selected_area">
-		<% selected.forEach(function (item) { %>
+		<% model.selected.forEach(function (item) { %>
 			<span class="C_selected_item" data-value="<%= item.value %>">
 				<%= item.label %>
-				<i></i>
+				<span class="delete-item-icon fa fa-close"></span>
 			</span>
 		<% }) %>
 	</div>
