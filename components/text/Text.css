@@ -2,25 +2,15 @@
 
 }
 
-.C_Text .C_Text_label {
-
-}
-
-.C_Text .C_Text_wrapper {
-	display: inline-block;
-	border-radius: 4px;
-	border: 1px solid #d7d7d7;
-}
-
-.C_Text .C_Text_wrapper.error {
+.C_Text .C_Text_input.error {
 	border: 1px solid red;
 }
 
-.C_Text .C_Text_wrapper .C_Text_input {
+.C_Text .C_Text_input {
 	height: 30px;
 	line-height: 30px;
 	font-size: 14px;
 	padding: 0px 8px;
-	border: none;
+	border: 1px solid #d7d7d7;
 	border-radius: 4px;
 }

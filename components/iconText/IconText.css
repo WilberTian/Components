@@ -7,7 +7,7 @@
 	float: left;
 }
 
-.C_IconText_text .C_Text_wrapper {
+.C_IconText_text .C_Text_input {
 	border-top-right-radius: 0px !important;
 	border-bottom-right-radius: 0px !important;
 	border-right: none !important;

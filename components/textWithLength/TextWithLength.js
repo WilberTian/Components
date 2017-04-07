@@ -63,11 +63,11 @@ define([
 	}
  	
  	TextWithLength.prototype.textLengthError_message = function() {
- 		this.find('.C_Text_wrapper').addClass('error');
+ 		this.find('.C_Text_input').addClass('error');
  	}
 
  	TextWithLength.prototype.textLengthOk_message = function() {
- 		this.find('.C_Text_wrapper').removeClass('error');
+ 		this.find('.C_Text_input').removeClass('error');
  	}
 
 	return TextWithLength;

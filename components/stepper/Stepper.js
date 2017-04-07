@@ -33,7 +33,7 @@ define([
 			$el: self.find('.C_Stepper_text'),
 			model: {
 				text: self.model.number,
-				disabled: true
+				readonly: true
 			}
 		});
 		self.c_text.find('.C_Text_input').css('text-align', 'center');

@@ -43,7 +43,7 @@ define([
 	        $el: self.find('.disabled-text'),
 	        model: {
 		        text: 'readonly text',
-		        disabled: true
+		        readonly: true
 		    }
 	    });
 

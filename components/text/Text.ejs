@@ -1,6 +1,7 @@
 <div class='C_Text'>
-
-	<div class="C_Text_wrapper">
-		<input class='C_Text_input' typt='text' placeholder='<%= model.placeholder %>' value='<%= model.text %>' <%= model.disabled ? 'disabled' : ''%>></input>
-	</div>
+	<input class='C_Text_input' 
+		typt='text' 
+		placeholder='<%= model.placeholder %>' 
+		value='<%= model.text %>' 
+		<%= model.readonly ? 'readonly' : ''%>></input>
 </div>

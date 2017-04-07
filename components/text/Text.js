@@ -8,7 +8,7 @@ define([
 	Text._model = {
 		text: '',
 		placeholder: '',
-		disabled: false
+		readonly: false
 	};
 
 	Text._view = {
@@ -19,7 +19,7 @@ define([
 			'keyup .C_Text_input': 'onKeyup_evnet',
 			'blur .C_Text_input': 'onBlur_event',
 			'focus .C_Text_input': 'onFocus_event',
-			'click .C_Text_wrapper': 'onClick_event'
+			'click .C_Text_input': 'onClick_event'
 		}
 	};
 
@@ -39,7 +39,7 @@ define([
 
 	Text.prototype.afterMount = function() {
 
-		if(!this.model.disabled) {
+		if(!this.model.readonly) {
 			this.view.events = {
 				'keyup .C_Text_input': 'onKeyup_evnet',
 				'blur .C_Text_input': 'onBlur_event',
@@ -47,7 +47,7 @@ define([
 			}
 		} else {
 			this.view.events = {
-				'click .C_Text_wrapper': 'onClick_event'
+				'click .C_Text_input': 'onClick_event'
 			}
 		}
 
