@@ -39,14 +39,14 @@ define([
 
 	Text.prototype.afterMount = function() {
 
-		if(!this.disabled) {
-			this.events = {
+		if(!this.model.disabled) {
+			this.view.events = {
 				'keyup .C_Text_input': 'onKeyup_evnet',
 				'blur .C_Text_input': 'onBlur_event',
 				'focus .C_Text_input': 'onFocus_event'
 			}
 		} else {
-			this.events = {
+			this.view.events = {
 				'click .C_Text_wrapper': 'onClick_event'
 			}
 		}

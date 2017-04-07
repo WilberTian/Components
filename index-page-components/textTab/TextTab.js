@@ -4,6 +4,7 @@ define([
 	'components/Utils',
 	'text!./TextTab.ejs',
 	'components/text/Text',
+	'components/textarea/Textarea',
 	'components/iconText/IconText',
 	'components/textLength/TextLength',
 	'components/textWithLength/TextWithLength',
@@ -12,7 +13,7 @@ define([
 	'text!./textJs.txt',
 	'text!./textEvents.txt',
 	'text!./textMessages.txt'
-], function($, Component, Utils, ejsTpl, Text, IconText, TextLength, TextWithLength, DemoCode, textHtml, textJs, textEvents, textMessages){
+], function($, Component, Utils, ejsTpl, Text, Textarea, IconText, TextLength, TextWithLength, DemoCode, textHtml, textJs, textEvents, textMessages){
 
 	TextTab._model = {};
 	TextTab._view = {
@@ -67,6 +68,16 @@ define([
 	        	placeholder: 'address...',
 	        	limitationLength: 10
 	        }
+	    });
+
+	    new Textarea({
+	        $el: self.find('.text-area'),
+	        model: {
+	        	text: '',
+		        placeholder: 'this is textarea...',
+		        resize: 'vertical',
+		        rows: 6
+		    }
 	    });
 
 		new DemoCode({
