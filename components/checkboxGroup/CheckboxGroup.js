@@ -18,7 +18,9 @@ define([
 		}
 	};
 
-	CheckboxGroup._messages = {};
+	CheckboxGroup._messages = {
+		CHECKBOXGROUP_CHANGE: 'CHECKBOXGROUP_CHANGE'
+	};
 
 	function CheckboxGroup(options) {
 		if(options.options && options.options.length === 0) {
@@ -40,6 +42,8 @@ define([
 			$(e.currentTarget).addClass('checked');
 			this.model.checked.push(checkboxValue);
 		}
+
+		this.msgBus.publish('CHECKBOXGROUP_CHANGE', self.model.checked);
 	}
 
 	CheckboxGroup.prototype.afterMount = function() {
@@ -51,6 +55,10 @@ define([
 				$(this).addClass('checked');
 			}
 		})
+
+		if(self.model.checked.length > 0) {
+			this.msgBus.publish('CHECKBOXGROUP_CHANGE', self.model.checked);
+		}
 	}
  
 	return CheckboxGroup;

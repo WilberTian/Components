@@ -16,7 +16,9 @@ define([
 		}
 	};
 
-	Switch._messages = {};
+	Switch._messages = {
+		SWITCH_CHANGE: 'SWITCH_CHANGE'
+	};
 
 	function Switch(options) {
 		Component.apply(this, arguments || {});
@@ -30,6 +32,8 @@ define([
 		this.updateModel({
 			switchOn: !status
 		});
+
+		this.msgBus.publish('SWITCH_CHANGE', this.model.switchOn);
 	}
  
 	return Switch;

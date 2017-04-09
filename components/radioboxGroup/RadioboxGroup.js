@@ -18,7 +18,9 @@ define([
 		}
 	};
 	
-	RadioboxGroup._messages = {};
+	RadioboxGroup._messages = {
+		RADIOBOXGROUP_CHANGE: 'RADIOBOXGROUP_CHANGE'
+	};
 	
 	function RadioboxGroup(options) {
 		Component.apply(this, arguments || {});
@@ -35,6 +37,7 @@ define([
 		this.model.checked = $(e.currentTarget).find('.C_Radiobox_label').data('value');
 		$(e.currentTarget).addClass('checked');
 
+		this.msgBus.publish('RADIOBOXGROUP_CHANGE', self.model.checked);
 	}
 
 	RadioboxGroup.prototype.afterMount = function() {
@@ -46,6 +49,10 @@ define([
 				$(this).addClass('checked');
 			}
 		})
+
+		if(self.model.checked > 0) {
+			this.msgBus.publish('RADIOBOXGROUP_CHANGE', self.model.checked);
+		}
 	}
  
 	return RadioboxGroup;
