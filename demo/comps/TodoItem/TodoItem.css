@@ -1,0 +1,32 @@
+.todoitem {
+	margin: 8px 0px;
+	padding: 4px 8px 0px 8px;
+	border: 1px solid #e1e1e1;
+	border-radius: 4px;
+}
+
+.todoitem.completed {
+	background-color: #f7f7f7;
+	color: #666;
+}
+
+.todoitem .status-switch {
+	display: inline-block;
+	float: left;
+}
+
+.todoitem .todoitem-name {
+	width: 260px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: inline-block;
+	height: 32px;
+	line-height: 32px;
+	padding: 0px 8px;
+}
+
+.todoitem .delete {
+	display: inline-block;
+	float: right;
+}
