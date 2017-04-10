@@ -18,8 +18,10 @@ define([
 		this.model = $.extend(true, {}, this.constructor._model || {}, options.model || {});
 		this.view = $.extend(true, {}, this.constructor._view || {}, options.view || {});
 		this.messages = options.messages || {};
+		this.style = $.extend(true, {}, this.constructor._style || {}, options.style || {});
 
 		this.init();
+
 		return this;
 	}
 
@@ -28,6 +30,7 @@ define([
 
 		this.render();
 		this.mount();
+		this.applyStyle();
 
 		this.undelegateEvents();
 	    this.delegateEvents();
@@ -51,6 +54,15 @@ define([
 
 	Component.prototype.afterRender = function() {
 		return this;
+	}
+
+	Component.prototype.applyStyle = function() {
+		for(var identity in this.style) {
+			var style = this.style[identity];
+			for(var styleProp in style) {
+				this.find(identity).css(styleProp, style[styleProp]);
+			}
+		}
 	}
 
 	Component.prototype.beforeMount = function() {
@@ -188,6 +200,7 @@ define([
 		
 		this.render();
 		this.mount();
+		this.applyStyle();
 	}
 
 	Component.prototype.mountTo = function($el) {

@@ -29,12 +29,12 @@ define([
 
 		var hover = new Hover({
 	        $el: $('.default-hover'),
-	        model: {
-            	style: {
-            		bottom: '28px',
-            		left: '0px'
-            	}
-            }
+        	style: {
+        		'.C_Hover_Wrapper': {
+					bottom: '28px',
+        			left: '0px'
+				}
+        	}
 	    });
 	    hover.updateModel({	
 	    	content: 'this is the hover message!'
@@ -48,12 +48,14 @@ define([
 	            $el: $('.ellipsis-hint'),
 	            model: {
 	            	content: 'this is a long text, and will use the text-overflow: ellipsis',
-	            	style: {
-	            		width: '300px',
+	            },
+	            style: {
+	            	'.C_Hover_Wrapper': {
+						width: '300px',
 	            		bottom: '28px',
-            			left: '0px'
-	            	}
-	            }
+	        			left: '0px'
+					}
+            	}
 	            
 	        });
 	    }
@@ -62,56 +64,66 @@ define([
 	    new Hover({
 	        $el: $('.hover-style-2'),
 	        model: {
-	        	arrowPos: 2,
-	        	style: {
-	        		bottom: '28px',
-	        		left: '-40px'
-	        	}
-	        }
+	        	arrowPos: 2	  
+	        },
+	        style: {
+            	'.C_Hover_Wrapper': {
+					bottom: '28px',
+        			left: '-40px'
+				}
+        	}
 	    });
 
 	    new Hover({
 	        $el: $('.hover-style-3'),
 	        model: {
-	        	arrowPos: 3,
-	        	style: {
-	        		bottom: '28px',
+	        	arrowPos: 3
+	        },
+	        style: {
+            	'.C_Hover_Wrapper': {
+					bottom: '28px',
 	        		right: '0px'
-	        	}
-	        }
+				}
+        	}
 	    });
 
 	    new Hover({
 	        $el: $('.hover-style-5'),
 	        model: {
-	        	arrowPos: 5,
-	        	style: {
-	        		top: '30px',
+	        	arrowPos: 5
+	        },
+	        style: {
+            	'.C_Hover_Wrapper': {
+					top: '30px',
 	        		right: '0px'
-	        	}
-	        }
+				}
+        	}
 	    });
 
 	    new Hover({
 	        $el: $('.hover-style-6'),
 	        model: {
-	        	arrowPos: 6,
-	        	style: {
-	        		top: '30px',
+	        	arrowPos: 6
+	        },
+	        style: {
+            	'.C_Hover_Wrapper': {
+					top: '30px',
 	        		right: '-40px'
-	        	}
-	        }
+				}
+        	}
 	    });
 
 	    new Hover({
 	        $el: $('.hover-style-7'),
 	        model: {
-	        	arrowPos: 7,
-	        	style: {
-	        		top: '30px',
+	        	arrowPos: 7
+	        },
+	        style: {
+            	'.C_Hover_Wrapper': {
+					top: '30px',
 	        		left: '0px'
-	        	}
-	        }
+				}
+        	}
 	    });
 
 		new DemoCode({

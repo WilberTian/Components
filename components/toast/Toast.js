@@ -7,10 +7,7 @@ define([
 
 	Toast._model = {
 		content: 'Please fill the content',
-		timeout: 3000,
-		style: {
-			width: '200px'
-		}
+		timeout: 3000
 	};
 
 	Toast._view = {
@@ -20,6 +17,12 @@ define([
 			'click .toast-close': 'closeToast_event'
 		}
 	};
+
+	Toast._style = {
+		'.C_Toast': {
+			width: '200px'
+		}
+	}
 
 	Toast._messages = {};
 
@@ -33,9 +36,6 @@ define([
 		var $el = this.$el;
 
 		this.$toastItem = $(this.renderedComponent);
-		for(var styleProp in this.model.style) {
-			this.$toastItem.css(styleProp, this.model.style[styleProp]);
-		}
 	    $el.append(this.$toastItem);
 
 	    this.afterMount();

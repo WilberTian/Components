@@ -7,10 +7,7 @@ define([
 
 	Hover._model = {
 		content: 'Please fill the content',
-		arrowPos: 1,
-		style: {
-			width: '200px'
-		}
+		arrowPos: 1
 	};
 
 	Hover._view = {
@@ -19,6 +16,13 @@ define([
 		events: {
 			'mouseover': 'showHover_event',
 			'mouseout': 'hideHover_event'
+		}
+	};
+
+	Hover._style = {
+		'.C_Hover_Wrapper': {
+			width: '200px',
+			display: 'none'
 		}
 	};
 
@@ -39,10 +43,6 @@ define([
 		this.$el.append('<div class="C_Hover_Wrapper"></div>');
 		this.$el.css('position', 'relative');
 
-		this.find('.C_Hover_Wrapper').css('display', 'none');
-		for(var styleProp in this.model.style) {
-			this.find('.C_Hover_Wrapper').css(styleProp, this.model.style[styleProp]);
-		}
 		this.find('.C_Hover_Wrapper').attr('arrow-pos', this.model.arrowPos);
 	};
 

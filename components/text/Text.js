@@ -35,8 +35,6 @@ define([
 
 	Utils.inherit(Text, Component);
 
-	Text.prototype
-
 	Text.prototype.afterMount = function() {
 
 		if(!this.model.readonly) {
