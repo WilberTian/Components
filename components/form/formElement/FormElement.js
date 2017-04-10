@@ -41,14 +41,16 @@ define([
 		var Component = null;
 
 		try {
-			Component = require(componentType);
-			self._componentInstance = new Component(componentOptions);
+			require([componentType], function(Component){
+				self._componentInstance = new Component(componentOptions);
+			});
+			
 		} catch(e) {
 			throw new Error('can not load module ' + componentType);
 		}
 	}
 
-	FormElement.prototype.getSubmitObject = function() {
+	FormElement.prototype.getSubmitElement = function() {
 		var self = this;
 		var submitField = self.model.component.submitField;
 		
