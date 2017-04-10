@@ -6,7 +6,8 @@ define([
 ], function($, Component, Utils, ejsTpl){
 
 	Modal._model = {
-		header: 'Modal header'
+		header: 'Modal header',
+		content: 'this is modal content'
 	};
 
 	Modal._view = {
@@ -27,12 +28,6 @@ define([
 	}
 
 	Utils.inherit(Modal, Component);
-
-	Modal.prototype.afterMount = function() {
-		// set the modal content with other component
-		this.find('.modal-body').append('add modal content or component in the afterMount method');
-		return this;
-	};
 
 	Modal.prototype.modalConfirm_event = function(e) {
 		var self = this;
