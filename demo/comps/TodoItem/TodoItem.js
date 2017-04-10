@@ -4,8 +4,9 @@ define([
 	'components/Utils',
 	'text!./TodoItem.ejs',
 	'components/switch/Switch',
-	'components/button/Button'
-], function($, Component, Utils, ejsTpl, Switch, Button){
+	'components/button/Button',
+	'components/modal/Modal'
+], function($, Component, Utils, ejsTpl, Switch, Button, Modal){
 
 	TodoItem._model = {
 		id: -1,
@@ -59,7 +60,21 @@ define([
 	}
 
 	TodoItem.prototype.deleteClick_message = function() {
-		this.destory();
+		var self = this;
+
+		var modal = new Modal({
+			$el: $('.delete-confirm-modal'),
+			model: {
+				header: 'Confirm'
+			},
+            messages: {
+            	'MODAL_CONFIRM': function(data){
+		            modal.destory();
+
+		            self.destory();
+		        }
+            }
+		})
 	}
 
 	TodoItem.prototype.statusChange_message = function(switchStatus) {
