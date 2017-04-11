@@ -72,7 +72,7 @@ define([
 	        }
 	    });
 
-	    var form = new Form({
+	    self.form = new Form({
 	        $el: self.find('.todoform'),
 	        model: {
 	        	formElements: [textInForm, radioboxGroupInForm]
@@ -83,6 +83,10 @@ define([
 	        	}
 	        }
 	    });
+	}
+
+	TodoForm.prototype.getSubmitData = function() {
+		return this.form.getSubmitData();
 	}
 
 	return TodoForm;

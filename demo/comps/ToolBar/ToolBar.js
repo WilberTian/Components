@@ -6,8 +6,9 @@ define([
 	'components/button/Button',
 	'components/radioboxGroup/RadioboxGroup',
 	'components/modal/Modal',
-	'../TodoForm/TodoForm'
-], function($, Component, Utils, ejsTpl, Button, RadioboxGroup, Modal, TodoForm){
+	'../TodoForm/TodoForm',
+	'../../mock/todoListAPI'
+], function($, Component, Utils, ejsTpl, Button, RadioboxGroup, Modal, TodoForm, todoListAPI){
 
 	ToolBar._model = {};
 	ToolBar._view = {
@@ -15,7 +16,8 @@ define([
 	};
 
 	ToolBar._messages = {
-		RADIOBOXGROUP_CHANGE: 'RADIOBOXGROUP_CHANGE'
+		RADIOBOXGROUP_CHANGE: 'RADIOBOXGROUP_CHANGE',
+		ADD_TODO_ITEM: 'ADD_TODO_ITEM'
 	};
 
 	function ToolBar(options) {
@@ -58,6 +60,8 @@ define([
 	}
 
 	ToolBar.prototype.addTodoItem_message = function () {
+		var self = this;
+
 		var modal = new Modal({
 			$el: $('.add-todoitem-modal'),
 			model: {
@@ -70,14 +74,18 @@ define([
 			},
 			messages: {
             	'MODAL_CONFIRM': function(data){
+            		var newTodoItem = todoForm.getSubmitData();
+            		todoListAPI.addTodoItem(newTodoItem);
+            		self.msgBus.publish('ADD_TODO_ITEM');
 		            modal.destory();
 		        }
             }
 		});
 
-		new TodoForm({
+		var todoForm = new TodoForm({
 			$el: modal.find('.modal-body')
 		});
+
 	}
 
 	return ToolBar;

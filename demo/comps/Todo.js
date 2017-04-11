@@ -31,7 +31,8 @@ define([
 		self.toolBar = new ToolBar({
 			$el: self.find('.toolbar-container'),
 			messages: {
-				'RADIOBOXGROUP_CHANGE': self.proxy(self.todoListFilterChange_message)
+				'RADIOBOXGROUP_CHANGE': self.proxy(self.todoListFilterChange_message),
+				'ADD_TODO_ITEM': self.proxy(self.addTodoItem_message)
 			}
 		});
 
@@ -42,6 +43,15 @@ define([
 		var self = this;
 
 		var todoListData = todoListAPI.queryTodoListByStatus(filter);
+
+		self.todoList.updateModel({
+			todolist: todoListData
+		});
+	}
+
+	Todo.prototype.addTodoItem_message = function() {
+		var self = this;
+		var todoListData = todoListAPI.queryTodoListByStatus(1);
 
 		self.todoList.updateModel({
 			todolist: todoListData

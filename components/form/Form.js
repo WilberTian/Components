@@ -15,9 +15,7 @@ define([
 		template: ejsTpl
 	};
 
-	Form._messages = {
-		FORM_SUBMIT: 'FORM_SUBMIT'
-	};
+	Form._messages = {};
 
 	function Form(options) {
 		Component.apply(this, arguments || {});
@@ -33,17 +31,6 @@ define([
 			formElement.mountTo(self.find('#' + formElement.guid));
 		});
 
-		self.c_submit_button = new Button({
-			$el: self.find('.C_Form_submit'),
-			model: {
-				text: 'Submit'
-			},
-
-			messages: {
-				'BUTTON_CLICK': self.proxy(self.submit)
-			}
-		});
-
 	}
 
 	Form.prototype.getSubmitData = function() {
@@ -53,10 +40,6 @@ define([
 		})
 
 		return submitData;
-	}
-
-	Form.prototype.submit = function() {
-		this.msgBus.publish('FORM_SUBMIT', this.getSubmitData());
 	}
 
 	return Form;

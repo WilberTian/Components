@@ -55,6 +55,8 @@ define([], function(){
     		globalId += 1;
     		todoItem.id = globalId;
     		todoList.push(todoItem);
+
+    		return todoList;
     	},
     	updateTodoItem: function(target) {
     		var found = todoList.find(function(todoItem){
