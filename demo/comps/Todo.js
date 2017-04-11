@@ -4,8 +4,9 @@ define([
 	'components/Utils',
 	'text!./Todo.ejs',
 	'./ToolBar/ToolBar',
-	'./TodoList/TodoList'
-], function($, Component, Utils, ejsTpl, ToolBar, TodoList){
+	'./TodoList/TodoList',
+	'../mock/todoListAPI'
+], function($, Component, Utils, ejsTpl, ToolBar, TodoList, todoListAPI){
 
 	Todo._model = {};
 	Todo._view = {
@@ -23,15 +24,15 @@ define([
 	Todo.prototype.afterMount = function() {
 		var self = this;
 
+		self.todoList = new TodoList({
+			$el: self.find('.todolist-container'),
+		});
+
 		self.toolBar = new ToolBar({
 			$el: self.find('.toolbar-container'),
 			messages: {
 				'RADIOBOXGROUP_CHANGE': self.proxy(self.todoListFilterChange_message)
 			}
-		});
-		
-		self.todoList = new TodoList({
-			$el: self.find('.todolist-container')
 		});
 
 	};
@@ -40,33 +41,10 @@ define([
 		// filter: 1-all, 2-todo, 3-completed
 		var self = this;
 
-		$.ajax({
-			url: 'mock/todoList_mock',
-			dataType:'json',
-			success: function(data) {
-				var todoList = data.msg.todolist.filter(function(item){
-					switch(filter) {
-						case 1:
-							return true;
-							break;
-						case 2:
-							return item.status === true;
-							break;
-						case 3: 
-							return item.status === false;
-							break;
-						default:
-							return true;
-					}
-				});
+		var todoListData = todoListAPI.queryTodoListByStatus(filter);
 
-				self.todoList.updateModel({
-					todolist: todoList
-				});
-			},
-			error: function(xhr, err) {
-				console.log(err);
-			}
+		self.todoList.updateModel({
+			todolist: todoListData
 		});
 	}
 

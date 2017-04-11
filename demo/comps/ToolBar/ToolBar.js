@@ -4,8 +4,10 @@ define([
 	'components/Utils',
 	'text!./ToolBar.ejs',
 	'components/button/Button',
-	'components/radioboxGroup/RadioboxGroup'
-], function($, Component, Utils, ejsTpl, Button, RadioboxGroup){
+	'components/radioboxGroup/RadioboxGroup',
+	'components/modal/Modal',
+	'../TodoForm/TodoForm'
+], function($, Component, Utils, ejsTpl, Button, RadioboxGroup, Modal, TodoForm){
 
 	ToolBar._model = {};
 	ToolBar._view = {
@@ -29,6 +31,10 @@ define([
 			$el: self.find('.add'),
 			model: {
 				iconClass: 'fa fa-plus'
+			},
+
+			messages: {
+				'BUTTON_CLICK': self.proxy(self.addTodoItem_message)
 			}
 		});
 
@@ -48,6 +54,29 @@ define([
 		        }]
 			},
 			msgBus: self.msgBus
+		});
+	}
+
+	ToolBar.prototype.addTodoItem_message = function () {
+		var modal = new Modal({
+			$el: $('.add-todoitem-modal'),
+			model: {
+				header: 'Add Todo'
+			},
+			style: {
+				'.modal-dialog': {
+					width: '480px'
+				}
+			},
+			messages: {
+            	'MODAL_CONFIRM': function(data){
+		            modal.destory();
+		        }
+            }
+		});
+
+		new TodoForm({
+			$el: modal.find('.modal-body')
 		});
 	}
 
