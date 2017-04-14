@@ -6,9 +6,7 @@ define([
 	'../TodoItem/TodoItem'
 ], function($, Component, Utils, ejsTpl, TodoItem){
 
-	TodoList._model = {
-		todolist: []
-	};
+	TodoList._model = {};
 
 	TodoList._view = {
 		template: ejsTpl

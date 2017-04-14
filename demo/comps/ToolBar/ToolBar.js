@@ -16,7 +16,7 @@ define([
 	};
 
 	ToolBar._messages = {
-		RADIOBOXGROUP_CHANGE: 'RADIOBOXGROUP_CHANGE',
+		QUERY_TODO_LIST: 'QUERY_TODO_LIST',
 		ADD_TODO_ITEM: 'ADD_TODO_ITEM'
 	};
 
@@ -43,7 +43,7 @@ define([
 		new RadioboxGroup({
 			$el: self.find('.filter'),
 			model: {
-				checked: 1,
+				checked: self.model.status,
 		        options: [{
 		            label: 'All',
 		            value: '1'
@@ -55,7 +55,9 @@ define([
 		            value: '3'
 		        }]
 			},
-			msgBus: self.msgBus
+			messages: {
+				'RADIOBOXGROUP_CHANGE': self.proxy(self.queryTodoList_message)
+			}
 		});
 	}
 
@@ -86,7 +88,11 @@ define([
 			$el: modal.find('.modal-body')
 		});
 
-	}
+	};
+
+	ToolBar.prototype.queryTodoList_message = function(status) {
+		this.msgBus.publish('QUERY_TODO_LIST', status);
+	};
 
 	return ToolBar;
 });

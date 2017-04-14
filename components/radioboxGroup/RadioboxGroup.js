@@ -32,10 +32,9 @@ define([
 	RadioboxGroup.prototype.selectRadiobox_event = function(e) {
 		var self = this;
 
-		self.find('.C_radiobox').removeClass('checked')
-
-		this.model.checked = $(e.currentTarget).find('.C_Radiobox_label').data('value');
-		$(e.currentTarget).addClass('checked');
+		self.updateModel({
+			checked: $(e.currentTarget).find('.C_Radiobox_label').data('value')
+		});
 
 		this.msgBus.publish('RADIOBOXGROUP_CHANGE', self.model.checked);
 	}
@@ -49,10 +48,6 @@ define([
 				$(this).addClass('checked');
 			}
 		})
-
-		if(self.model.checked > 0) {
-			this.msgBus.publish('RADIOBOXGROUP_CHANGE', self.model.checked);
-		}
 	}
  
 	return RadioboxGroup;

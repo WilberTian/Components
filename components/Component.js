@@ -1,9 +1,10 @@
 define([
 	'jquery',
+	'underscore',
 	'ejs',
 	'components/Pubsub',
 	'components/Utils'
-], function($, ejs, Pubsub, Utils){
+], function($, _, ejs, Pubsub, Utils){
 
 	function Component(options) {
 		if(options.$el.length === 0) {
@@ -82,6 +83,10 @@ define([
 
 	Component.prototype.afterMount = function() {
 		return this;
+	};
+
+	Component.prototype.shouldComponentUpdate = function() {
+		return true;
 	};
 
 	Component.prototype.initSubscriber = function() {
@@ -196,11 +201,20 @@ define([
 	}
 
 	Component.prototype.updateModel = function(data) {
-		$.extend(this.model, data);
+		var newModel = $.extend({}, this.model, data);
+
+		if (_.isEqual(newModel, this.model)) {
+			return;
+		}
+
+		this.model = newModel;
+
+		if(this.shouldComponentUpdate()) {
+			this.render();
+			this.mount();
+			this.applyStyle();
+		}
 		
-		this.render();
-		this.mount();
-		this.applyStyle();
 	}
 
 	Component.prototype.mountTo = function($el) {
