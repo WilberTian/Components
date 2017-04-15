@@ -28,7 +28,8 @@ define([
 			if(typeof f === 'function') {
 				todoActionCreator[actionCreator] = (function(f){
 					return function() {
-						store.dispatch(f());
+						var action = f.apply(this, arguments);
+						store.dispatch(action);
 					};
 				})(f);
 			}
@@ -48,7 +49,8 @@ define([
 			$el: self.find('.todolist-container'),
 			model: {
 				todolist: self.model.todolist
-			}
+			},
+			actionCreator: todoActionCreator
 		});
 
 		self.toolBar = new ToolBar({
@@ -56,13 +58,11 @@ define([
 			model: {
 				status: self.model.status
 			},
-			messages: {
-				'QUERY_TODO_LIST': self.proxy(self.queryTodoList_message),
-				'ADD_TODO_ITEM': self.proxy(self.addTodoItem_message)
-			}
+			actionCreator: todoActionCreator
 		});
 
-todoActionCreator.queryTodoList(1);
+		todoActionCreator.queryTodoList(1);
+
 	};
 
 	Todo.prototype.shouldComponentUpdate = function() {
@@ -73,25 +73,6 @@ todoActionCreator.queryTodoList(1);
 		});
 
 		return false;
-	}
-
-	Todo.prototype.consumer = todoConsumer;
-
-
-	Todo.prototype.queryTodoList_message = function(filter) {
-		// filter: 1-all, 2-todo, 3-completed
-		var self = this;
-
-		var todoListData = todoListAPI.queryTodoListByStatus(filter);
-
-		self.updateModel({
-			todolist: todoListData,
-			status: filter
-		});
-	}
-
-	Todo.prototype.addTodoItem_message = function() {
-		this.consumer('ADD_TODO_ITEM');
 	}
 
 	return Todo;

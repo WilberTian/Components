@@ -21,6 +21,10 @@ define([
 		this.messages = options.messages || {};
 		this.style = $.extend(true, {}, this.constructor._style || {}, options.style || {});
 
+		if(options.actionCreator) {
+			this.actionCreator = options.actionCreator;
+		}
+
 		this.init();
 
 		return this;

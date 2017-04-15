@@ -7,16 +7,31 @@ define([], function() {
 		};
 	}
 
-	function addTodoItem(name, status) {
+	function addTodoItem(todoItem) {
 		return {
 			message: 'ADD_TODO_ITEM',
-			name: name,
-			status: status
+			todoItem: todoItem
+		};
+	}
+
+	function updateTodoItem(todoItem) {
+		return {
+			message: 'UPDATE_TOTO_ITEM',
+			todoItem: todoItem
+		};
+	}
+
+	function deleteTodoItem(todoItem) {
+		return {
+			message: 'DELETE_TODO_ITEM',
+			todoItem: todoItem
 		};
 	}
 
 	return {
 		queryTodoList, 
-		addTodoItem
+		addTodoItem,
+		updateTodoItem,
+		deleteTodoItem
 	}
 });

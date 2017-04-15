@@ -1,21 +1,25 @@
 define([
+	'jquery',
+	'underscore',
 	'../../mock/todoListAPI'
-], function(todoListAPI){
+], function($, _, todoListAPI){
 	function todoConsumer(model, action) {
+		var model = $.extend({}, model);
+
 		switch(action.message) {
 			case "QUERY_TODO_LIST":
-				var todoListData = todoListAPI.queryTodoListByStatus(filter);
-
+				model.todolist = todoListAPI.queryTodoListByStatus(action.status);
+				model.status = action.status;
 				
 				break;
 			case "ADD_TODO_ITEM":
-				var todoListData = todoListAPI.queryTodoListByStatus(1);
-
-				
+				model.todolist = todoListAPI.addTodoItem(action.todoItem);
 				break;
-			case "EDIT_TODO_ITEM":
+			case "UPDATE_TOTO_ITEM":
+				model.todolist = todoListAPI.updateTodoItem(action.todoItem);
 				break;
 			case "DELETE_TODO_ITEM":
+				model.todolist = todoListAPI.deleteTodoItem(action.todoItem);
 				break;
 			default:
 				break;

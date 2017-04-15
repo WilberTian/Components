@@ -34,7 +34,8 @@ define([
 					status: todoItem.status,
 					createDate: todoItem.createDate,
 					completeDate: TodoItem.completeDate
-				}
+				},
+				actionCreator: self.actionCreator
 			});
 		});
 	}

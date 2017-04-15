@@ -6,9 +6,8 @@ define([
 	'components/button/Button',
 	'components/radioboxGroup/RadioboxGroup',
 	'components/modal/Modal',
-	'../TodoForm/TodoForm',
-	'../../mock/todoListAPI'
-], function($, Component, Utils, ejsTpl, Button, RadioboxGroup, Modal, TodoForm, todoListAPI){
+	'../TodoForm/TodoForm'
+], function($, Component, Utils, ejsTpl, Button, RadioboxGroup, Modal, TodoForm){
 
 	ToolBar._model = {};
 	ToolBar._view = {
@@ -77,8 +76,9 @@ define([
 			messages: {
             	'MODAL_CONFIRM': function(data){
             		var newTodoItem = todoForm.getSubmitData();
-            		todoListAPI.addTodoItem(newTodoItem);
-            		self.msgBus.publish('ADD_TODO_ITEM');
+            		self.actionCreator.addTodoItem(newTodoItem);
+            		self.actionCreator.queryTodoList(1);
+
 		            modal.destory();
 		        }
             }
@@ -91,7 +91,7 @@ define([
 	};
 
 	ToolBar.prototype.queryTodoList_message = function(status) {
-		this.msgBus.publish('QUERY_TODO_LIST', status);
+		this.actionCreator.queryTodoList(status);
 	};
 
 	return ToolBar;
