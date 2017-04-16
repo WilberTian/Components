@@ -1,12 +1,28 @@
 define([], function() {
-	return function(comp, consumer) {
+	return function(consumer, initModel) {
+		var listeners = [];
+		var model = initModel;
+
 		var dispatch = function(action) {
-			var model = consumer(comp.model, action)
-			comp.updateModel(model);
-		}
+			model = consumer(model, action)
+
+			for(var i = 0; i < listeners.length; i++) {
+				listeners[i]();
+			}
+		};
+
+		var getModel = function() {
+			return model;
+		};
+
+		var subscribe = function (listener) {
+			listeners.push(listener);
+		};
 
 		return {
-			dispatch: dispatch
+			dispatch: dispatch,
+			getModel: getModel,
+			subscribe: subscribe
 		};
 	};
 

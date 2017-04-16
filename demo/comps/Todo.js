@@ -8,8 +8,10 @@ define([
 	'../mock/todoListAPI',
 	'./flow/todo.consumer',
 	'./flow/todo.store',
-	'./flow/todo.actionCreator'
-], function($, Component, Utils, ejsTpl, ToolBar, TodoList, todoListAPI, todoConsumer, todoStore, todoActionCreator){
+	'./flow/todo.actionCreator',
+	'../../flow/combineConsumers',
+	'../../flow/bindActionCreators'
+], function($, Component, Utils, ejsTpl, ToolBar, TodoList, todoListAPI, todoConsumer, todoStore, todoActionCreator, combineConsumers, bindActionCreators){
 
 	Todo._model = {
 		todolist: [],
@@ -22,19 +24,22 @@ define([
 	Todo._messages = {};
 
 	function Todo(options) {
-		var store = todoStore(this, todoConsumer);
-		for(var actionCreator in todoActionCreator) {
-			var f = todoActionCreator[actionCreator];
-			if(typeof f === 'function') {
-				todoActionCreator[actionCreator] = (function(f){
-					return function() {
-						var action = f.apply(this, arguments);
-						store.dispatch(action);
-					};
-				})(f);
-			}
+		var appConsumer = combineConsumers({todoConsumer});
+
+		var store = todoStore(appConsumer);
+
+
+		var modelMapper = function(model, modelKey) {
+			return model[modelKey];
 		}
 
+		var self = this;
+		store.subscribe(function(){
+			var model = modelMapper(store.getModel(), 'todoConsumer');
+			self.updateModel(model);
+		});
+
+		bindActionCreators(todoActionCreator, store);
 
 		Component.apply(this, arguments || {});
 		
