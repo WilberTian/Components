@@ -10,8 +10,9 @@ define([
 	'./flow/todo.store',
 	'./flow/todo.actionCreator',
 	'../../flow/combineConsumers',
-	'../../flow/bindActionCreators'
-], function($, Component, Utils, ejsTpl, ToolBar, TodoList, todoListAPI, todoConsumer, todoStore, todoActionCreator, combineConsumers, bindActionCreators){
+	'../../flow/bindActionCreators',
+	'../../flow/flowConnector'
+], function($, Component, Utils, ejsTpl, ToolBar, TodoList, todoListAPI, todoConsumer, todoStore, todoActionCreator, combineConsumers, bindActionCreators, flowConnector){
 
 	Todo._model = {
 		todolist: [],
@@ -25,24 +26,17 @@ define([
 
 	function Todo(options) {
 		var appConsumer = combineConsumers({todoConsumer});
-
 		var store = todoStore(appConsumer);
 
-
-		var modelMapper = function(model, modelKey) {
-			return model[modelKey];
+		var modelMapper = function(model) {
+			return model['todoConsumer'];
 		}
 
-		var self = this;
-		store.subscribe(function(){
-			var model = modelMapper(store.getModel(), 'todoConsumer');
-			self.updateModel(model);
-		});
-
+		flowConnector(this, store, modelMapper);
 		bindActionCreators(todoActionCreator, store);
 
+
 		Component.apply(this, arguments || {});
-		
 	}
 
 	Utils.inherit(Todo, Component);
