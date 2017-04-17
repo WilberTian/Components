@@ -46,55 +46,55 @@ define([
 				selected: 0,
 		        tabs: [{
 		            label: 'Icon',
-		            value: '1'
+		            value: '0'
 		        }, {
 		            label: 'Button',
-		            value: '2'
+		            value: '1'
 		        }, {
 		            label: 'Text',
-		            value: '3'
+		            value: '2'
 		        }, {
 		            label: 'Switch',
-		            value: '4'
+		            value: '3'
 		        }, {
 		            label: 'RadioboxGroup',
-		            value: '5'
+		            value: '4'
 		        }, {
 		            label: 'CheckboxGroup',
-		            value: '6'
+		            value: '5'
 		        }, {
 		            label: 'Select & Search',
-		            value: '7'
+		            value: '6'
 		        }, {
 		            label: 'Date',
-		            value: '8'
+		            value: '7'
 		        }, {
 		            label: 'Time',
-		            value: '9'
+		            value: '8'
 		        }, {
 		            label: 'Modal',
-		            value: '10'
+		            value: '9'
 		        }, {
 		            label: 'Hover',
-		            value: '11'
+		            value: '10'
 		        }, {
 		            label: 'Toast',
-		            value: '12'
+		            value: '11'
 		        }, {
 		            label: 'Form',
-		            value: '13'
+		            value: '12'
 		        }, {
 		            label: 'Pagination',
-		            value: '14'
+		            value: '13'
 		        }, {
 		            label: 'Table',
-		            value: '15'
+		            value: '14'
 		        }, {
 		            label: 'Stepper',
-		            value: '16'
+		            value: '15'
 		        }, {
 		            label: 'MultiSelect',
-		            value: '17'
+		            value: '16'
 		        }]
 			},
 			

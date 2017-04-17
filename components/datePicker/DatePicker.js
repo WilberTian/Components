@@ -33,7 +33,7 @@ define([
 
 			model: {
 				text: self.model.date,
-				disabled: true,
+				readonly: true,
 				iconClass: 'fa fa-calendar'
 			},
 			
@@ -76,11 +76,10 @@ define([
 	DatePicker.prototype.chooseDate_message = function(date){
 		var dateStr = moment(date).format('YYYY-MM-DD');
 
-		this.model.date = dateStr;
 		this.c_calendar.hide();
 
-		this.c_text.updateModel({
-			text: dateStr
+		this.updateModel({
+			date: dateStr
 		});
 
 		this.msgBus.publish('DATEPICKER_SELECT_DATE', dateStr);
