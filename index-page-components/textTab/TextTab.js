@@ -75,8 +75,12 @@ define([
 	        model: {
 	        	text: '',
 		        placeholder: 'this is textarea...',
-		        resize: 'vertical',
 		        rows: 6
+		    },
+		    style: {
+		    	'.C_Textarea_input': {
+		    		resize: 'vertical' 
+		    	}
 		    }
 	    });
 

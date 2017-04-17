@@ -48,9 +48,6 @@ define([
 				'click .C_Text_input': 'onClick_event'
 			}
 		}
-
-		// make sure when we call fucus, the cursor will be at the end of the text
-		this.find('.C_Text_input').val(this.model.text);
 	}
 
 	Text.prototype.onClick_event = function(e) {
@@ -59,7 +56,14 @@ define([
 	}
 
 	Text.prototype.onKeyup_evnet = function(e) {
-		this.model.text = $(e.currentTarget).val();
+		this.updateModel({
+			text: $(e.currentTarget).val()
+		});
+
+		// make sure the cursor will be at the end of the text after re-render
+		this.find('.C_Text_input').val(this.model.text);
+		this.find('.C_Text_input').focus();
+
 		this.msgBus.publish('TEXT_KEYUP', e, this.guid, this.model.text);
 	}
 

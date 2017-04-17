@@ -53,11 +53,6 @@ define([
 				'click .C_Textarea_input': 'onClick_event'
 			}
 		}
-
-		// make sure when we call fucus, the cursor will be at the end of the text
-		this.find('.C_Textarea_input').val(this.model.text);
-
-		this.setStyle(this.find('.C_Textarea_input'), 'resize', this.model.resize);
 	}
 
 	Textarea.prototype.onClick_event = function(e) {
@@ -66,7 +61,14 @@ define([
 	}
 
 	Textarea.prototype.onKeyup_evnet = function(e) {
-		this.model.text = $(e.currentTarget).val();
+		this.updateModel({
+			text: $(e.currentTarget).val()
+		});
+
+		// make sure the cursor will be at the end of the text after re-render
+		this.find('.C_Textarea_input').val(this.model.text);
+		this.find('.C_Textarea_input').focus();
+
 		this.msgBus.publish('TEXT_KEYUP', e, this.guid, this.model.text);
 	}
 
