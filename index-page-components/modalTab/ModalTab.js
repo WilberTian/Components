@@ -30,7 +30,11 @@ define([
 		$('.show-default-modal').on('click', function() {
 	        var modal = new Modal({
 	            $el: self.find('.default-modal'),
-
+	            style: {
+					'.modal-dialog': {
+						width: '400px'
+					}
+				},
 	            messages: {
 	            	'MODAL_CONFIRM': function(data){
 			            console.log('modal was confirmed')
