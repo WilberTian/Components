@@ -15,13 +15,13 @@ define([
 	'./timeTab/TimeTab',
 	'./modalTab/ModalTab',
 	'./hoverTab/HoverTab',
-	'./toastTab/ToastTab',
+	'./toastrTab/ToastrTab',
 	'./formTab/FormTab',
 	'./paginationTab/PaginationTab',
 	'./tableTab/TableTab',
 	'./stepperTab/StepperTab',
 	'./multiSelectTab/MultiSelectTab'
-], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab, TextTab, SwitchTab, RadioboxGroupTab, CheckboxGroupTab, SelectAndSearchTab, DateTab, TimeTab, ModalTab, HoverTab, ToastTab, FormTab, PaginationTab, TableTab, StepperTab, MultiSelectTab){
+], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab, TextTab, SwitchTab, RadioboxGroupTab, CheckboxGroupTab, SelectAndSearchTab, DateTab, TimeTab, ModalTab, HoverTab, ToastrTab, FormTab, PaginationTab, TableTab, StepperTab, MultiSelectTab){
 
 	Index._model = {};
 
@@ -78,7 +78,7 @@ define([
 		            label: 'Hover',
 		            value: '10'
 		        }, {
-		            label: 'Toast',
+		            label: 'Toastr',
 		            value: '11'
 		        }, {
 		            label: 'Form',
@@ -164,7 +164,7 @@ define([
 				});	
 				break;	
 			case 11:
-				new ToastTab({
+				new ToastrTab({
 					$el: self.find('.tab-content-container')
 				});	
 				break;	

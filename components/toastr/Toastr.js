@@ -2,60 +2,60 @@ define([
 	'jquery',
 	'../Component',
 	'../Utils',
-	'text!./Toast.ejs'
+	'text!./Toastr.ejs'
 ], function($, Component, Utils, ejsTpl){
 
-	Toast._model = {
+	Toastr._model = {
 		content: 'Please fill the content',
 		timeout: 3000
 	};
 
-	Toast._view = {
+	Toastr._view = {
 		template: ejsTpl,
 
 		events: {
-			'click .toast-close': 'closeToast_event'
+			'click .toastr-close': 'closeToastr_event'
 		}
 	};
 
-	Toast._style = {
-		'.C_Toast': {
+	Toastr._style = {
+		'.C_Toastr': {
 			width: '200px'
 		}
 	}
 
-	Toast._messages = {};
+	Toastr._messages = {};
 
-	function Toast(options) {
+	function Toastr(options) {
 		Component.apply(this, arguments || {});
 	}
 
-	Utils.inherit(Toast, Component);
+	Utils.inherit(Toastr, Component);
 
-	Toast.prototype.mount = function() {
+	Toastr.prototype.mount = function() {
 		var $el = this.$el;
 
-		this.$toastItem = $(this.renderedComponent);
-	    $el.append(this.$toastItem);
+		this.$toastrItem = $(this.renderedComponent);
+	    $el.append(this.$toastrItem);
 
 	    this.afterMount();
 
 	    return this;
 	}
 
-	Toast.prototype.afterMount = function() {
+	Toastr.prototype.afterMount = function() {
 		var self = this;
 
 		if(this.model.timeout > 0) {
 			this._autoCloseTimer = setTimeout(function(){
-				self.$toastItem.remove();
+				self.$toastrItem.remove();
 				clearTimeout(this._autoCloseTimer);
 
 			}, this.model.timeout);
 		}
 	}
 
-	Toast.prototype.closeToast_event = function(e) {
+	Toastr.prototype.closeToastr_event = function(e) {
 		if(this._autoCloseTimer) {
 			clearTimeout(this._autoCloseTimer);
 		}
@@ -64,5 +64,5 @@ define([
 
 	}
 
-	return Toast;
+	return Toastr;
 });

@@ -1,8 +1,8 @@
-.toast-tab .element {
+.toastr-tab .element {
 	margin: 20px;
 }
 
-.toast-tab .show-default-toast {
+.toastr-tab .show-default-toastr {
 	display: block;
 	width: 160px;
 	height: 30px;
@@ -12,7 +12,7 @@
 	border-radius: 4px;
 }
 
-.toast-tab .default-toast {
+.toastr-tab .default-toastr {
 	position: fixed;
 	bottom: 0px;
 	right: 0px;
