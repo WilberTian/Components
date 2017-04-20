@@ -64,7 +64,7 @@ define([
 		});
 
 		// make sure the cursor will be at the end of the text after re-render
-		this.find('.C_Textarea_input').val(this.model.text);
+		this.find('.C_Textarea_input').text(this.model.text);
 		this.find('.C_Textarea_input').focus();
 
 		this.msgBus.publish('TEXT_KEYUP', e, this.guid, this.model.text);

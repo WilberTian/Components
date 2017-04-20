@@ -4,7 +4,6 @@ require.config({
         text: '/vendor/text',
         ejs: '/node_modules/ejs/ejs.min',
         moment: '/node_modules/moment/min/moment.min',
-        underscore: '/node_modules/underscore/moment-min',
         components: '/components'
     }
 });
