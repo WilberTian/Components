@@ -78,6 +78,7 @@ define([
 		            modal.destory();
 		            
 		            self.actionCreator.deleteTodoItem(self.model);
+		            self.actionCreator.saveOperation('OP: DELETE');
 
 		            self.destory();
 		        }

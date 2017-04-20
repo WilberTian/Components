@@ -79,6 +79,8 @@ define([
             		self.actionCreator.addTodoItem(newTodoItem);
             		self.actionCreator.queryTodoList(1);
 
+            		self.actionCreator.saveOperation('OP: ADD');
+
 		            modal.destory();
 		        }
             }
@@ -92,6 +94,7 @@ define([
 
 	ToolBar.prototype.queryTodoList_message = function(status) {
 		this.actionCreator.queryTodoList(status);
+		this.actionCreator.saveOperation('OP: FILTER - ' + status);
 	};
 
 	return ToolBar;
