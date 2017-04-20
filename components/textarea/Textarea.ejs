@@ -1,12 +1,11 @@
 <div class='C_Textarea'>
 	<textarea class='C_Textarea_input' 
 		placeholder='<%= model.placeholder %>' 
-		value='<%= model.text %>' 
 		<% if(model.rows > 0) { %>
 			rows="<%= model.rows %>"
 		<% } %>
 		<% if(model.cols > 0) { %>
 			cols="<%= model.cols %>"
 		<% } %>
-		<%= model.readonly ? 'readonly' : '' %>></textarea>
+		<%= model.readonly ? 'readonly' : '' %>><%= model.text %></textarea>
 </div>

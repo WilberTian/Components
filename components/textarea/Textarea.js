@@ -38,8 +38,6 @@ define([
 
 	Utils.inherit(Textarea, Component);
 
-	Textarea.prototype
-
 	Textarea.prototype.afterMount = function() {
 
 		if(!this.model.readonly) {
