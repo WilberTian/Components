@@ -32,7 +32,7 @@ define([
 	RadioboxGroup.prototype.selectRadiobox_event = function(e) {
 		var self = this;
 
-		this.updateModel({
+	  self.updateModel({
 			checked: $(e.currentTarget).find('.C_Radiobox_label').data('value')
 		});
 
@@ -48,10 +48,6 @@ define([
 				$(this).addClass('checked');
 			}
 		})
-
-		if(self.model.checked > 0) {
-			this.msgBus.publish('RADIOBOXGROUP_CHANGE', self.model.checked);
-		}
 	}
  
 	return RadioboxGroup;

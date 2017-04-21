@@ -26,9 +26,10 @@ define([
 	TableBody.prototype.sort = function(colunmId, order, sortFn) {
 		// 0: default; 1: desc; 2: asc;
 		var self = this;
+		var dataToSort = self.model.tbody.slice();
 
 		if(sortFn) {
-			self.model.tbody.sort(sortFn);
+			dataToSort.sort(sortFn);
 		} else {
 			var sortFn;
 
@@ -43,11 +44,11 @@ define([
 					sortFn = null;
 			}
 
-			sortFn && self.model.tbody.sort(sortFn);
+			sortFn && dataToSort.sort(sortFn);
 		}
 
 		self.updateModel({
-			tbody: self.model.tbody
+			tbody: dataToSort
 		});
 	}	
 

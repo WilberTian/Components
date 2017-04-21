@@ -5,9 +5,8 @@ define([
 	'text!./TodoItem.ejs',
 	'components/switch/Switch',
 	'components/button/Button',
-	'components/modal/Modal',
-	'../../mock/todoListAPI'
-], function($, Component, Utils, ejsTpl, Switch, Button, Modal, todoListAPI){
+	'components/modal/Modal'
+], function($, Component, Utils, ejsTpl, Switch, Button, Modal){
 
 	TodoItem._model = {
 		id: -1,
@@ -78,7 +77,9 @@ define([
             	'MODAL_CONFIRM': function(data){
 		            modal.destory();
 		            
-		            todoListAPI.deleteTodoItem(self.model);
+		            self.actionCreator.deleteTodoItem(self.model);
+		            self.actionCreator.saveOperation('OP: DELETE');
+
 		            self.destory();
 		        }
             }
@@ -88,11 +89,8 @@ define([
 	TodoItem.prototype.statusChange_message = function(switchStatus) {
 		var self = this;
 
-		self.updateModel({
-			status: switchStatus
-		});
-
-		todoListAPI.updateTodoItem(self.model);
+		var model = $.extend({}, self.model, {status: switchStatus});
+		self.actionCreator.updateTodoItem(model);
 	}
 
 	return TodoItem;

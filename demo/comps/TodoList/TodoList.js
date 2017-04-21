@@ -6,9 +6,7 @@ define([
 	'../TodoItem/TodoItem'
 ], function($, Component, Utils, ejsTpl, TodoItem){
 
-	TodoList._model = {
-		todolist: []
-	};
+	TodoList._model = {};
 
 	TodoList._view = {
 		template: ejsTpl
@@ -36,7 +34,8 @@ define([
 					status: todoItem.status,
 					createDate: todoItem.createDate,
 					completeDate: TodoItem.completeDate
-				}
+				},
+				actionCreator: self.actionCreator
 			});
 		});
 	}

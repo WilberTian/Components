@@ -6,9 +6,8 @@ define([
 	'components/button/Button',
 	'components/radioboxGroup/RadioboxGroup',
 	'components/modal/Modal',
-	'../TodoForm/TodoForm',
-	'../../mock/todoListAPI'
-], function($, Component, Utils, ejsTpl, Button, RadioboxGroup, Modal, TodoForm, todoListAPI){
+	'../TodoForm/TodoForm'
+], function($, Component, Utils, ejsTpl, Button, RadioboxGroup, Modal, TodoForm){
 
 	ToolBar._model = {};
 	ToolBar._view = {
@@ -16,7 +15,7 @@ define([
 	};
 
 	ToolBar._messages = {
-		RADIOBOXGROUP_CHANGE: 'RADIOBOXGROUP_CHANGE',
+		QUERY_TODO_LIST: 'QUERY_TODO_LIST',
 		ADD_TODO_ITEM: 'ADD_TODO_ITEM'
 	};
 
@@ -43,7 +42,7 @@ define([
 		new RadioboxGroup({
 			$el: self.find('.filter'),
 			model: {
-				checked: 1,
+				checked: self.model.status,
 		        options: [{
 		            label: 'All',
 		            value: '1'
@@ -55,7 +54,9 @@ define([
 		            value: '3'
 		        }]
 			},
-			msgBus: self.msgBus
+			messages: {
+				'RADIOBOXGROUP_CHANGE': self.proxy(self.queryTodoList_message)
+			}
 		});
 	}
 
@@ -75,8 +76,11 @@ define([
 			messages: {
             	'MODAL_CONFIRM': function(data){
             		var newTodoItem = todoForm.getSubmitData();
-            		todoListAPI.addTodoItem(newTodoItem);
-            		self.msgBus.publish('ADD_TODO_ITEM');
+            		self.actionCreator.addTodoItem(newTodoItem);
+            		self.actionCreator.queryTodoList(1);
+
+            		self.actionCreator.saveOperation('OP: ADD');
+
 		            modal.destory();
 		        }
             }
@@ -86,7 +90,12 @@ define([
 			$el: modal.find('.modal-body')
 		});
 
-	}
+	};
+
+	ToolBar.prototype.queryTodoList_message = function(status) {
+		this.actionCreator.queryTodoList(status);
+		this.actionCreator.saveOperation('OP: FILTER - ' + status);
+	};
 
 	return ToolBar;
 });

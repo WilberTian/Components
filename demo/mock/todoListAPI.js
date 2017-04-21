@@ -67,6 +67,8 @@ define([], function(){
     			found.name = target.name;
     			found.status = target.status;
     		}
+
+    		return todoList;
     	},
     	deleteTodoItem: function(target) {
     		var foundIdx = todoList.findIndex(function(todoItem){
@@ -76,6 +78,8 @@ define([], function(){
     		if(foundIdx > -1) {
     			todoList.splice(foundIdx, 1);
     		}
+
+    		return todoList;
     	}
     }
 });
