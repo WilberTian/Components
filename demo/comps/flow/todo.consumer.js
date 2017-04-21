@@ -4,7 +4,7 @@ define([
 	'../../mock/todoListAPI'
 ], function($, _, todoListAPI){
 	function todoConsumer(model, action) {
-		var model = $.extend({}, model);
+		var model = $.extend(true, {}, model);
 
 		switch(action.message) {
 			case "QUERY_TODO_LIST":

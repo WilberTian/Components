@@ -3,7 +3,7 @@ define([
 	'../../mock/opAPI'
 ], function($, opAPI){
 	function opConsumer(model, action) {
-		var model = $.extend({}, model);
+		var model = $.extend(true, {}, model);
 
 		switch(action.message) {
 			case "SAVE_OP":
