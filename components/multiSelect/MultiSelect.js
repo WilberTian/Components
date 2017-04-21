@@ -35,20 +35,19 @@ define([
 
 		var selectedValue = $(e.currentTarget).parent().data('value');
 
+		var selected = this.model.selected.slice();
+
 		var idx = -1;
 		this.model.selected.forEach(function(item, index){
 			if(item.value == selectedValue) {
 				idx = index;
 			}
 		});
-		this.model.selected.splice(idx, 1);
+		selected.splice(idx, 1);
 
-		this.render();
-		this.mount();
-	}
-
-	MultiSelect.prototype.stopPropagation_event = function(e) {
-		e.stopPropagation();
+		this.updateModel({
+			selected: selected
+		});
 	}
 
 	MultiSelect.prototype.renderChildren_event = function(e) {
@@ -71,9 +70,13 @@ define([
 	}
 
 	MultiSelect.prototype.selectOption_message = function(e, guid, selectedItem) {
-		this.model.selected.push(selectedItem);
-		this.render();
-		this.mount();
+		var selected = this.model.selected.slice();
+		
+		selected.push(selectedItem);
+
+		this.updateModel({
+			selected: selected
+		});
 	}
 
 	MultiSelect.prototype.clickOutside_message = function() {

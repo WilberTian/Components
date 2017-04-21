@@ -65,10 +65,9 @@ define([
 	}
 
 	Select.prototype.selectOption_message = function(e, guid, selectedItem) {
-		this.model.selected = selectedItem;
-		this.c_iconText.updateModel({
-			text: this.model.selected.label
-		})
+		this.updateModel({
+			selected: selectedItem
+		});
 
 		this.c_options.hide();
 

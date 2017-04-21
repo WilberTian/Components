@@ -34,14 +34,17 @@ define([
 
 	CheckboxGroup.prototype.selectCheckbox_event = function(e) {
 		var checkboxValue = $(e.currentTarget).find('.C_Checkbox_label').data('value');
+		var checked = this.model.checked.slice();
 
 		if($(e.currentTarget).hasClass('checked')) {
-			$(e.currentTarget).removeClass('checked');
-			this.model.checked.splice(this.model.checked.indexOf(checkboxValue), 1);
+			checked.splice(checked.indexOf(checkboxValue), 1);
 		} else {
-			$(e.currentTarget).addClass('checked');
-			this.model.checked.push(checkboxValue);
+			checked.push(checkboxValue);
 		}
+
+		this.updateModel({
+			checked: checked
+		});
 
 		this.msgBus.publish('CHECKBOXGROUP_CHANGE', self.model.checked);
 	}

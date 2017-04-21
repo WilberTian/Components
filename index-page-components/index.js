@@ -15,13 +15,13 @@ define([
 	'./timeTab/TimeTab',
 	'./modalTab/ModalTab',
 	'./hoverTab/HoverTab',
-	'./toastTab/ToastTab',
+	'./toastrTab/ToastrTab',
 	'./formTab/FormTab',
 	'./paginationTab/PaginationTab',
 	'./tableTab/TableTab',
 	'./stepperTab/StepperTab',
 	'./multiSelectTab/MultiSelectTab'
-], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab, TextTab, SwitchTab, RadioboxGroupTab, CheckboxGroupTab, SelectAndSearchTab, DateTab, TimeTab, ModalTab, HoverTab, ToastTab, FormTab, PaginationTab, TableTab, StepperTab, MultiSelectTab){
+], function($, Component, Utils, ejsTpl, Tab, IconTab, ButtonTab, TextTab, SwitchTab, RadioboxGroupTab, CheckboxGroupTab, SelectAndSearchTab, DateTab, TimeTab, ModalTab, HoverTab, ToastrTab, FormTab, PaginationTab, TableTab, StepperTab, MultiSelectTab){
 
 	Index._model = {};
 
@@ -46,55 +46,55 @@ define([
 				selected: 0,
 		        tabs: [{
 		            label: 'Icon',
-		            value: '1'
+		            value: '0'
 		        }, {
 		            label: 'Button',
-		            value: '2'
+		            value: '1'
 		        }, {
 		            label: 'Text',
-		            value: '3'
+		            value: '2'
 		        }, {
 		            label: 'Switch',
-		            value: '4'
+		            value: '3'
 		        }, {
 		            label: 'RadioboxGroup',
-		            value: '5'
+		            value: '4'
 		        }, {
 		            label: 'CheckboxGroup',
-		            value: '6'
+		            value: '5'
 		        }, {
 		            label: 'Select & Search',
-		            value: '7'
+		            value: '6'
 		        }, {
 		            label: 'Date',
-		            value: '8'
+		            value: '7'
 		        }, {
 		            label: 'Time',
-		            value: '9'
+		            value: '8'
 		        }, {
 		            label: 'Modal',
-		            value: '10'
+		            value: '9'
 		        }, {
 		            label: 'Hover',
+		            value: '10'
+		        }, {
+		            label: 'Toastr',
 		            value: '11'
 		        }, {
-		            label: 'Toast',
+		            label: 'Form',
 		            value: '12'
 		        }, {
-		            label: 'Form',
+		            label: 'Pagination',
 		            value: '13'
 		        }, {
-		            label: 'Pagination',
+		            label: 'Table',
 		            value: '14'
 		        }, {
-		            label: 'Table',
+		            label: 'Stepper',
 		            value: '15'
 		        }, {
-		            label: 'Stepper',
-		            value: '16'
-		        }, {
 		            label: 'MultiSelect',
-		            value: '17'
+		            value: '16'
 		        }]
 			},
 			
@@ -164,7 +164,7 @@ define([
 				});	
 				break;	
 			case 11:
-				new ToastTab({
+				new ToastrTab({
 					$el: self.find('.tab-content-container')
 				});	
 				break;	

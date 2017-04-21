@@ -1,4 +1,4 @@
-.C_Toast {
+.C_Toastr {
 	padding: 8px;
 	margin: 4px;
 	border: 1px solid #d7d7d7;
@@ -6,11 +6,11 @@
 	background: #f7f7f7;
 }
 
-.C_Toast i {
+.C_Toastr i {
 	float: right;
 	cursor: pointer;
 }
 
-.C_Toast .C_Toast_content {
+.C_Toastr .C_Toastr_content {
 	word-break: break-word;
 }

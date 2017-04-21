@@ -32,7 +32,7 @@ define([
 	RadioboxGroup.prototype.selectRadiobox_event = function(e) {
 		var self = this;
 
-		self.updateModel({
+	  self.updateModel({
 			checked: $(e.currentTarget).find('.C_Radiobox_label').data('value')
 		});
 

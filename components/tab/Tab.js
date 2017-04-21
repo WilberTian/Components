@@ -29,19 +29,19 @@ define([
 	Utils.inherit(Tab, Component);
 
 	Tab.prototype.afterMount = function() {
-		this.setActiveTab(this.model.selected);
 		this.msgBus.publish('TAB_CHANGE', this.model.selected);
+
 		return this;
 	};
 
 	Tab.prototype.setActiveTab = function(idx) {
-		this.find('.tab-item').removeClass('active');
-		this.model.selected = idx;
-		this.find('.tab-item').eq(idx).addClass('active');
+		this.updateModel({
+			selected: idx
+		});
 	}
 
 	Tab.prototype.setActiveTab_event = function(e) {
-		var selectedTabIdx = $(e.currentTarget).index();
+		var selectedTabIdx = $(e.currentTarget).data('value');
 
 		if(selectedTabIdx !== this.model.selected) {
 			this.setActiveTab(selectedTabIdx);
